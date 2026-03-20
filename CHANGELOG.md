@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2026-03-21
+### Added
+- **Custom Page & Post Templates:** New selectable templates for custom layouts.
+- **Full-Width Template:** Cinematic 1440px layout without sidebar.
+- **Narrow Reading Template:** Center-aligned 720px layout for focused reading.
+
 ## [1.8.0] - 2026-03-21
 ### Added
 - **Premium Related Posts:** Modern design for related posts section using Tailwind CSS.
