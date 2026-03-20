@@ -82,3 +82,39 @@ function mobilenews_render_ad($slot) {
 
     return $html;
 }
+
+/**
+ * Inject In-Article Ad into Post Content
+ */
+function mobilenews_inject_in_article_ad($content) {
+    if (!is_singular('post') || !function_exists('mobilenews_render_ad')) {
+        return $content;
+    }
+
+    $ad_code = mobilenews_render_ad('in_article');
+    if (empty($ad_code)) {
+        return $content;
+    }
+
+    $closing_p = '</p>';
+    $paragraphs = explode($closing_p, $content);
+    
+    // Insert after the 2nd paragraph (if it exists)
+    $insert_after = 2;
+
+    if (count($paragraphs) > $insert_after) {
+        foreach ($paragraphs as $index => $paragraph) {
+            if (trim($paragraph)) {
+                $paragraphs[$index] .= $closing_p;
+            }
+
+            if ($index + 1 == $insert_after) {
+                $paragraphs[$index] .= $ad_code;
+            }
+        }
+        $content = implode('', $paragraphs);
+    }
+
+    return $content;
+}
+add_filter('the_content', 'mobilenews_inject_in_article_ad');

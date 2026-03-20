@@ -27,6 +27,18 @@
     <!-- Editor's Picks Section -->
     <?php get_template_part('template-parts/home/editors-picks'); ?>
 
+    <!-- Homepage Mid Ad -->
+    <?php
+    if (function_exists('mobilenews_render_ad')) {
+        $homepage_mid_ad = mobilenews_render_ad('homepage_mid');
+        if (!empty($homepage_mid_ad)) {
+            echo '<div class="mb-12 mt-4 overflow-hidden flex justify-center">';
+            echo $homepage_mid_ad;
+            echo '</div>';
+        }
+    }
+    ?>
+
     <!-- Main Content Area with Sidebar -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Primary Column -->

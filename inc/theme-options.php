@@ -139,6 +139,7 @@ function mobilenews_theme_settings_init()
         'after_title' => 'After Title Ad',
         'after_content' => 'After Content Ad',
         'in_article' => 'In-Article Ad',
+        'homepage_mid' => 'Homepage Mid-Section Ad',
         'sticky_footer' => 'Sticky Footer Ad'
     ];
 
