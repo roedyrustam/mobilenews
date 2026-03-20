@@ -196,13 +196,29 @@ body_class($body_classes); ?>>
                         <span class="material-symbols-outlined hidden dark:block">light_mode</span>
                     </button>
                     <?php if (function_exists('mobilenews_get_option')): ?>
-                        <?php if (mobilenews_get_option('enable_live_streaming', true)): ?>
-                            <a href="<?php echo esc_url(mobilenews_get_option('live_streaming_url', '#')); ?>"
-                                class="bg-red-600 text-white text-[11px] font-bold uppercase tracking-widest px-4 py-3 rounded-xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
-                                <span class="size-2 bg-white rounded-full animate-pulse"></span>
-                                Live Stream
-                            </a>
-                        <?php endif; ?>
+                        <?php
+                            $enable_live = mobilenews_get_option('enable_live_streaming', true);
+                            $is_live_active = mobilenews_get_option('livestream_is_active', false);
+                            
+                            // Check YouTube API if available
+                            if (!$is_live_active && function_exists('mobilenews_is_youtube_live')) {
+                                $is_live_active = mobilenews_is_youtube_live();
+                            }
+
+                            if ($enable_live && $is_live_active):
+                                $live_url = mobilenews_get_option('live_streaming_url', '#');
+                                $badge_text = mobilenews_get_option('livestream_badge_text', 'LIVE');
+                                ?>
+                                <a href="<?php echo esc_url($live_url); ?>"
+                                    class="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(220,38,38,0.5)] animate-pulse">
+                                    <span class="relative flex h-2 w-2">
+                                        <span
+                                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                    </span>
+                                    <?php echo esc_html($badge_text); ?>
+                                </a>
+                            <?php endif; ?>
                         <a href="<?php echo esc_url(mobilenews_get_option('subscribe_url', '#')); ?>"
                             class="bg-primary text-white text-[11px] font-bold uppercase tracking-widest px-6 py-3 rounded-xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all">
                             Langganan

@@ -40,3 +40,40 @@ if (!function_exists('mobilenews_breadcrumbs')) {
         echo '</nav>';
     }
 }
+
+/**
+ * Check if YouTube Channel is Live
+ * Uses YouTube Data API v3
+ */
+if (!function_exists('mobilenews_is_youtube_live')) {
+    function mobilenews_is_youtube_live() {
+        $api_key = mobilenews_get_option('youtube_api_key');
+        $channel_id = mobilenews_get_option('youtube_channel_id');
+
+        if (empty($api_key) || empty($channel_id)) {
+            return false;
+        }
+
+        $transient_key = 'mobilenews_youtube_live_' . md5($channel_id);
+        $is_live = get_transient($transient_key);
+
+        if (false === $is_live) {
+            $api_url = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={$channel_id}&type=video&eventType=live&key={$api_key}";
+            $response = wp_remote_get($api_url);
+
+            if (is_wp_error($response)) {
+                return false;
+            }
+
+            $body = wp_remote_retrieve_body($response);
+            $data = json_decode($body, true);
+
+            $is_live = (!empty($data['items'])) ? 'yes' : 'no';
+            
+            // Cache for 15 minutes to avoid API quota limits
+            set_transient($transient_key, $is_live, 15 * MINUTE_IN_SECONDS);
+        }
+
+        return ($is_live === 'yes');
+    }
+}

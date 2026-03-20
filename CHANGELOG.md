@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - **Sticky Header Control:** Enable/disable sticky header from admin.
 - **Unified Breadcrumbs:** Centralized `mobilenews_breadcrumbs()` in `inc/template-tags.php`.
 - **Template Consistency:** Custom templates (Full-Width, Narrow, Livestream) now support global navigation features.
+- **YouTube API Integration:** Added support for YouTube API Key & Channel ID in theme options for future automation.
 
 ## [2.1.0] - 2026-03-21
 ### Added

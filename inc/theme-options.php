@@ -106,6 +106,8 @@ function mobilenews_theme_settings_init()
     add_settings_field('livestream_badge_text', 'Teks Badge Live', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_badge_text']);
     add_settings_field('livestream_embed', 'Video Embed Code (Youtube/Twitch)', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_embed']);
     add_settings_field('livestream_chat_embed', 'Chat Embed Code / Iframe', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_chat_embed']);
+    add_settings_field('youtube_api_key', 'YouTube API Key', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'youtube_api_key', 'description' => 'Gunakan untuk otomasi fitur YouTube.']);
+    add_settings_field('youtube_channel_id', 'YouTube Channel ID', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'youtube_channel_id', 'description' => 'ID Channel Anda (misal: UC...).']);
     add_settings_field('archive_layout', 'Archive Layout', 'mobilenews_theme_field_select_layout_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_layout']);
     add_settings_field('archive_show_excerpt', 'Show Post Excerpt', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_show_excerpt']);
 
