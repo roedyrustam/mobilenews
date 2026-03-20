@@ -208,6 +208,7 @@ jQuery(document).ready(function ($) {
 
         let currentPage = parseInt(button.data('page'));
         const maxPage = parseInt(button.data('max-page'));
+        const isHome = button.data('is-home') || false;
 
         if (currentPage >= maxPage) {
             button.hide();
@@ -225,6 +226,7 @@ jQuery(document).ready(function ($) {
                 category_id: catId,
                 tag_id: activeTag,
                 paged: currentPage + 1,
+                is_home: isHome,
                 nonce: mobilenews_ajax.nonce
             },
             success: function (response) {
