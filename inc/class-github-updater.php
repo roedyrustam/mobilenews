@@ -68,6 +68,14 @@ class MobileNews_GitHub_Updater {
         add_filter('upgrader_post_install', array($this, 'after_install'), 10, 3);
     }
 
+    /**
+     * Clear update transient to force a check
+     */
+    public function force_check() {
+        delete_site_transient('update_themes');
+        $this->github_response = null;
+    }
+
     public function modify_transient($transient) {
         if (empty($transient->checked)) {
             return $transient;
@@ -97,10 +105,18 @@ class MobileNews_GitHub_Updater {
     public function after_install($response, $hook_extra, $result) {
         global $wp_filesystem;
 
+        // Ensure we are updating our theme
+        if (!isset($hook_extra['theme']) || $hook_extra['theme'] !== $this->basename) {
+            return $response;
+        }
+
         $install_directory = get_theme_root() . '/' . $this->basename;
+
+        // Move the folder to the correct location
         $wp_filesystem->move($result['destination'], $install_directory);
         $result['destination'] = $install_directory;
 
         return $result;
     }
 }
+

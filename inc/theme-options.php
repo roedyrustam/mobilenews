@@ -368,10 +368,9 @@ function mobilenews_theme_options_page_html()
                     <button type="button" class="mobilenews-tab-link" data-tab="social"><span class="dashicons dashicons-share"></span> Social</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="contact"><span class="dashicons dashicons-email"></span> Contact</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="footer"><span class="dashicons dashicons-editor-insertmore"></span> Footer</button>
-                    <button type="button" class="mobilenews-tab-link" data-tab="api"><span class="dashicons dashicons-rest-api"></span> API</button>
-                    <button type="button" class="mobilenews-tab-link" data-tab="analytics"><span class="dashicons dashicons-chart-area"></span> Analytics</button>
-                    <button type="button" class="mobilenews-tab-link" data-tab="update"><span class="dashicons dashicons-update"></span> Update</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="updates"><span class="dashicons dashicons-update"></span> Updates</button>
                 </div>
+
             </div>
 
             <div class="mobilenews-admin-content">
@@ -451,15 +450,42 @@ function mobilenews_theme_options_page_html()
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_api'); ?>
             </div>
 
-            <!-- Analytics Tab -->
-            <div id="analytics" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_analytics'); ?>
+            <!-- Updates Tab -->
+            <div id="updates" class="mobilenews-tab-content">
+                <h2><?php echo esc_html__('Theme Updates', 'mobilenews'); ?></h2>
+                <div class="mobilenews-update-card bg-white dark:bg-zinc-800 p-6 rounded-xl border border-gray-100 dark:border-zinc-700 shadow-sm mt-4">
+                    <p class="mb-4 text-gray-600 dark:text-gray-400">
+                        <?php echo esc_html__('Check for new versions of the Mobile News theme directly from the GitHub repository.', 'mobilenews'); ?>
+                    </p>
+                    <p class="mb-6">
+                        <strong><?php echo esc_html__('Current Repository:', 'mobilenews'); ?></strong> 
+                        <code>https://github.com/roedyrustam/mobilenews</code>
+                    </p>
+                    
+                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+                        <?php wp_nonce_field('mobilenews_check_updates_nonce'); ?>
+                        <input type="hidden" name="action" value="mobilenews_check_updates">
+                        <button type="submit" class="button button-primary button-large">
+                            <span class="dashicons dashicons-update-alt" style="vertical-align: middle; margin-right: 5px;"></span>
+                            <?php echo esc_html__('Check for Updates Now', 'mobilenews'); ?>
+                        </button>
+                    </form>
+
+                    <?php if (isset($_GET['update_check']) && $_GET['update_check'] === 'done'): ?>
+                        <div class="updated notice is-dismissible mt-4" style="margin-left:0; margin-top:20px;">
+                            <p><?php echo esc_html__('Update check completed. If a new version is available, you will see a notice in the standard WordPress updates area (Dashboard > Updates).', 'mobilenews'); ?></p>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
 
-            <!-- Update Tab -->
-            <div id="update" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_update'); ?>
+
+            <!-- Analytics Tab Placeholder -->
+            <div id="analytics" class="mobilenews-tab-content">
+                <h2>Analytics</h2>
+                <p>Fitur analitik akan segera hadir.</p>
             </div>
+
         </form>
 
         <!-- Ads Manager Tab (Separate Form) -->
