@@ -147,7 +147,9 @@ get_header();
                     </div>
 
                     <!-- Post Social Share (Static) -->
-                    <?php get_template_part('template-parts/social-share'); ?>
+                    <?php if (get_theme_mod('mobilenews_show_social_share_bottom', true)): ?>
+                        <?php get_template_part('template-parts/social-share'); ?>
+                    <?php endif; ?>
 
 
                     <!-- Newsletter -->

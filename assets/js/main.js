@@ -194,14 +194,6 @@ jQuery(document).ready(function ($) {
     }
 
     // 4. Scroll to Top
-    const scrollToTopBtn = $('#scroll-to-top');
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            scrollToTopBtn.removeClass('opacity-0 invisible translate-y-10').addClass('opacity-100 visible translate-y-0');
-        } else {
-            scrollToTopBtn.addClass('opacity-0 invisible translate-y-10').removeClass('opacity-100 visible translate-y-0');
-        }
     });
 
     scrollToTopBtn.click(function (e) {
@@ -493,27 +485,30 @@ jQuery(document).ready(function ($) {
     let lastScrollTop = 0;
     const bottomNav = $('#mobile-bottom-nav');
 
-    $(window).scroll(function (event) {
-        let st = $(this).scrollTop();
-        const delta = 5; // Minimum scroll to trigger hide/show
-        
-        // Don't hide if mobile menu is open
-        if (!mobileMenu.hasClass('-translate-x-full')) {
-            bottomNav.css('transform', 'translateY(0)');
-            return;
-        }
+    if (mobilenews_ajax.bottom_nav_autohide) {
+        $(window).scroll(function (event) {
+            let st = $(this).scrollTop();
+            const delta = 5; // Minimum scroll to trigger hide/show
+            
+            // Don't hide if mobile menu is open
+            if (!mobileMenu.hasClass('-translate-x-full')) {
+                bottomNav.css('transform', 'translateY(0)');
+                return;
+            }
 
-        if (Math.abs(lastScrollTop - st) <= delta) return;
+            if (Math.abs(lastScrollTop - st) <= delta) return;
 
-        if (st > lastScrollTop && st > 100) {
-            // Scroll Down
-            bottomNav.css('transform', 'translateY(100%)');
-        } else {
-            // Scroll Up
-            bottomNav.css('transform', 'translateY(0)');
-        }
-        lastScrollTop = st;
-    });
+            if (st > lastScrollTop && st > 100) {
+                // Scroll Down
+                bottomNav.css('transform', 'translateY(100%)');
+            } else {
+                // Scroll Up
+                bottomNav.css('transform', 'translateY(0)');
+            }
+            lastScrollTop = st;
+        });
+    }
+
 
 
     // Init

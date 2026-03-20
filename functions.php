@@ -35,7 +35,15 @@ function mobilenews_setup()
     add_theme_support('align-wide');
     add_theme_support('responsive-embeds');
     add_theme_support('editor-styles');
-    add_editor_style(array('assets/css/main.css', 'assets/css/blocks.css')); // Load main and block styles in editor
+    add_editor_style(array('assets/css/main.css', 'assets/css/blocks.css'));
+
+    // Modern Design Tools (WP 6.x)
+    add_theme_support('appearance-tools');
+    add_theme_support('border');
+    add_theme_support('link-color');
+    add_theme_support('spacing');
+    add_theme_support('custom-spacing');
+    add_theme_support('custom-line-height');
 
 
     // HTML5 Support
@@ -47,7 +55,9 @@ function mobilenews_setup()
         'caption',
         'style',
         'script',
+        'navigation-widgets',
     ));
+
 
     // Register Navigation Menus
     register_nav_menus(array(
@@ -73,7 +83,12 @@ function mobilenews_setup()
         array('name' => 'Large', 'slug' => 'large', 'size' => 24),
         array('name' => 'Huge', 'slug' => 'huge', 'size' => 48),
     ));
+
+    // Support for selective refresh in customizer
+    add_theme_support('customize-selective-refresh-widgets');
 }
+
+
 
 add_action('after_setup_theme', 'mobilenews_setup');
 
@@ -175,8 +190,10 @@ function mobilenews_scripts()
     wp_localize_script('mobilenews-main-js', 'mobilenews_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('mobilenews_nonce'),
-        'weather_api_key' => mobilenews_get_option('weather_api_key')
+        'weather_api_key' => mobilenews_get_option('weather_api_key'),
+        'bottom_nav_autohide' => get_theme_mod('mobilenews_bottom_nav_autohide', true)
     ));
+
 
     // Inline Custom Styles from Customizer (Live Preview)
     $primary_color = get_theme_mod('mobilenews_primary_color', '#3b82f6');

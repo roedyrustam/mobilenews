@@ -175,6 +175,20 @@ function mobilenews_customize_register($wp_customize)
         'type' => 'number',
     ));
 
+    // 3. Bottom Navigation Auto-hide
+    $wp_customize->add_setting('mobilenews_bottom_nav_autohide', array(
+        'default' => true,
+        'sanitize_callback' => 'mobilenews_sanitize_checkbox',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('mobilenews_bottom_nav_autohide', array(
+        'label' => __('Auto-hide Bottom Nav on Scroll', 'mobilenews'),
+        'section' => 'mobilenews_layout_options',
+        'type' => 'checkbox',
+    ));
+
+
     // --- Footer Section ---
     $wp_customize->add_section('mobilenews_footer_options', array(
         'title' => __('Footer Settings', 'mobilenews'),
@@ -206,6 +220,26 @@ function mobilenews_customize_register($wp_customize)
         'section' => 'mobilenews_footer_options',
         'settings' => 'mobilenews_footer_logo',
     )));
+
+    // --- Single Post Options ---
+    $wp_customize->add_section('mobilenews_single_options', array(
+        'title' => __('Single Post Settings', 'mobilenews'),
+        'priority' => 155,
+    ));
+
+    // 1. Show Social Share after content
+    $wp_customize->add_setting('mobilenews_show_social_share_bottom', array(
+        'default' => true,
+        'sanitize_callback' => 'mobilenews_sanitize_checkbox',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('mobilenews_show_social_share_bottom', array(
+        'label' => __('Show Social Share After Content', 'mobilenews'),
+        'section' => 'mobilenews_single_options',
+        'type' => 'checkbox',
+    ));
+
 
     // --- SEO & Social Section ---
     $wp_customize->add_section('mobilenews_seo_options', array(
