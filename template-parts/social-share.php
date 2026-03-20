@@ -40,20 +40,19 @@ $linkedin_url = "https://www.linkedin.com/shareArticle?mini=true&url={$post_url}
 </div>
 
 <!-- Mobile: Fixed Bottom (Above current bottom nav if exists, or just minimal) -->
-<div
-    class="social-share-mobile xl:hidden w-full py-3 flex justify-center gap-4 bg-background-light dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800">
-
-    <span class="text-xs font-bold uppercase tracking-wider text-gray-400 self-center mr-2">Bagikan</span>
+<!-- Mobile: Floating Hub -->
+<div class="social-share-mobile xl:hidden floating-glass-bar">
+    <span class="text-[10px] font-black uppercase tracking-[1.5px] text-gray-400 dark:text-gray-500 mr-1">Bagikan</span>
     <a href="<?php echo $facebook_url; ?>" target="_blank" rel="noopener noreferrer"
-        class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">
+        class="w-9 h-9 flex items-center justify-center rounded-full bg-blue-600 text-white shadow-lg active:scale-90 transition-transform">
         <i class="ri-facebook-fill"></i>
     </a>
     <a href="<?php echo $twitter_url; ?>" target="_blank" rel="noopener noreferrer"
-        class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-black hover:bg-black hover:text-white transition-colors">
+        class="w-9 h-9 flex items-center justify-center rounded-full bg-black text-white shadow-lg active:scale-90 transition-transform">
         <i class="ri-twitter-x-fill"></i>
     </a>
     <a href="<?php echo $whatsapp_url; ?>" target="_blank" rel="noopener noreferrer"
-        class="w-8 h-8 flex items-center justify-center rounded-full bg-green-100 text-green-600 hover:bg-green-600 hover:text-white transition-colors">
+        class="w-9 h-9 flex items-center justify-center rounded-full bg-green-500 text-white shadow-lg active:scale-90 transition-transform">
         <i class="ri-whatsapp-line"></i>
     </a>
-</div>
+</div>

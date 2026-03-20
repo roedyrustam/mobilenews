@@ -317,21 +317,22 @@ jQuery(document).ready(function ($) {
     const searchClose = $('#mobilenews-search-close');
 
     function openSearch() {
-        searchOverlay.removeClass('hidden').addClass('flex');
+        searchOverlay.addClass('active').removeClass('hidden').css('display', 'flex');
         setTimeout(() => {
-            searchOverlay.removeClass('opacity-0');
             searchInput.focus();
-        }, 10);
+        }, 300);
         $('body').addClass('overflow-hidden');
     }
 
+
     function closeSearch() {
-        searchOverlay.addClass('opacity-0');
+        searchOverlay.removeClass('active');
         setTimeout(() => {
-            searchOverlay.addClass('hidden').removeClass('flex');
+            searchOverlay.addClass('hidden').css('display', 'none');
             $('body').removeClass('overflow-hidden');
-        }, 300);
+        }, 500); // Wait for exit animation
     }
+
 
     // Trigger Logic
     $(document).on('click', '.mobilenews-search-trigger, .search-toggle-btn', function (e) {

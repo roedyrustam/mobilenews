@@ -5,7 +5,8 @@
 ?>
 <!-- Search Overlay Container (Hidden by default) -->
 <div id="mobilenews-search-overlay"
-    class="fixed inset-0 z-[100] bg-white dark:bg-[#1f2b2e] hidden flex-col overflow-y-auto overflow-x-hidden transition-opacity duration-300 opacity-0">
+    class="fixed inset-0 z-[100] backdrop-blur-3xl bg-white/90 dark:bg-zinc-950/90 hidden flex-col overflow-y-auto overflow-x-hidden transition-opacity duration-300 opacity-0">
+
 
     <!-- Header / Top Navigation -->
     <header
@@ -135,10 +136,11 @@
                             while ($recent_query->have_posts()):
                                 $recent_query->the_post();
                                 ?>
-                                <article class="group cursor-pointer">
+                                <article class="group cursor-pointer hover-lift rounded-2xl p-2 border border-transparent hover:border-white/5 transition-all">
                                     <a href="<?php the_permalink(); ?>" class="flex gap-5">
                                         <div
-                                            class="w-32 h-24 shrink-0 overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-700 relative">
+                                            class="w-32 h-24 shrink-0 overflow-hidden rounded-xl bg-gray-200 dark:bg-zinc-800 relative">
+
                                             <?php if (has_post_thumbnail()): ?>
                                                 <img src="<?php the_post_thumbnail_url('thumbnail'); ?>"
                                                     alt="<?php the_title_attribute(); ?>"
