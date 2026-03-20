@@ -25,11 +25,13 @@ function mobilenews_setup()
 
     // Custom logo
     add_theme_support('custom-logo', array(
-        'height' => 50,
-        'width' => 200,
+        'height' => 60,
+        'width' => 240,
         'flex-height' => true,
         'flex-width' => true,
+        'header-text' => array('site-title', 'site-description'),
     ));
+
 
     // Block Editor Styles
     add_theme_support('align-wide');

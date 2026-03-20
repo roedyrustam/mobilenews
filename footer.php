@@ -4,26 +4,30 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <!-- Branding & About (Static/Dynamic Mix) -->
             <div class="col-span-1 md:col-span-1">
-                <div class="flex items-center gap-2 mb-6">
+                <div class="footer-branding flex items-center gap-3 mb-6">
                     <?php
-                    $footer_logo = get_theme_mod('mobilenews_footer_logo');
-                    if (empty($footer_logo) && function_exists('mobilenews_get_option')) {
-                        $footer_logo = mobilenews_get_option('footer_logo_url');
-                    }
-
-                    if (!empty($footer_logo)): ?>
-                        <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img src="<?php echo esc_url($footer_logo); ?>" alt="<?php bloginfo('name'); ?>"
-                                class="max-h-12 w-auto object-contain">
-                        </a>
+                    if (has_custom_logo()):
+                        $custom_logo_id = get_theme_mod('custom_logo');
+                        $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                        if ($logo):
+                            ?>
+                            <a href="<?php echo esc_url(home_url('/')); ?>">
+                                <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php bloginfo('name'); ?>"
+                                    class="max-h-12 w-auto object-contain">
+                            </a>
+                        <?php endif; ?>
                     <?php else: ?>
                         <div class="size-10 bg-primary/20 rounded-lg flex items-center justify-center">
                             <span class="material-symbols-outlined text-primary text-2xl">newspaper</span>
                         </div>
-                        <span class="text-xl font-black tracking-tighter text-white">MODERN<span
-                                class="text-primary">NEWS</span></span>
+                        <div class="flex flex-col leading-tight">
+                            <span class="text-xl font-black tracking-tighter text-white uppercase">
+                                <?php bloginfo('name'); ?>
+                            </span>
+                        </div>
                     <?php endif; ?>
                 </div>
+
                 <?php
                 if (is_active_sidebar('footer-1')) {
                     dynamic_sidebar('footer-1');

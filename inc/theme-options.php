@@ -52,7 +52,7 @@ function mobilenews_theme_settings_init()
 
     // --- Section: Footer & Legal ---
     add_settings_section('mobilenews_theme_section_footer', 'Footer & Legal Settings', 'mobilenews_theme_section_footer_cb', 'mobilenews_theme_options');
-    add_settings_field('footer_logo_url', 'Footer Logo (URL)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_footer', ['label_for' => 'footer_logo_url']);
+
     add_settings_field('footer_about', 'About Us Text', 'mobilenews_theme_field_textarea_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_footer', ['label_for' => 'footer_about']);
     add_settings_field('footer_copyright', 'Copyright Text', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_footer', ['label_for' => 'footer_copyright']);
     add_settings_field('privacy_policy_url', 'Privacy Policy URL', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_footer', ['label_for' => 'privacy_policy_url']);
@@ -60,7 +60,7 @@ function mobilenews_theme_settings_init()
 
     // --- Section: General ---
     add_settings_section('mobilenews_theme_section_general', 'General Settings', 'mobilenews_theme_section_general_cb', 'mobilenews_theme_options');
-    add_settings_field('header_logo_url', 'Header Logo (URL)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_general', ['label_for' => 'header_logo_url']);
+
     add_settings_field('sticky_header', 'Enable Sticky Header', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_general', ['label_for' => 'sticky_header']);
 
     // --- Section: Visual Style ---

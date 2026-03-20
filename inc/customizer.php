@@ -81,18 +81,8 @@ function mobilenews_customize_register($wp_customize)
         'type' => 'checkbox',
     ));
 
-    // 2. Header Logo
-    $wp_customize->add_setting('mobilenews_header_logo', array(
-        'default' => '',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh',
-    ));
+    // Header options like Dark Mode toggle remain here, but logo is moved to Site Identity.
 
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mobilenews_header_logo', array(
-        'label' => __('Header Logo', 'mobilenews'),
-        'section' => 'mobilenews_header_options',
-        'settings' => 'mobilenews_header_logo',
-    )));
 
     // --- Typography Section ---
     $wp_customize->add_section('mobilenews_typography_options', array(
@@ -208,18 +198,8 @@ function mobilenews_customize_register($wp_customize)
         'type' => 'text',
     ));
 
-    // 2. Footer Logo
-    $wp_customize->add_setting('mobilenews_footer_logo', array(
-        'default' => '',
-        'sanitize_callback' => 'esc_url_raw',
-        'transport' => 'refresh',
-    ));
+    // Footer copyright remains here.
 
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mobilenews_footer_logo', array(
-        'label' => __('Footer Logo', 'mobilenews'),
-        'section' => 'mobilenews_footer_options',
-        'settings' => 'mobilenews_footer_logo',
-    )));
 
     // --- Single Post Options ---
     $wp_customize->add_section('mobilenews_single_options', array(
