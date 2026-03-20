@@ -121,6 +121,7 @@ function mobilenews_theme_settings_init()
     add_settings_field('ads_sidebar', 'Sidebar Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_sidebar']);
     add_settings_field('ads_after_title', 'After Title Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_title']);
     add_settings_field('ads_after_content', 'After Content Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_content']);
+    add_settings_field('ads_sticky_footer', 'Sticky Footer Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_sticky_footer']);
 
 
 
