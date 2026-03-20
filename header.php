@@ -122,21 +122,25 @@
     </div>
 
     <header
-        class="site-header sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300">
-        <div
-            class="header-container container max-w-[1280px] mx-auto px-4 lg:px-10 <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-14' : 'h-20'; ?> lg:h-20 flex items-center justify-between xl:justify-between gap-6">
+        class="site-header sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300">
 
-            <!-- Mobile Spacer -->
-            <div class="flex-1 xl:hidden"></div>
+        <!-- TOP ROW: Logo centered (Desktop only) -->
+        <div class="hidden xl:flex items-center justify-between px-10 py-3 border-b border-gray-100 dark:border-white/5 max-w-[1280px] mx-auto w-full">
 
-            <div class="site-branding flex items-center absolute left-1/2 -translate-x-1/2 xl:relative xl:left-0 xl:translate-x-0">
+            <!-- Left: Date / Extra Info -->
+            <div class="text-xs text-gray-400 dark:text-gray-500 font-medium">
+                <?php echo date_i18n('l, d F Y'); ?>
+            </div>
+
+            <!-- Center: Logo -->
+            <div class="site-branding flex items-center justify-center">
                 <?php
                 if (has_custom_logo()):
                     the_custom_logo();
                 else:
                     ?>
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3 group">
-                        <div class="size-8 text-primary group-hover:scale-110 transition-transform duration-300">
+                        <div class="size-10 text-primary group-hover:scale-110 transition-transform duration-300">
                             <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
@@ -144,12 +148,12 @@
                             </svg>
                         </div>
                         <div class="flex flex-col leading-tight">
-                            <span class="text-lg xl:text-xl font-black tracking-tighter dark:text-white uppercase line-clamp-1">
+                            <span class="text-2xl font-black tracking-tighter dark:text-white uppercase">
                                 <?php bloginfo('name'); ?>
                             </span>
                             <?php $description = get_bloginfo('description', 'display'); ?>
                             <?php if ($description || is_customize_preview()): ?>
-                                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] hidden md:block">
+                                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] text-center">
                                     <?php echo $description; ?>
                                 </span>
                             <?php endif; ?>
@@ -158,63 +162,82 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Desktop Nav -->
-            <nav class="main-navigation hidden xl:flex items-center gap-6 h-full">
-                <?php
-                if (has_nav_menu('primary')) {
-                    wp_nav_menu(array(
-                        'theme_location' => 'primary',
-                        'container' => false,
-                        'items_wrap' => '%3$s',
-                        'menu_class' => 'flex gap-6 h-full',
-                        'walker' => new MobileNews_Mega_Menu_Walker(),
-                        'fallback_cb' => false
-                    ));
-                }
-                ?>
-            </nav>
-
-            <div class="flex items-center gap-4">
+            <!-- Right: Actions (search, subscribe, dark mode) -->
+            <div class="flex items-center gap-3">
                 <button
-                    class="mobilenews-search-trigger hidden md:flex items-center bg-gray-100 dark:bg-white/5 border border-transparent dark:border-white/5 rounded-2xl px-3 py-2 w-48 xl:w-64 text-left group transition-all hover:bg-gray-200 dark:hover:bg-white/10">
-                    <span
-                        class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">search</span>
-                    <span
-                        class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari berita...</span>
+                    class="mobilenews-search-trigger flex items-center bg-gray-100 dark:bg-white/5 border border-transparent dark:border-white/5 rounded-xl px-3 py-2 text-left group transition-all hover:bg-gray-200 dark:hover:bg-white/10">
+                    <span class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">search</span>
+                    <span class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari...</span>
                 </button>
-
-                <button id="mobile-menu-toggle" class="xl:hidden text-gray-700 dark:text-gray-200 p-2 -mr-2 relative z-20">
-                    <span class="material-symbols-outlined text-2xl lg:text-3xl">menu</span>
-                </button>
-
-                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-primary transition-colors hidden xl:block"
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-primary transition-colors"
                     title="Toggle Dark Mode">
                     <span class="material-symbols-outlined dark:hidden">dark_mode</span>
                     <span class="material-symbols-outlined hidden dark:block">light_mode</span>
                 </button>
-
-                <?php
-                if (function_exists('mobilenews_get_option')):
-                    $sub_url = mobilenews_get_option('subscribe_url', '#');
-                    $live_enabled = mobilenews_get_option('enable_live_streaming');
-                    $live_url = mobilenews_get_option('live_streaming_url', '#');
-
-                    if ($live_enabled):
-                        ?>
-                        <a href="<?php echo esc_url($live_url); ?>"
-                            class="hidden xl:flex items-center gap-1 text-red-600 animate-pulse border border-red-200 bg-red-50 px-3 py-1 rounded-full">
-                            <span class="material-symbols-outlined text-sm">circle</span>
-                            <span class="text-xs font-bold uppercase tracking-wider">Live TV</span>
-                        </a>
-                    <?php endif; ?>
-
-                    <a href="<?php echo esc_url($sub_url); ?>"
-                        class="hidden md:flex bg-primary text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-lg hover:brightness-110 transition-all items-center">
+                <?php if (function_exists('mobilenews_get_option')): ?>
+                    <a href="<?php echo esc_url(mobilenews_get_option('subscribe_url', '#')); ?>"
+                        class="bg-primary text-white text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-lg hover:brightness-110 transition-all">
                         Langganan
                     </a>
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- BOTTOM ROW: Navigation (Desktop only) -->
+        <div class="hidden xl:flex items-center justify-center gap-8 px-10 h-11 max-w-[1280px] mx-auto w-full">
+            <nav class="main-navigation flex items-center gap-6 h-full">
+                <?php
+                if (has_nav_menu('primary')) {
+                    wp_nav_menu(array(
+                        'theme_location' => 'primary',
+                        'container'      => false,
+                        'items_wrap'     => '%3$s',
+                        'menu_class'     => 'flex gap-6 h-full',
+                        'walker'         => new MobileNews_Mega_Menu_Walker(),
+                        'fallback_cb'    => false
+                    ));
+                }
+                ?>
+            </nav>
+        </div>
+
+        <!-- MOBILE ROW: Single bar with hamburger + logo centered + actions -->
+        <div class="flex xl:hidden items-center justify-between px-4 h-14">
+            <!-- Hamburger -->
+            <button id="mobile-menu-toggle" class="text-gray-700 dark:text-gray-200 p-2 -ml-2 relative z-20">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+
+            <!-- Logo centered -->
+            <div class="site-branding absolute left-1/2 -translate-x-1/2">
+                <?php
+                if (has_custom_logo()):
+                    the_custom_logo();
+                else:
+                    ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-2">
+                        <div class="size-7 text-primary">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <span class="text-base font-black tracking-tighter dark:text-white uppercase"><?php bloginfo('name'); ?></span>
+                    </a>
+                <?php endif; ?>
+            </div>
+
+            <!-- Right actions -->
+            <div class="flex items-center gap-2">
+                <button class="mobilenews-search-trigger p-2 text-gray-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-xl">search</span>
+                </button>
+                <button id="theme-toggle-mobile" class="p-2 text-gray-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined text-xl hidden dark:block">light_mode</span>
+                </button>
+            </div>
+        </div>
+
     </header>
 
     <!-- Mobile Sidebar Drawer -->
