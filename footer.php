@@ -189,6 +189,11 @@ if (function_exists('mobilenews_get_option')) {
 ?>
 
 <?php wp_footer(); ?>
+
+<?php if (is_front_page()): ?>
+</div> <!-- .page-boxed-wrapper -->
+<?php endif; ?>
+
 </body>
 
 </html>

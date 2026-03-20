@@ -105,8 +105,17 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('antialiased font-body bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100'); ?>>
+<body <?php
+$body_classes = 'antialiased font-body bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100';
+if (is_front_page()) {
+    $body_classes .= ' boxed-layout';
+}
+body_class($body_classes); ?>>
     <?php wp_body_open(); ?>
+
+    <?php if (is_front_page()): ?>
+    <div class="page-boxed-wrapper">
+    <?php endif; ?>
 
     <!-- Skip to Content (A11y) -->
     <a href="#main-content"
