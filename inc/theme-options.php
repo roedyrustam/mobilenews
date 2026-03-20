@@ -98,6 +98,14 @@ function mobilenews_theme_settings_init()
 
     // --- Section: Archive Settings ---
     add_settings_section('mobilenews_theme_section_archive', 'Archive Settings', 'mobilenews_theme_section_archive_cb', 'mobilenews_theme_options');
+    add_settings_field('archive_layout', 'Default Archive Layout', 'mobilenews_theme_field_select_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_layout', 'options' => ['list' => 'List View (Standard)', 'grid' => 'Grid View (Modern)']]);
+
+    // --- Section: Livestream Settings ---
+    add_settings_section('mobilenews_theme_section_livestream', 'Livestream & Real-time Settings', 'mobilenews_theme_section_livestream_cb', 'mobilenews_theme_options');
+    add_settings_field('livestream_is_active', 'Status Live Global', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_is_active']);
+    add_settings_field('livestream_badge_text', 'Teks Badge Live', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_badge_text']);
+    add_settings_field('livestream_embed', 'Video Embed Code (Youtube/Twitch)', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_embed']);
+    add_settings_field('livestream_chat_embed', 'Chat Embed Code / Iframe', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_livestream', ['label_for' => 'livestream_chat_embed']);
     add_settings_field('archive_layout', 'Archive Layout', 'mobilenews_theme_field_select_layout_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_layout']);
     add_settings_field('archive_show_excerpt', 'Show Post Excerpt', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_show_excerpt']);
 
@@ -184,8 +192,8 @@ function mobilenews_admin_scripts($hook)
     wp_enqueue_style('wp-color-picker');
 
     // Enqueue Admin CSS & JS
-    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '2.0.0');
-    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), '2.0.0', true);
+    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '2.1.0');
+    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), '2.1.0', true);
 
     // WordPress Media Uploader
     wp_enqueue_media();
@@ -245,10 +253,8 @@ function mobilenews_theme_section_single_cb()
 {
     echo '<p class="description">Control elements visible on single article pages.</p>';
 }
-function mobilenews_theme_section_archive_cb()
-{
-    echo '<p class="description">Global settings for category and tag archive pages.</p>';
-}
+function mobilenews_theme_section_archive_cb() { echo '<p>Tune the look of your category and tag pages.</p>'; }
+function mobilenews_theme_section_livestream_cb() { echo '<p>Manage your live streaming content and real-time status indicators.</p>'; }
 function mobilenews_theme_section_update_cb()
 {
     echo '<p class="description">Configure GitHub repository for automatic theme updates.</p>';
@@ -257,10 +263,7 @@ function mobilenews_theme_section_homepage_cb()
 {
     echo '<p class="description">Manage sections and categories displayed on your homepage.</p>';
 }
-function mobilenews_theme_section_ads_cb()
-{
-    echo '<p class="description">Place your advertisement codes (AdSense, etc.) here.</p>';
-}
+function mobilenews_theme_section_ads_cb() { echo '<p>Manage advertisement slots across the theme.</p>'; }
 
 
 // Field Callbacks
@@ -437,7 +440,7 @@ function mobilenews_theme_options_page_html()
         <?php settings_errors(); ?>
         <div class="mobilenews-admin-header">
             <h1><?php echo esc_html__('Mobile News Settings', 'mobilenews'); ?></h1>
-            <span class="version">v2.0.0</span>
+            <span class="version">v2.1.0</span>
         </div>
 
 
@@ -459,6 +462,7 @@ function mobilenews_theme_options_page_html()
                     <button type="button" class="mobilenews-tab-link" data-tab="social"><span class="dashicons dashicons-share"></span> Social</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="contact"><span class="dashicons dashicons-email"></span> Contact</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="footer"><span class="dashicons dashicons-editor-insertmore"></span> Footer</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="livestream"><span class="dashicons dashicons-video-alt3"></span> Livestream</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="updates"><span class="dashicons dashicons-update"></span> Updates</button>
                 </div>
 
@@ -497,6 +501,11 @@ function mobilenews_theme_options_page_html()
                     <!-- Archive Layout Tab -->
                     <div id="archive" class="mobilenews-tab-content">
                         <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
+                    </div>
+
+                    <!-- Livestream Tab -->
+                    <div id="livestream" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_livestream'); ?>
                     </div>
 
                     <!-- Mobile Layout Tab -->
@@ -634,8 +643,8 @@ function mobilenews_theme_options_sanitize($input)
 
     foreach ($input as $key => $value) {
         // Handle different field types based on key
-        if (strpos($key, 'scripts') !== false || strpos($key, 'ads') !== false) {
-            // Allow code in scripts and ads sections
+        if (strpos($key, 'scripts') !== false || strpos($key, 'ads') !== false || strpos($key, 'embed') !== false) {
+            // Allow code in scripts, ads, and embed sections
             $output[$key] = $value; // We trust the admin for these
         } elseif (is_numeric($value)) {
             $output[$key] = intval($value);

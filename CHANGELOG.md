@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-03-21
+### Added
+- **Livestream Theme Options:** New dedicated tab to manage Video and Chat embeds.
+- **Global Live Status Toggle:** Control the "LIVE" badge site-wide from admin.
+- **Customizable Badge Text:** Change the live indicator text easily.
+- **Safe HTML Support:** Whitelisted livestream embeds for iframes and scripts.
+
 ## [2.0.0] - 2026-03-21
 ### Added
 - **Livestream Page Template:** Specialized layout for live video coverage.
