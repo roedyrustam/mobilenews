@@ -327,3 +327,52 @@ input[type="checkbox"] {
         justify-content: center;
     }
 }
+
+/* Advertisement Management */
+.mobilenews-radio-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.mobilenews-radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.mobilenews-radio-item input[type="radio"] {
+    margin: 0;
+}
+
+.mobilenews-media-control {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1.5px dashed var(--border-color);
+    max-width: 400px;
+}
+
+.mobilenews-media-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    background: #fff;
+    padding: 4px;
+}
+
+.mobilenews-media-control .button {
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.mobilenews-media-control .text-red-500 {
+    color: #ef4444;
+}
+
+.mobilenews-media-control .text-red-500:hover {
+    color: #dc2626;
+}

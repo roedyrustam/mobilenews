@@ -450,6 +450,7 @@ require get_template_directory() . '/inc/theme-options.php';
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/block-styles.php';
+require get_template_directory() . '/inc/ads-helper.php';
 require get_template_directory() . '/inc/ad-injection.php';
 require get_template_directory() . '/inc/paywall.php';
 require get_template_directory() . '/inc/class-github-updater.php';

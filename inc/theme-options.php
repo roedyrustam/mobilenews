@@ -117,11 +117,40 @@ function mobilenews_theme_settings_init()
 
     // --- Section: Ads Management ---
     add_settings_section('mobilenews_theme_section_ads', 'Advertisement Management', 'mobilenews_theme_section_ads_cb', 'mobilenews_theme_options');
-    add_settings_field('ads_header', 'Header Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_header']);
-    add_settings_field('ads_sidebar', 'Sidebar Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_sidebar']);
-    add_settings_field('ads_after_title', 'After Title Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_title']);
-    add_settings_field('ads_after_content', 'After Content Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_content']);
-    add_settings_field('ads_sticky_footer', 'Sticky Footer Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_sticky_footer']);
+    
+    $ad_slots = [
+        'header' => 'Header Ad',
+        'sidebar' => 'Sidebar Ad',
+        'after_title' => 'After Title Ad',
+        'after_content' => 'After Content Ad',
+        'sticky_footer' => 'Sticky Footer Ad'
+    ];
+
+    foreach ($ad_slots as $slot => $label) {
+        // 1. Ad Type (Code vs Image)
+        add_settings_field("ads_{$slot}_type", "{$label} Type", 'mobilenews_theme_field_radio_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+            'label_for' => "ads_{$slot}_type",
+            'options' => ['code' => 'HTML/JS Code', 'image' => 'Banner Image']
+        ]);
+
+        // 2. Ad Code
+        add_settings_field("ads_{$slot}", "{$label} Code", 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+            'label_for' => "ads_{$slot}",
+            'class' => "ad-code-field ad-slot-{$slot}"
+        ]);
+
+        // 3. Ad Image
+        add_settings_field("ads_{$slot}_image", "{$label} Image", 'mobilenews_theme_field_image_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+            'label_for' => "ads_{$slot}_image",
+            'class' => "ad-image-field ad-slot-{$slot}"
+        ]);
+
+        // 4. Ad URL
+        add_settings_field("ads_{$slot}_url", "{$label} Destination URL", 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+            'label_for' => "ads_{$slot}_url",
+            'class' => "ad-url-field ad-slot-{$slot}"
+        ]);
+    }
 
 
 
@@ -133,24 +162,22 @@ add_action('admin_init', 'mobilenews_theme_settings_init');
  */
 function mobilenews_admin_scripts($hook)
 {
-    // Defensive check: Ensure we are in admin and required functions exist
-    if (!function_exists('is_admin') || !is_admin() || !function_exists('wp_enqueue_style') || !function_exists('wp_enqueue_script') || !function_exists('get_option') || !function_exists('get_template_directory_uri')) {
-        return;
-    }
-
     if ($hook != 'toplevel_page_mobilenews_theme_options') {
         return;
     }
 
-    // Enqueue Google Fonts (Inter) for modern typography
+    // Enqueue Google Fonts
     wp_enqueue_style('mobilenews-admin-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', array(), null);
 
-    $css_ver = file_exists(get_template_directory() . '/assets/css/admin.css') ? filemtime(get_template_directory() . '/assets/css/admin.css') : '1.0.0';
-    $js_ver = file_exists(get_template_directory() . '/assets/js/admin.js') ? filemtime(get_template_directory() . '/assets/js/admin.js') : '1.0.0';
+    // Enqueue Color Picker
+    wp_enqueue_style('wp-color-picker');
 
-    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), $css_ver);
-    wp_enqueue_style('wp-color-picker'); // Enqueue Color Picker
-    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), $js_ver, true);
+    // Enqueue Admin CSS & JS
+    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '1.6.0');
+    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), '1.6.0', true);
+
+    // WordPress Media Uploader
+    wp_enqueue_media();
 }
 add_action('admin_enqueue_scripts', 'mobilenews_admin_scripts');
 
@@ -318,6 +345,45 @@ function mobilenews_theme_field_font_cb($args)
         echo '<option value="' . esc_attr($font) . '" ' . selected($val, $font, false) . '>' . esc_html($font) . '</option>';
     }
     echo '</select>';
+}
+function mobilenews_theme_field_radio_cb($args)
+{
+    if (!function_exists('get_option')) {
+        return;
+    }
+    $options = get_option('mobilenews_theme_options');
+    $val = isset($options[$args['label_for']]) ? $options[$args['label_for']] : array_key_first($args['options']);
+    
+    echo '<div class="mobilenews-radio-group">';
+    foreach ($args['options'] as $key => $label) {
+        echo '<label class="mobilenews-radio-item">';
+        echo '<input type="radio" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="' . esc_attr($key) . '" ' . checked($val, $key, false) . '>';
+        echo '<span>' . esc_html($label) . '</span>';
+        echo '</label>';
+    }
+    echo '</div>';
+}
+function mobilenews_theme_field_image_cb($args)
+{
+    if (!function_exists('get_option')) {
+        return;
+    }
+    $options = get_option('mobilenews_theme_options');
+    $val = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '';
+    
+    echo '<div class="mobilenews-media-control">';
+    echo '<div class="mobilenews-media-preview">';
+    if (!empty($val)) {
+        $image_attributes = wp_get_attachment_image_src($val, 'medium');
+        if ($image_attributes) {
+            echo '<img src="' . esc_url($image_attributes[0]) . '" style="max-width:200px; display:block; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">';
+        }
+    }
+    echo '</div>';
+    echo '<input type="hidden" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="' . esc_attr($val) . '" class="mobilenews-media-id-input">';
+    echo '<button type="button" class="button mobilenews-image-upload-btn">Select Image</button> ';
+    echo '<button type="button" class="button mobilenews-image-remove-btn text-red-500">Remove</button>';
+    echo '</div>';
 }
 function mobilenews_theme_field_select_layout_cb($args)
 {
