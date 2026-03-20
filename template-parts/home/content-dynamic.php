@@ -7,7 +7,10 @@
 <div class="max-w-[1280px] mx-auto px-4 lg:px-10 py-8">
 
     <!-- Hero Grid Section -->
-    <?php get_template_part('template-parts/home/hero-grid'); ?>
+    <?php if (mobilenews_get_option('homepage_hero_enable', true)): ?>
+        <?php get_template_part('template-parts/home/hero-grid'); ?>
+    <?php endif; ?>
+
 
     <!-- Editor's Picks Section -->
     <?php get_template_part('template-parts/home/editors-picks'); ?>
@@ -18,6 +21,7 @@
         <div class="lg:col-span-8">
 
             <!-- Category Section: News Near You (AJAX Placeholder) -->
+            <?php if (mobilenews_get_option('homepage_local_news_enable', true)): ?>
             <div id="local-news-container"
                 class="mb-12 bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
                 <div class="flex items-center justify-between mb-6">
@@ -26,7 +30,6 @@
                         <h2 class="text-xl font-extrabold tracking-tight local-news-title">Kabar dari <span>...</span>
                             (Sekitarmu)</h2>
                     </div>
-                    <!-- <a class="text-primary text-xs font-bold uppercase flex items-center gap-1" href="#">Lainnya <span class="material-symbols-outlined text-sm">chevron_right</span></a> -->
                 </div>
                 <!-- ID for AJAX content to populate -->
                 <div id="local-news-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,12 +38,17 @@
                         News...</div>
                 </div>
             </div>
+            <?php endif; ?>
+
 
             <!-- Section: Quick Read (Sekilas Info) -->
             <?php get_template_part('template-parts/home/quick-read'); ?>
 
             <!-- Section: Category Spotlight (Teknologi & Gaya Hidup) -->
-            <?php get_template_part('template-parts/home/category-spotlight'); ?>
+            <?php if (mobilenews_get_option('homepage_spotlight_enable', true)): ?>
+                <?php get_template_part('template-parts/home/category-spotlight'); ?>
+            <?php endif; ?>
+
 
             <!-- Latest News Stream -->
             <?php get_template_part('template-parts/home/latest-stream'); ?>

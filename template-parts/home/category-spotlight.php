@@ -5,10 +5,23 @@
 ?>
 <div class="flex flex-col gap-16 mb-16">
     <?php
-    $categories_to_show = array('teknologi', 'gaya-hidup'); // You can make this dynamic via theme options later
-    foreach ($categories_to_show as $cat_slug):
-        $category = get_category_by_slug($cat_slug);
+    $cat1 = mobilenews_get_option('homepage_spotlight_cat1');
+    $cat2 = mobilenews_get_option('homepage_spotlight_cat2');
+    $categories_to_show = array_filter(array($cat1, $cat2));
+
+    if (empty($categories_to_show)) {
+        $categories_to_show = array('teknologi', 'gaya-hidup'); // Fallback
+    }
+
+    foreach ($categories_to_show as $cat_id_or_slug):
+        if (is_numeric($cat_id_or_slug)) {
+            $category = get_category($cat_id_or_slug);
+        } else {
+            $category = get_category_by_slug($cat_id_or_slug);
+        }
         if (!$category) continue;
+        $cat_slug = $category->slug;
+
         ?>
         <section class="category-spotlight-block">
             <!-- Header Section -->

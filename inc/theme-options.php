@@ -101,10 +101,20 @@ function mobilenews_theme_settings_init()
     add_settings_field('archive_layout', 'Archive Layout', 'mobilenews_theme_field_select_layout_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_layout']);
     add_settings_field('archive_show_excerpt', 'Show Post Excerpt', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_archive', ['label_for' => 'archive_show_excerpt']);
 
-    // --- Section: Update Settings ---
+    // --- Section: GitHub Update ---
     add_settings_section('mobilenews_theme_section_update', 'GitHub Update Settings', 'mobilenews_theme_section_update_cb', 'mobilenews_theme_options');
     add_settings_field('github_repo', 'GitHub Repository', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_update', ['label_for' => 'github_repo']);
     add_settings_field('github_token', 'GitHub Access Token', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_update', ['label_for' => 'github_token']);
+
+    // --- Section: Homepage Settings ---
+    add_settings_section('mobilenews_theme_section_homepage', 'Homepage Customization', 'mobilenews_theme_section_homepage_cb', 'mobilenews_theme_options');
+    add_settings_field('homepage_hero_enable', 'Enable Hero Grid', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_hero_enable']);
+    add_settings_field('homepage_hero_category', 'Hero Grid Category', 'mobilenews_theme_field_category_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_hero_category']);
+    add_settings_field('homepage_spotlight_enable', 'Enable Category Spotlight', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_spotlight_enable']);
+    add_settings_field('homepage_spotlight_cat1', 'Spotlight Category 1', 'mobilenews_theme_field_category_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_spotlight_cat1']);
+    add_settings_field('homepage_spotlight_cat2', 'Spotlight Category 2', 'mobilenews_theme_field_category_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_spotlight_cat2']);
+    add_settings_field('homepage_local_news_enable', 'Enable Local News (Sekitarmu)', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_local_news_enable']);
+
 
 
 }
@@ -197,6 +207,11 @@ function mobilenews_theme_section_update_cb()
 {
     echo '<p class="description">Configure GitHub repository for automatic theme updates.</p>';
 }
+function mobilenews_theme_section_homepage_cb()
+{
+    echo '<p class="description">Manage sections and categories displayed on your homepage.</p>';
+}
+
 
 // Field Callbacks
 function mobilenews_theme_field_social_cb($args)
@@ -339,6 +354,8 @@ function mobilenews_theme_options_page_html()
             <div class="mobilenews-admin-sidebar">
                 <div class="mobilenews-admin-tabs">
                     <button type="button" class="mobilenews-tab-link active" data-tab="general"><span class="dashicons dashicons-admin-generic"></span> General</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="homepage"><span class="dashicons dashicons-admin-home"></span> Homepage</button>
+
                     <button type="button" class="mobilenews-tab-link" data-tab="style"><span class="dashicons dashicons-admin-appearance"></span> Style</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="seo"><span class="dashicons dashicons-search"></span> SEO</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="single"><span class="dashicons dashicons-media-text"></span> Single Post</button>
@@ -367,6 +384,12 @@ function mobilenews_theme_options_page_html()
             <div id="general" class="mobilenews-tab-content active">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_general'); ?>
             </div>
+
+            <!-- Homepage Tab -->
+            <div id="homepage" class="mobilenews-tab-content">
+                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_homepage'); ?>
+            </div>
+
 
             <!-- Visual Style Tab -->
             <div id="style" class="mobilenews-tab-content">

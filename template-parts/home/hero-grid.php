@@ -6,10 +6,16 @@
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
     <?php
     // Fetch 5 posts for Hero
-    $hero_query = new WP_Query(array(
+    $hero_cat = mobilenews_get_option('homepage_hero_category');
+    $hero_args = array(
         'posts_per_page' => 5,
         'ignore_sticky_posts' => 1,
-    ));
+    );
+    if (!empty($hero_cat)) {
+        $hero_args['cat'] = $hero_cat;
+    }
+    $hero_query = new WP_Query($hero_args);
+
 
     if ($hero_query->have_posts()):
 
