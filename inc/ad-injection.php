@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 
 function mobilenews_inject_in_feed_ads($content)
 {
-    if (is_single() && !is_admin() && is_main_query()) {
+    if (is_singular() && !is_admin() && is_main_query()) {
         if (!function_exists('mobilenews_render_ad') || !function_exists('mobilenews_get_option')) {
             return $content;
         }

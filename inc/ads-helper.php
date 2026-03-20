@@ -16,7 +16,7 @@ function mobilenews_render_ad($slot) {
     }
 
     $type = mobilenews_get_option("ads_{$slot}_type", 'code');
-    $html = '';
+    $html = "<!-- Ad Slot: {$slot} (Type: {$type}) -->\n";
     $has_ad = false;
     
     if ($type === 'image') {
@@ -27,7 +27,7 @@ function mobilenews_render_ad($slot) {
             $image_src = wp_get_attachment_image_src($image_id, 'full');
             if ($image_src) {
                 $has_ad = true;
-                $html = '<div class="mobilenews-image-ad flex justify-center w-full my-4">';
+                $html .= '<div class="mn-slot-image flex justify-center w-full my-4">';
                 if (!empty($url)) {
                     $html .= '<a href="' . esc_url($url) . '" target="_blank" rel="nofollow">';
                 }
@@ -45,7 +45,7 @@ function mobilenews_render_ad($slot) {
         $code = mobilenews_get_option("ads_{$slot}");
         if (!empty(trim($code))) {
             $has_ad = true;
-            $html = '<div class="mobilenews-code-ad flex justify-center w-full my-4 overflow-hidden">' . do_shortcode($code) . '</div>';
+            $html .= '<div class="mn-slot-code flex justify-center w-full my-4 overflow-hidden">' . do_shortcode($code) . '</div>';
         }
     }
 
@@ -59,9 +59,9 @@ function mobilenews_render_ad($slot) {
             'after_content' => 'After Content Ad',
             'in_article'    => 'In-Article Ad',
             'homepage_mid'  => 'Homepage Mid Ad',
-            'sticky_footer' => 'Sticky Footer Ad'
+            'sticky_footer' => 'Sticky Footer Ad',
         ];
-        $label = isset($slot_labels[$slot]) ? $slot_labels[$slot] : 'Ad Space';
+        $label = isset($slot_labels[$slot]) ? $slot_labels[$slot] : ucwords(str_replace('_', ' ', $slot)) . ' Ad';
         
         // Responsive mock logic: Mobile first sizing, then desktop
         $mock_classes = "flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-800 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-400 font-bold p-4 text-center transition-all mx-auto my-4 w-full ";
@@ -75,7 +75,7 @@ function mobilenews_render_ad($slot) {
             $mock_classes .= "max-w-[728px] min-h-[90px] text-xs sm:text-base";
         }
 
-        $html = '<div class="' . esc_attr($mock_classes) . '">';
+        $html .= '<div class="' . esc_attr($mock_classes) . '">';
         $html .= '<span class="uppercase tracking-wider">' . esc_html($label) . '</span>';
         $html .= '<span class="block text-[10px] sm:text-xs font-normal mt-1 opacity-70">Advertisement Space (Responsive)</span>';
         $html .= '</div>';
