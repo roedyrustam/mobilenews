@@ -307,6 +307,7 @@ function mobilenews_theme_field_checkbox_cb($args)
     }
     $options = get_option('mobilenews_theme_options');
     $val = isset($options[$args['label_for']]) ? $options[$args['label_for']] : false;
+    echo '<input type="hidden" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="0">';
     echo '<input type="checkbox" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="1" ' . checked(1, $val, false) . '>';
 }
 function mobilenews_theme_field_number_cb($args)
@@ -655,17 +656,25 @@ function mobilenews_get_option($key, $default = '')
         return $default;
     }
     $options = get_option('mobilenews_theme_options');
-    $val = isset($options[$key]) ? $options[$key] : '';
+    
+    // Check if key is explicitly saved in DB
+    if (is_array($options) && isset($options[$key]) && $options[$key] !== '') {
+        return $options[$key];
+    }
 
-    // Fallback to get_theme_mod for certain keys if mobilenews_theme_options is empty
-    if (empty($val) && function_exists('get_theme_mod')) {
-        $val = get_theme_mod('mobilenews_' . $key, '');
-        if (empty($val)) {
-            $val = get_theme_mod($key, '');
+    // Fallback to get_theme_mod for legacy settings
+    if (function_exists('get_theme_mod')) {
+        $mod1 = get_theme_mod('mobilenews_' . $key, '');
+        if ($mod1 !== '') {
+            return $mod1;
+        }
+        $mod2 = get_theme_mod($key, '');
+        if ($mod2 !== '') {
+            return $mod2;
         }
     }
 
-    return !empty($val) ? $val : $default;
+    return $default;
 }
 
 
