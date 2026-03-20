@@ -131,8 +131,8 @@
 
             <!-- Standard Widgets -->
             <?php
-            if (function_exists('mobilenews_get_ad')) {
-                echo mobilenews_get_ad('sidebar_ad');
+            if (function_exists('mobilenews_render_ad')) {
+                echo mobilenews_render_ad('sidebar');
             }
             ?>
             <?php dynamic_sidebar('main-sidebar'); ?>

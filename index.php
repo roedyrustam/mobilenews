@@ -33,6 +33,17 @@ get_header();
             endif;
 
 
+            // Top Ad (After Title / Before Content)
+            if (function_exists('mobilenews_render_ad')) {
+                $ad_top = mobilenews_render_ad('after_title');
+                if (!empty($ad_top)) {
+                    echo '<div class="mobilenews-ad-index-top mb-10 flex justify-center overflow-hidden">';
+                    echo $ad_top;
+                    echo '</div>';
+                }
+            }
+
+
             if (is_singular()) {
                 // Singular view (Page, Single Post fallback)
                 while (have_posts()):
@@ -48,6 +59,16 @@ get_header();
                 endwhile;
                 echo '</div>'; // End grid
         
+                // Bottom Ad (After Content)
+                if (function_exists('mobilenews_render_ad')) {
+                    $ad_bottom = mobilenews_render_ad('after_content');
+                    if (!empty($ad_bottom)) {
+                        echo '<div class="mobilenews-ad-index-bottom my-12 flex justify-center overflow-hidden">';
+                        echo $ad_bottom;
+                        echo '</div>';
+                    }
+                }
+
                 the_posts_navigation(array(
                     'prev_text' => '<span class="nav-prev-text">Previous</span>',
                     'next_text' => '<span class="nav-next-text">Next</span>',

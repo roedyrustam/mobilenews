@@ -38,8 +38,19 @@ get_header();
                             </div>
                         <?php endif; ?>
                     </div>
-                </div>
             </div>
+            
+            <?php
+            // Top Ad (After Title / Before Content)
+            if (function_exists('mobilenews_render_ad')) {
+                $ad_top = mobilenews_render_ad('after_title');
+                if (!empty($ad_top)) {
+                    echo '<div class="mobilenews-ad-archive-top mb-10 flex justify-center overflow-hidden">';
+                    echo $ad_top;
+                    echo '</div>';
+                }
+            }
+            ?>
 
             <?php if (have_posts()): ?>
                 <input type="hidden" id="current-archive-cat" value="<?php echo get_query_var('cat'); ?>">
@@ -57,6 +68,18 @@ get_header();
                     endwhile;
                     ?>
                 </div>
+
+                <?php
+                // Bottom Ad (After Content)
+                if (function_exists('mobilenews_render_ad')) {
+                    $ad_bottom = mobilenews_render_ad('after_content');
+                    if (!empty($ad_bottom)) {
+                        echo '<div class="mobilenews-ad-archive-bottom my-12 flex justify-center overflow-hidden">';
+                        echo $ad_bottom;
+                        echo '</div>';
+                    }
+                }
+                ?>
 
                 <!-- Load More / Pagination -->
                 <?php if ($wp_query->max_num_pages > 1): ?>
