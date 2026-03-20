@@ -125,9 +125,10 @@
     </div>
 
     <header
-        class="site-header sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 dark:bg-zinc-900/90 dark:border-zinc-800 transition-colors duration-300">
+        class="site-header sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300">
         <div
             class="header-container container max-w-[1280px] mx-auto px-4 lg:px-10 <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-14' : 'h-20'; ?> lg:h-20 flex items-center justify-between xl:justify-between gap-6">
+
 
             <!-- Mobile Menu Toggle (Left on Mobile) -->
             <button id="mobile-menu-toggle" class="xl:hidden text-gray-700 dark:text-gray-200 p-2 -ml-2 relative z-20">
@@ -196,13 +197,14 @@
 
             <div class="flex items-center gap-4">
                 <button
-                    class="mobilenews-search-trigger hidden md:flex items-center bg-[#f0f4f5] dark:bg-gray-800 rounded-lg px-3 py-2 w-48 xl:w-64 text-left group transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+                    class="mobilenews-search-trigger hidden md:flex items-center bg-gray-100 dark:bg-white/5 border border-transparent dark:border-white/5 rounded-2xl px-3 py-2 w-48 xl:w-64 text-left group transition-all hover:bg-gray-200 dark:hover:bg-white/10">
                     <span
                         class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">search</span>
                     <span
                         class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari
                         berita...</span>
                 </button>
+
 
 
                 <!-- Theme Toggle -->
@@ -242,7 +244,8 @@
     <!-- Mobile Sidebar Drawer -->
     <!-- Mobile Sidebar Drawer (Native App Style) -->
         <div id="mobile-menu-container"
-            class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-zinc-800 flex flex-col transition-transform duration-300">
+            class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
+
 
             <!-- Drawer Header: User Profile -->
             <div class="relative w-full bg-primary overflow-hidden shrink-0">
@@ -299,7 +302,8 @@
             </div>
 
             <!-- Drawer Body: Navigation & Search -->
-            <nav class="w-full flex-1 overflow-y-auto overscroll-contain bg-white dark:bg-zinc-900 scrollbar-hide">
+            <nav class="w-full flex-1 overflow-y-auto overscroll-contain bg-white dark:bg-zinc-900/50 scrollbar-hide">
+
                 <div class="p-4 space-y-6">
                     
                     <!-- Search Bar inside Drawer -->
@@ -413,7 +417,8 @@
             </nav>
 
             <!-- Drawer Footer: Features & Social -->
-            <div class="p-6 border-t border-gray-100 dark:border-zinc-800 bg-gray-50/50 dark:bg-black/20 shrink-0 w-full">
+            <div class="p-6 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/40 shrink-0 w-full">
+
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-gray-400 text-lg">dark_mode</span>

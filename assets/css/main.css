@@ -46,7 +46,30 @@
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.15);
+
+    /* Border Colors Default */
+    --border-color: #e9ecef;
 }
+
+/* ------------------------------------------------------------------------- *
+ *  Detailed Dark Mode Variables
+ * ------------------------------------------------------------------------- */
+.dark {
+    --background-body: #09090b;      /* Zinc-950 */
+    --background-white: #18181b;     /* Zinc-900 */
+    --background-dark: #27272a;      /* Zinc-800 */
+    
+    --text-main: #f4f4f5;           /* Zinc-100 */
+    --text-light: #a1a1aa;          /* Zinc-400 */
+    --text-muted: #71717a;          /* Zinc-500 */
+    --text-white: #ffffff;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
 
 /* ------------------------------------------------------------------------- *
  *  2. Reset & Global Styles
@@ -264,13 +287,14 @@ img {
  * ------------------------------------------------------------------------- */
 /* Section Headers */
 .section-header {
-    border-bottom: 2px solid #e9ecef;
+    border-bottom: 2px solid var(--border-color);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
+
 
 .section-title {
     font-size: 1.5rem;
@@ -295,16 +319,23 @@ img {
     border-radius: var(--border-radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .news-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
 }
+
+.dark .news-card {
+    background: linear-gradient(145deg, #18181b, #121214);
+}
+
 
 .news-card-image {
     position: relative;
@@ -411,6 +442,12 @@ img {
     color: var(--text-white);
 }
 
+.dark .site-footer {
+    background: #09090b;
+    border-top: 1px solid var(--border-color);
+}
+
+
 .site-info {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -485,9 +522,15 @@ img {
     color: var(--text-main);
     font-weight: 600;
     text-decoration: none;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
+
+.dark .nav-links a,
+.dark .nav-links span {
+    background: var(--background-white);
+}
+
 
 .nav-links a:hover {
     border-color: var(--primary-color);
