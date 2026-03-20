@@ -359,7 +359,7 @@ function mobilenews_theme_options_page_html()
         <?php settings_errors(); ?>
         <div class="mobilenews-admin-header">
             <h1><?php echo esc_html__('Mobile News Settings', 'mobilenews'); ?></h1>
-            <span class="version">v1.5.0</span>
+            <span class="version">v1.6.0</span>
         </div>
 
 
