@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-03-21
+### Added
+- **Bottom Navigation Theme Options:** Enable/disable bottom nav and configure labels, URLs, and center button icon directly from the theme admin panel.
+- New **Bottom Nav** tab added to the Mobile News settings page.
+
 ## [2.2.2] - 2026-03-21
 ### Added
 - Maintenance update and version bump.
