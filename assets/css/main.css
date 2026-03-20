@@ -649,9 +649,23 @@ img {
 /* Adjust body padding for bottom nav */
 @media (max-width: 1279px) {
     body {
-        padding-bottom: calc(4rem + var(--safe-area-bottom));
+        padding-bottom: calc(5rem + var(--safe-area-bottom));
     }
 }
+
+/* Active State Indicator */
+#mobile-bottom-nav a.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 0 0 4px 4px;
+}
+
 /* --- Mobile Sidebar Premium Polish --- */
 
 /* Utility: Hide Scrollbar */

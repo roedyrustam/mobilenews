@@ -157,61 +157,52 @@
 
         <!-- 1. Home -->
         <a href="<?php echo esc_url(home_url('/')); ?>"
-            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group <?php echo is_front_page() ? 'active text-primary dark:text-primary' : ''; ?>"
+            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_front_page() ? 'active text-primary dark:text-primary' : ''; ?>"
             aria-label="Beranda">
-            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled">home</span>
-            <span class="text-[10px] font-medium">Beranda</span>
+            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">home</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Beranda</span>
         </a>
 
-        <!-- 2. Trending -->
-        <?php
-        $trending_cat_id = mobilenews_get_option('trending_category_id');
-        $trending_url = !empty($trending_cat_id) ? get_category_link($trending_cat_id) : home_url('/?orderby=comment_count');
-        $is_trending_active = !empty($trending_cat_id) ? is_category($trending_cat_id) : (isset($_GET['orderby']) && $_GET['orderby'] == 'comment_count');
-        ?>
-        <a href="<?php echo esc_url($trending_url); ?>"
-            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group <?php echo $is_trending_active ? 'active text-primary dark:text-primary' : ''; ?>"
-            aria-label="Trending">
-            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled">trending_up</span>
-            <span class="text-[10px] font-medium">Trending</span>
+        <!-- 2. Kategori / Explore -->
+        <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>"
+            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_archive() ? 'active text-primary dark:text-primary' : ''; ?>"
+            aria-label="Kategori">
+            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">grid_view</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Kategori</span>
         </a>
 
         <!-- 3. Central FAB (Menu) -->
         <div class="relative w-full h-full flex justify-center items-end">
-            <div class="absolute -top-5 flex flex-col items-center">
+            <div class="absolute -top-6 flex flex-col items-center">
                 <button id="mobile-menu-trigger-bottom"
-                    class="flex flex-col items-center justify-center w-12 h-12 bg-primary text-white rounded-full shadow-[0_8px_20px_rgba(var(--color-primary),0.4)] hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-gray-50 dark:ring-zinc-900 border-4 border-transparent"
+                    class="flex flex-col items-center justify-center w-14 h-14 bg-primary text-white rounded-full shadow-[0_8px_25px_rgba(var(--color-primary-rgb),0.5)] hover:scale-105 active:scale-90 transition-all duration-300 ring-4 ring-white dark:ring-zinc-900"
                     aria-label="Menu">
-                    <span class="material-symbols-outlined text-[26px]">grid_view</span>
+                    <span class="material-symbols-outlined text-[30px]">menu</span>
                 </button>
-                <span class="text-[10px] font-medium text-gray-400 mt-1">Menu</span>
+                <div class="h-1.5"></div>
             </div>
         </div>
 
-        <!-- 4. Search -->
+        <!-- 4. Cari -->
         <button
-            class="mobilenews-search-trigger flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group"
+            class="mobilenews-search-trigger flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group"
             aria-label="Cari">
-            <span class="material-symbols-outlined text-[24px] mb-0.5">search</span>
-            <span class="text-[10px] font-medium">Cari</span>
+            <span class="material-symbols-outlined text-[24px] mb-0.5 transition-transform group-active:scale-90">search</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Cari</span>
         </button>
 
-        <!-- 5. User / Account -->
-        <?php if (is_user_logged_in()): ?>
-            <a href="<?php echo esc_url(get_edit_profile_url()); ?>"
-                class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group"
-                aria-label="Akun">
-                <?php echo get_avatar(get_current_user_id(), 22, '', '', array('class' => 'rounded-full mb-0.5 border border-gray-200 dark:border-zinc-700')); ?>
-                <span class="text-[10px] font-medium">Akun</span>
-            </a>
-        <?php else: ?>
-            <a href="<?php echo esc_url(get_post_type_archive_link('post') . '?orderby=comment_count'); ?>"
-                class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group"
-                aria-label="Trending">
-                <span class="material-symbols-outlined text-[24px] mb-0.5">trending_up</span>
-                <span class="text-[10px] font-medium">Trending</span>
-            </a>
-        <?php endif; ?>
+        <!-- 5. Akun -->
+        <a href="<?php echo is_user_logged_in() ? esc_url(get_edit_profile_url()) : wp_login_url(); ?>"
+            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group"
+            aria-label="Akun">
+            <?php if (is_user_logged_in()): ?>
+                <?php echo get_avatar(get_current_user_id(), 24, '', '', array('class' => 'rounded-full mb-0.5 border-2 border-transparent group-hover:border-primary transition-all')); ?>
+            <?php else: ?>
+                <span class="material-symbols-outlined text-[24px] mb-0.5 transition-transform group-active:scale-90">account_circle</span>
+            <?php endif; ?>
+            <span class="text-[10px] font-bold uppercase tracking-tight"><?php echo is_user_logged_in() ? 'Profil' : 'Masuk'; ?></span>
+        </a>
+
 
     </div>
 </nav>
