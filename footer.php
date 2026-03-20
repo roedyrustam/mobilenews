@@ -93,6 +93,18 @@ if (!function_exists('mobilenews_get_option')) {
 </footer>
 
 <!-- Bottom Navigation (Mobile Only) -->
+<?php
+$bottomnav_enabled = mobilenews_get_option('bottomnav_enable', 1);
+if ($bottomnav_enabled):
+    $item2_label  = mobilenews_get_option('bottomnav_item2_label', 'Explore');
+    $item2_url    = mobilenews_get_option('bottomnav_item2_url', '');
+    $center_label = mobilenews_get_option('bottomnav_center_label', 'Live');
+    $center_url   = mobilenews_get_option('bottomnav_center_url', mobilenews_get_option('live_streaming_url', '#'));
+    $center_icon  = mobilenews_get_option('bottomnav_center_icon', 'live_tv');
+    $item4_label  = mobilenews_get_option('bottomnav_item4_label', 'Trending');
+    $item4_url    = mobilenews_get_option('bottomnav_item4_url', '');
+    if (empty($center_url)) $center_url = '#';
+?>
 <nav id="mobile-bottom-nav" class="fixed bottom-0 left-0 right-0 z-[60] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-t border-gray-100 dark:border-white/5 xl:hidden shadow-[0_-4px_20px_-5px_rgba(0,0,0,0.1)] transition-transform duration-300">
     <div class="grid grid-cols-5 h-16 max-w-md mx-auto">
         <!-- 1. Beranda -->
@@ -103,32 +115,51 @@ if (!function_exists('mobilenews_get_option')) {
             <span class="text-[10px] font-bold uppercase tracking-tight">Beranda</span>
         </a>
 
-        <!-- 2. Kategori/Explore -->
-        <button id="mobile-explore-trigger" 
+        <!-- 2. Explore (configurable) -->
+        <?php if (!empty($item2_url)): ?>
+        <a href="<?php echo esc_url($item2_url); ?>"
+           class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary transition-all group"
+           aria-label="<?php echo esc_attr($item2_label); ?>">
+        <?php else: ?>
+        <button id="mobile-explore-trigger"
                 class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary transition-all group"
-                aria-label="Explore">
+                aria-label="<?php echo esc_attr($item2_label); ?>">
+        <?php endif; ?>
             <span class="material-symbols-outlined text-[24px] mb-0.5 transition-transform group-active:scale-90">explore</span>
-            <span class="text-[10px] font-bold uppercase tracking-tight">Explore</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight"><?php echo esc_html($item2_label); ?></span>
+        <?php if (!empty($item2_url)): ?>
+        </a>
+        <?php else: ?>
         </button>
+        <?php endif; ?>
 
-        <!-- 3. Breaking/Live (Center Highlight) -->
+        <!-- 3. Center Button (configurable) -->
         <div class="relative flex justify-center h-full">
-            <a href="<?php echo esc_url(mobilenews_get_option('live_streaming_url', '#')); ?>" 
+            <a href="<?php echo esc_url($center_url); ?>" 
                class="absolute -top-4 size-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/30 active:scale-90 transition-all border-4 border-white dark:border-zinc-900"
-               aria-label="Live TV">
-                <span class="material-symbols-outlined text-[28px] animate-pulse">live_tv</span>
+               aria-label="<?php echo esc_attr($center_label); ?>">
+                <span class="material-symbols-outlined text-[28px] animate-pulse"><?php echo esc_html($center_icon); ?></span>
             </a>
             <div class="flex flex-col items-center justify-end h-full pb-1.5">
-                <span class="text-[10px] font-bold uppercase tracking-tight text-primary">Live</span>
+                <span class="text-[10px] font-bold uppercase tracking-tight text-primary"><?php echo esc_html($center_label); ?></span>
             </div>
         </div>
 
-        <!-- 4. Trending -->
-        <button class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary transition-all group"
-                aria-label="Trending">
+        <!-- 4. Trending (configurable) -->
+        <?php if (!empty($item4_url)): ?>
+        <a href="<?php echo esc_url($item4_url); ?>"
+           class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary transition-all group"
+           aria-label="<?php echo esc_attr($item4_label); ?>">
             <span class="material-symbols-outlined text-[24px] mb-0.5 transition-transform group-active:scale-90">trending_up</span>
-            <span class="text-[10px] font-bold uppercase tracking-tight">Trending</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight"><?php echo esc_html($item4_label); ?></span>
+        </a>
+        <?php else: ?>
+        <button class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary transition-all group"
+                aria-label="<?php echo esc_attr($item4_label); ?>">
+            <span class="material-symbols-outlined text-[24px] mb-0.5 transition-transform group-active:scale-90">trending_up</span>
+            <span class="text-[10px] font-bold uppercase tracking-tight"><?php echo esc_html($item4_label); ?></span>
         </button>
+        <?php endif; ?>
 
         <!-- 5. Akun -->
         <a href="<?php echo is_user_logged_in() ? esc_url(get_edit_profile_url()) : wp_login_url(); ?>"
@@ -143,6 +174,7 @@ if (!function_exists('mobilenews_get_option')) {
         </a>
     </div>
 </nav>
+<?php endif; ?>
 
 <a href="#" id="scroll-to-top"
     class="fixed bottom-20 right-4 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg z-[100] hover:-translate-y-1 transition-all duration-300 opacity-0 invisible translate-y-10"

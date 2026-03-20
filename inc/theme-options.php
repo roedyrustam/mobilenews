@@ -174,7 +174,33 @@ function mobilenews_theme_settings_init()
         'class' => "ad-frequency-field ad-slot-in_article"
     ]);
 
+    // --- Section: Bottom Navigation ---
+    add_settings_section('mobilenews_theme_section_bottomnav', 'Bottom Navigation', 'mobilenews_theme_section_bottomnav_cb', 'mobilenews_theme_options');
 
+    add_settings_field('bottomnav_enable', 'Enable Bottom Navigation', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_enable'
+    ]);
+    add_settings_field('bottomnav_item2_label', 'Item 2 Label (Explore)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_item2_label'
+    ]);
+    add_settings_field('bottomnav_item2_url', 'Item 2 URL (Explore)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_item2_url'
+    ]);
+    add_settings_field('bottomnav_center_label', 'Center Button Label', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_center_label'
+    ]);
+    add_settings_field('bottomnav_center_url', 'Center Button URL', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_center_url'
+    ]);
+    add_settings_field('bottomnav_center_icon', 'Center Button Icon (Material Symbol name)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_center_icon'
+    ]);
+    add_settings_field('bottomnav_item4_label', 'Item 4 Label (Trending)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_item4_label'
+    ]);
+    add_settings_field('bottomnav_item4_url', 'Item 4 URL (Trending)', 'mobilenews_theme_field_text_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_bottomnav', [
+        'label_for' => 'bottomnav_item4_url'
+    ]);
 
 }
 add_action('admin_init', 'mobilenews_theme_settings_init');
@@ -267,6 +293,7 @@ function mobilenews_theme_section_homepage_cb()
     echo '<p class="description">Manage sections and categories displayed on your homepage.</p>';
 }
 function mobilenews_theme_section_ads_cb() { echo '<p>Manage advertisement slots across the theme.</p>'; }
+function mobilenews_theme_section_bottomnav_cb() { echo '<p>Configure the mobile bottom navigation bar displayed on small screens. Item 1 (Beranda) always links to home. Item 5 (Akun) always links to the user profile/login.</p>'; }
 
 
 // Field Callbacks
@@ -467,6 +494,7 @@ function mobilenews_theme_options_page_html()
                     <button type="button" class="mobilenews-tab-link" data-tab="footer"><span class="dashicons dashicons-editor-insertmore"></span> Footer</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="livestream"><span class="dashicons dashicons-video-alt3"></span> Livestream</button>
                     <button type="button" class="mobilenews-tab-link" data-tab="updates"><span class="dashicons dashicons-update"></span> Updates</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="bottomnav"><span class="dashicons dashicons-menu-alt"></span> Bottom Nav</button>
                 </div>
 
             </div>
@@ -559,6 +587,11 @@ function mobilenews_theme_options_page_html()
                     <!-- Ads Tab (Moved inside form) -->
                     <div id="ads" class="mobilenews-tab-content">
                         <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ads'); ?>
+                    </div>
+
+                    <!-- Bottom Navigation Tab -->
+                    <div id="bottomnav" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_bottomnav'); ?>
                     </div>
                 </form>
 
