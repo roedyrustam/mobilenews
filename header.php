@@ -159,7 +159,7 @@
                             <?php $description = get_bloginfo('description', 'display'); ?>
                             <?php if ($description || is_customize_preview()): ?>
                                 <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em] text-center">
-                                    <?php echo $description; ?>
+                                    <?php echo esc_html($description); ?>
                                 </span>
                             <?php endif; ?>
                         </div>
