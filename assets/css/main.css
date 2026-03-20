@@ -993,3 +993,62 @@ img {
         flex-direction: column;
     }
 }
+
+
+/* ROBUST FIX: Boxed Layout Centering */
+@media (min-width: 1280px) {
+    body.boxed-layout {
+        background-color: #f1f5f9 !important;
+        display: block !important;
+    }
+
+    .page-boxed-wrapper {
+        display: block !important;
+        width: 100% !important;
+        max-width: 1440px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        background-color: white !important;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.1) !important;
+        position: relative !important;
+        min-height: 100vh !important;
+    }
+}
+
+
+/* TAILWIND FAILSAFE SHIMS */
+@media (min-width: 1280px) {
+    .xl\:hidden { display: none !important; }
+    .hidden.xl\:flex { display: flex !important; }
+    .hidden.xl\:block { display: block !important; }
+    .hidden.xl\:grid { display: grid !important; }
+
+    /* Force Centering for 1440px elements */
+    .max-w-\[1440px\] {
+        max-width: 1440px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+    }
+    
+    .mx-auto {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+
+/* CORE LAYOUT SHIMS */
+.flex { display: flex !important; }
+.items-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-center { justify-content: center !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.text-center { text-align: center !important; }
+.gap-3 { gap: 0.75rem !important; }
+.gap-8 { gap: 2rem !important; }
+
