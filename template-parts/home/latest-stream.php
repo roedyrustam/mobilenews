@@ -24,12 +24,12 @@
                 ?>
                 <div
                     class="flex flex-col md:flex-row gap-6 group cursor-pointer border-b border-gray-100 dark:border-gray-800 pb-6 last:border-0 last:pb-0">
-                    <div class="md:w-64 aspect-video rounded-xl overflow-hidden shrink-0 bg-gray-100 dark:bg-gray-800">
+                    <a href="<?php the_permalink(); ?>" class="md:w-64 aspect-video rounded-xl overflow-hidden shrink-0 bg-gray-100 dark:bg-gray-800 block">
                         <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium_large'); ?>"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <?php endif; ?>
-                    </div>
+                    </a>
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-2">
                             <span

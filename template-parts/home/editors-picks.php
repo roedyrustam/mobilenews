@@ -31,7 +31,7 @@
                 $editors_query->the_post();
                 ?>
                 <div class="group cursor-pointer">
-                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative bg-gray-100 dark:bg-gray-800">
+                    <a href="<?php the_permalink(); ?>" class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative bg-gray-100 dark:bg-gray-800 block">
                         <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium'); ?>"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -41,7 +41,7 @@
                             <?php $cat = get_the_category();
                             echo !empty($cat) ? esc_html($cat[0]->name) : 'News'; ?>
                         </span>
-                    </div>
+                    </a>
                     <h3 class="font-bold text-base leading-snug group-hover:text-primary transition-colors mb-2">
                         <a href="<?php the_permalink(); ?>">
                             <?php the_title(); ?>

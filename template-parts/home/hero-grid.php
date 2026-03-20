@@ -30,18 +30,20 @@
                     <div class="relative h-full overflow-hidden rounded-xl">
 
 
-                        <?php if (has_post_thumbnail()): ?>
-                            <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-1000">
-                                <?php the_post_thumbnail('full', array(
-                                    'class' => 'w-full h-full object-cover',
-                                    'fetchpriority' => 'high',
-                                    'loading' => 'eager'
-                                )); ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <!-- Gradient Overlay (Ensures text legibility) -->
-                        <div class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+                        <!-- Clickable Area (Image & Gradient) -->
+                        <a href="<?php the_permalink(); ?>" class="absolute inset-0 z-0 overflow-hidden">
+                            <?php if (has_post_thumbnail()): ?>
+                                <div class="absolute inset-0 scale-100 group-hover:scale-110 transition-transform duration-1000">
+                                    <?php the_post_thumbnail('full', array(
+                                        'class' => 'w-full h-full object-cover',
+                                        'fetchpriority' => 'high',
+                                        'loading' => 'eager'
+                                    )); ?>
+                                </div>
+                            <?php endif; ?>
+                            <!-- Gradient Overlay (Ensures text legibility) -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+                        </a>
 
                         <div class="absolute bottom-6 left-6 right-6 p-6 lg:p-8 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl group-hover:border-primary/30 transition-all duration-500 z-10">
                             <div class="flex items-center gap-3 mb-4">
@@ -70,12 +72,15 @@
                     <!-- Side Hero Item -->
                     <div class="relative h-[250px] lg:h-[280px] xl:h-[300px] rounded-3xl overflow-hidden group cursor-pointer hover-lift shadow-lg">
 
-                        <?php if (has_post_thumbnail()): ?>
-                            <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"
-                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                        <?php endif; ?>
-                        <!-- Gradient Overlay for Side Items -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-0 opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <!-- Clickable Area (Image & Gradient) -->
+                        <a href="<?php the_permalink(); ?>" class="absolute inset-0 z-0 overflow-hidden">
+                            <?php if (has_post_thumbnail()): ?>
+                                <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"
+                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <?php endif; ?>
+                            <!-- Gradient Overlay for Side Items -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </a>
 
                         <!-- Content Overlay -->
                         <div class="absolute inset-0 p-4 flex flex-col justify-end z-10 border-0 group-hover:border-primary/20 transition-all">

@@ -52,10 +52,13 @@
                         if ($c === 1): ?>
                             <!-- Large Post (Left) -->
                             <div class="xl:col-span-7 group cursor-pointer relative rounded-4xl overflow-hidden shadow-2xl hover-lift aspect-video">
-                                <?php if (has_post_thumbnail()): ?>
-                                    <img src="<?php the_post_thumbnail_url('full'); ?>" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                                <?php endif; ?>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                                <!-- Clickable Area -->
+                                <a href="<?php the_permalink(); ?>" class="absolute inset-0 z-0 overflow-hidden">
+                                    <?php if (has_post_thumbnail()): ?>
+                                        <img src="<?php the_post_thumbnail_url('full'); ?>" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                                    <?php endif; ?>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                                </a>
                                 
                                 <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-10 bg-black/20 backdrop-blur-md border border-white/10 m-4 rounded-3xl">
                                     <h3 class="text-white text-2xl lg:text-3xl font-black leading-tight mb-4 tracking-tighter hover:text-primary transition-colors">
@@ -71,11 +74,11 @@
                             <div class="xl:col-span-5 flex flex-col gap-6 justify-between">
                         <?php else: ?>
                             <article class="flex items-center gap-5 group cursor-pointer">
-                                <div class="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl overflow-hidden shrink-0 shadow-lg hover-lift">
+                                <a href="<?php the_permalink(); ?>" class="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl overflow-hidden shrink-0 shadow-lg hover-lift block">
                                     <?php if (has_post_thumbnail()): ?>
                                         <img src="<?php the_post_thumbnail_url('medium'); ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                     <?php endif; ?>
-                                </div>
+                                </a>
                                 <div>
                                     <div class="text-[10px] font-black uppercase text-primary tracking-widest mb-2 flex items-center gap-2">
                                         <span class="w-1 h-1 bg-primary rounded-full"></span>
