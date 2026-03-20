@@ -87,6 +87,8 @@ if (!$live_is_active && function_exists('mobilenews_is_youtube_live')) {
 <div class="livestream-bg text-white pb-20">
     <main id="main-content" class="max-w-[1440px] mx-auto px-4 lg:px-10 py-10 relative z-10">
         <?php mobilenews_breadcrumbs(); ?>
+        <?php if (function_exists('mobilenews_render_ad')) echo mobilenews_render_ad('below_ticker'); ?>
+
         <!-- Live Header Info -->
         <div class="flex flex-col md:flex-row md:items-center justify-between py-10 gap-6">
             <div class="flex-1">
@@ -127,6 +129,8 @@ if (!$live_is_active && function_exists('mobilenews_is_youtube_live')) {
                     }
                     ?>
                 </div>
+
+                <?php if (function_exists('mobilenews_render_ad')) echo mobilenews_render_ad('after_content'); ?>
 
                 <div class="bg-[#1a1a1a] rounded-3xl p-8 border border-white/5 shadow-xl">
                     <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-white">
@@ -183,6 +187,8 @@ if (!$live_is_active && function_exists('mobilenews_is_youtube_live')) {
                         <p class="text-[10px] text-gray-600 font-medium">Automatic updates every 60 seconds</p>
                     </div>
                 </div>
+
+                <?php if (function_exists('mobilenews_render_ad')) echo mobilenews_render_ad('sidebar'); ?>
             </div>
         </div>
     </main>
