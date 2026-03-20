@@ -123,6 +123,7 @@ function mobilenews_theme_settings_init()
         'sidebar' => 'Sidebar Ad',
         'after_title' => 'After Title Ad',
         'after_content' => 'After Content Ad',
+        'in_article' => 'In-Article Ad',
         'sticky_footer' => 'Sticky Footer Ad'
     ];
 
@@ -151,6 +152,11 @@ function mobilenews_theme_settings_init()
             'class' => "ad-url-field ad-slot-{$slot}"
         ]);
     }
+
+    add_settings_field("ads_in_article_paragraph", "In-Article Ad Paragraph Frequency", 'mobilenews_theme_field_number_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+        'label_for' => "ads_in_article_paragraph",
+        'class' => "ad-frequency-field ad-slot-in_article"
+    ]);
 
 
 

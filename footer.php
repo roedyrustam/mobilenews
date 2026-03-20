@@ -178,6 +178,16 @@ if (function_exists('mobilenews_render_ad')):
 endif;
 ?>
 
+<?php
+if (function_exists('mobilenews_get_option')) {
+    $footer_scripts = mobilenews_get_option('footer_scripts');
+    if (!empty($footer_scripts)) {
+        echo "<!-- Footer Scripts -->\n";
+        echo $footer_scripts . "\n";
+    }
+}
+?>
+
 <?php wp_footer(); ?>
 </body>
 

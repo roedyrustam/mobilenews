@@ -10,9 +10,12 @@ if (!defined('ABSPATH')) {
 function mobilenews_inject_in_feed_ads($content)
 {
     if (is_single() && !is_admin() && is_main_query()) {
-        $ad_code = mobilenews_get_ad('single_in_article_ad'); // Use existing setting key
-        $options = get_option('mobilenews_ads_options');
-        $frequency = isset($options['single_in_article_ad_paragraph']) ? (int) $options['single_in_article_ad_paragraph'] : 3;
+        if (!function_exists('mobilenews_render_ad') || !function_exists('mobilenews_get_option')) {
+            return $content;
+        }
+
+        $ad_code = mobilenews_render_ad('in_article');
+        $frequency = (int) mobilenews_get_option('ads_in_article_paragraph', 3);
 
         if ($ad_code) {
             $paragraphs = explode('</p>', $content);

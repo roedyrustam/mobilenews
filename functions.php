@@ -430,7 +430,7 @@ function mobilenews_estimated_reading_time()
 /**
  * Load Custom Ads Manager
  */
-require get_template_directory() . '/inc/ads-manager.php';
+// require get_template_directory() . '/inc/ads-manager.php';
 
 
 /**
