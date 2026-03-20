@@ -6,8 +6,11 @@ jQuery(document).ready(function ($) {
 
     // --- Dark Mode Logic ---
     const html = document.documentElement;
-    const themeToggles = document.querySelectorAll('#theme-toggle, #drawer-theme-toggle');
+    const themeToggles = document.querySelectorAll(
+        '#theme-toggle, #theme-toggle-mobile, #drawer-theme-toggle'
+    );
 
+    // Apply saved preference immediately on load
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
     } else {
