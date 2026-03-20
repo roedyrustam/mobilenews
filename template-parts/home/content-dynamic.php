@@ -30,7 +30,7 @@
     <!-- Main Content Area with Sidebar -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Primary Column -->
-        <div class="lg:col-span-8">
+        <div class="lg:col-span-8 xl:col-span-9">
 
             <!-- Category Section: News Near You (AJAX Placeholder) -->
             <?php if (mobilenews_get_option('homepage_local_news_enable', true)): ?>
@@ -94,7 +94,7 @@
         </div>
 
         <!-- Sidebar (Custom for Homepage) -->
-        <aside id="secondary" class="widget-area lg:col-span-4 space-y-8">
+        <aside id="secondary" class="widget-area lg:col-span-4 xl:col-span-3 space-y-8">
 
             <!-- Trending / Terpopuler Section -->
             <div
