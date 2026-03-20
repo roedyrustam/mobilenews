@@ -643,15 +643,17 @@ img {
 /* Bottom Nav Fixes */
 #mobile-bottom-nav {
     -webkit-tap-highlight-color: transparent;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 /* Adjust body padding for bottom nav */
 @media (max-width: 1279px) {
     body {
-        padding-bottom: calc(5rem + var(--safe-area-bottom));
+        padding-bottom: calc(70px + var(--safe-area-bottom, 0px) + 1.5rem);
     }
 }
+
 
 /* Active State Indicator */
 #mobile-bottom-nav a.active::before {
@@ -660,11 +662,18 @@ img {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 3px;
-    background-color: var(--primary-color);
-    border-radius: 0 0 4px 4px;
+    width: 30px;
+    height: 4px;
+    background-color: var(--color-primary);
+    border-radius: 0 0 100px 100px;
+    box-shadow: 0 4px 10px rgba(var(--color-primary-rgb), 0.3);
 }
+
+#mobile-bottom-nav a.active .material-symbols-outlined {
+    transform: translateY(-2px);
+    color: var(--color-primary);
+}
+
 
 /* --- Mobile Sidebar Premium Polish --- */
 

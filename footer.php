@@ -152,32 +152,36 @@
 <!-- Mobile Bottom Navigation -->
 <!-- Mobile Bottom Navigation (Premium) -->
 <nav id="mobile-bottom-nav"
-    class="fixed bottom-0 left-0 right-0 z-[60] xl:hidden bg-white/90 dark:bg-zinc-900/90 backdrop-blur-lg border-t border-gray-100 dark:border-zinc-800 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)] transition-transform duration-300">
-    <div class="grid grid-cols-5 items-end <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-12' : 'h-16'; ?> w-full">
+    class="fixed bottom-0 left-0 right-0 z-[60] xl:hidden bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border-t border-gray-100 dark:border-zinc-800 pb-safe shadow-[0_-8px_30px_rgba(0,0,0,0.08)] transition-transform duration-500">
+    <div class="grid grid-cols-5 items-stretch h-[70px] w-full">
+
 
         <!-- 1. Home -->
         <a href="<?php echo esc_url(home_url('/')); ?>"
-            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_front_page() ? 'active text-primary dark:text-primary' : ''; ?>"
+            class="flex flex-col items-center justify-center w-full h-full text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_front_page() ? 'active text-primary dark:text-primary' : ''; ?>"
             aria-label="Beranda">
-            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">home</span>
-            <span class="text-[10px] font-bold uppercase tracking-tight">Beranda</span>
+            <span class="material-symbols-outlined text-[26px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">home</span>
+            <span class="text-[9px] font-black uppercase tracking-widest opacity-80 group-[.active]:opacity-100">Beranda</span>
         </a>
+
 
         <!-- 2. Kategori / Explore -->
         <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>"
-            class="flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_archive() ? 'active text-primary dark:text-primary' : ''; ?>"
+            class="flex flex-col items-center justify-center w-full h-full text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group <?php echo is_archive() ? 'active text-primary dark:text-primary' : ''; ?>"
             aria-label="Kategori">
-            <span class="material-symbols-outlined text-[24px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">grid_view</span>
-            <span class="text-[10px] font-bold uppercase tracking-tight">Kategori</span>
+            <span class="material-symbols-outlined text-[26px] mb-0.5 group-[.active]:filled transition-transform group-active:scale-90">grid_view</span>
+            <span class="text-[9px] font-black uppercase tracking-widest opacity-80 group-[.active]:opacity-100">Kategori</span>
         </a>
 
+
         <!-- 3. Central FAB (Menu) -->
-        <div class="relative w-full h-full flex justify-center items-end">
-            <div class="absolute -top-6 flex flex-col items-center">
+        <div class="relative w-full h-full flex justify-center items-center">
+            <div class="absolute -top-7 flex flex-col items-center">
                 <button id="mobile-menu-trigger-bottom"
-                    class="flex flex-col items-center justify-center w-14 h-14 bg-primary text-white rounded-full shadow-[0_8px_25px_rgba(var(--color-primary-rgb),0.5)] hover:scale-105 active:scale-90 transition-all duration-300 ring-4 ring-white dark:ring-zinc-900"
+                    class="flex flex-col items-center justify-center w-16 h-16 bg-primary text-white rounded-full shadow-[0_12px_35px_rgba(var(--color-primary-rgb),0.4)] hover:scale-105 active:scale-90 transition-all duration-300 ring-8 ring-white/50 dark:ring-zinc-900/50"
                     aria-label="Menu">
-                    <span class="material-symbols-outlined text-[30px]">menu</span>
+                    <span class="material-symbols-outlined text-[32px]">menu</span>
+
                 </button>
                 <div class="h-1.5"></div>
             </div>

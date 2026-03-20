@@ -495,6 +495,16 @@ jQuery(document).ready(function ($) {
 
     $(window).scroll(function (event) {
         let st = $(this).scrollTop();
+        const delta = 5; // Minimum scroll to trigger hide/show
+        
+        // Don't hide if mobile menu is open
+        if (!mobileMenu.hasClass('-translate-x-full')) {
+            bottomNav.css('transform', 'translateY(0)');
+            return;
+        }
+
+        if (Math.abs(lastScrollTop - st) <= delta) return;
+
         if (st > lastScrollTop && st > 100) {
             // Scroll Down
             bottomNav.css('transform', 'translateY(100%)');
@@ -504,6 +514,7 @@ jQuery(document).ready(function ($) {
         }
         lastScrollTop = st;
     });
+
 
     // Init
     getUserLocation();
