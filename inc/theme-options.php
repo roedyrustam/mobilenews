@@ -124,6 +124,7 @@ function mobilenews_theme_settings_init()
 
     $ad_slots = [
         'header' => 'Header Ad',
+        'below_ticker' => 'Below Ticker Ad',
         'sidebar' => 'Sidebar Ad',
         'after_title' => 'After Title Ad',
         'after_content' => 'After Content Ad',

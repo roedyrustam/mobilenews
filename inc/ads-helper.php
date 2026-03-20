@@ -53,6 +53,7 @@ function mobilenews_render_ad($slot) {
     if (!$has_ad && mobilenews_get_option('ads_enable_mock', false)) {
         $slot_labels = [
             'header'        => 'Header Ad',
+            'below_ticker'  => 'Below Ticker Ad',
             'sidebar'       => 'Sidebar Ad',
             'after_title'   => 'After Title Ad',
             'after_content' => 'After Content Ad',

@@ -390,11 +390,21 @@
     ?>
 
     <?php
+    // Below Ticker Ad Display
+    if (function_exists('mobilenews_render_ad')) {
+        $below_ticker_ad = mobilenews_render_ad('below_ticker');
+        if (!empty($below_ticker_ad)) {
+            echo '<div class="below-ticker-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
+            echo $below_ticker_ad;
+            echo '</div>';
+        }
+    }
+
     // Header Ad Display
     if (function_exists('mobilenews_render_ad')) {
         $header_ad = mobilenews_render_ad('header');
         if (!empty($header_ad)) {
-            echo '<div class="header-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
+            echo '<div class="header-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 pt-0 pb-4 flex justify-center overflow-hidden">';
             echo $header_ad;
             echo '</div>';
         }
