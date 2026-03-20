@@ -57,7 +57,7 @@
                                 <?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                                 
-                                <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-10 glass-overlay border-0 m-4 rounded-3xl">
+                                <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-10 bg-black/20 backdrop-blur-md border border-white/10 m-4 rounded-3xl">
                                     <h3 class="text-white text-2xl lg:text-3xl font-black leading-tight mb-4 tracking-tighter hover:text-primary transition-colors">
                                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     </h3>

@@ -40,9 +40,10 @@
                             </div>
                         <?php endif; ?>
 
+                        <!-- Gradient Overlay (Ensures text legibility) -->
+                        <div class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
 
-
-                        <div class="absolute bottom-6 left-6 right-6 p-6 lg:p-8 glass-overlay rounded-2xl group-hover:border-primary/30 transition-all duration-500">
+                        <div class="absolute bottom-6 left-6 right-6 p-6 lg:p-8 bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl group-hover:border-primary/30 transition-all duration-500 z-10">
                             <div class="flex items-center gap-3 mb-4">
                                 <span class="bg-primary text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-[1.5px] shadow-lg shadow-primary/20">
                                     <?php $cat = get_the_category();
@@ -73,11 +74,11 @@
                             <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"
                                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         <?php endif; ?>
-                        
-                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 z-0"></div>
+                        <!-- Gradient Overlay for Side Items -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-0 opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                         <!-- Content Overlay -->
-                        <div class="absolute inset-0 p-4 flex flex-col justify-end z-10 glass-overlay border-0 group-hover:border-primary/20 transition-all">
+                        <div class="absolute inset-0 p-4 flex flex-col justify-end z-10 border-0 group-hover:border-primary/20 transition-all">
                             <div class="flex flex-wrap gap-2 mb-2">
                                 <span class="bg-primary/90 text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">
                                     <?php $cat = get_the_category(); echo !empty($cat) ? esc_html($cat[0]->name) : 'News'; ?>
