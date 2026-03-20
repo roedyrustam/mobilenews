@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2026-03-21
+### Added
+- **Livestream Page Template:** Specialized layout for live video coverage.
+- **Cinematic Dark Mode:** Dark-themed player area for streaming.
+- **Blinking LIVE Indicator:** Dynamic CSS-animated badge for live status.
+- **Live Side Column:** Combined video and update/chat feed on desktop.
+
 ## [1.9.0] - 2026-03-21
 ### Added
 - **Custom Page & Post Templates:** New selectable templates for custom layouts.
