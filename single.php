@@ -18,9 +18,6 @@ get_header();
 
     <?php while (have_posts()):
         the_post();
-
-        // Social Share Buttons (Floating/Fixed)
-        get_template_part('template-parts/social-share');
         ?>
 
         <!-- Breadcrumbs -->
@@ -106,7 +103,7 @@ get_header();
                     </figure>
                 <?php endif; ?>
 
-                <!-- Mobile Share Buttons (handled by template-parts/social-share.php) -->
+
 
                 <!-- Article Body -->
                 <div
@@ -148,6 +145,10 @@ get_header();
                         }
                         ?>
                     </div>
+
+                    <!-- Post Social Share (Static) -->
+                    <?php get_template_part('template-parts/social-share'); ?>
+
 
                     <!-- Newsletter -->
                     <div class="mt-12 bg-primary p-8 rounded-2xl text-white flex flex-col md:flex-row items-center gap-8">
