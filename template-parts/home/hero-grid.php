@@ -20,7 +20,8 @@
 
             if ($post_count === 1):
                 ?>
-                <div class="lg:col-span-7 group cursor-pointer relative -translate-y-0 transition-all duration-500 hover:-translate-y-2">
+                <div class="lg:col-span-7 hero-grid-main group cursor-pointer relative -translate-y-0 transition-all duration-500 hover:-translate-y-2">
+
                     <div class="relative aspect-video overflow-hidden rounded-xl mb-4">
 
                         <?php if (has_post_thumbnail()): ?>

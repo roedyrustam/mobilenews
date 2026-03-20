@@ -860,4 +860,68 @@ img {
     to { opacity: 1; }
 }
 
+/* --- Responsive Polish & Tuning --- */
+@media (max-width: 768px) {
+    /* Reduce aggressive rounding on mobile */
+    .rounded-4xl { border-radius: 1.5rem !important; }
+    .rounded-3xl { border-radius: 1rem !important; }
+    
+    /* Optimize Glass Overlays for small screens */
+    .glass-overlay {
+        padding: 1.25rem !important;
+        margin: 1rem !important;
+        border-radius: 1rem !important;
+    }
+    
+    .hero-grid-main .glass-overlay {
+        bottom: 1rem !important;
+        left: 1rem !important;
+        right: 1rem !important;
+    }
+
+    /* Category Blocks Spacing */
+    .category-spotlight-block {
+        margin-bottom: 2.5rem;
+    }
+
+    .flex-col.gap-16 {
+        gap: 2.5rem !important;
+    }
+
+    /* Section Titles */
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+
+    .flex.items-center.gap-4.mb-8 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Latest Stream Spacing */
+    .flex.flex-col.md\:flex-row.gap-6 {
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+    }
+}
+
+/* Global Widget Rounding */
+.widget, .bg-white.dark\:bg-zinc-900.border.rounded-2xl {
+    border-radius: 2rem !important;
+}
+
+
+
+/* Support for very small devices */
+@media (max-width: 380px) {
+    .floating-glass-bar {
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+    }
+    
+    .floating-glass-bar span {
+        display: none; /* Hide 'Bagikan' text to save space */
+    }
+}
+
+
 
