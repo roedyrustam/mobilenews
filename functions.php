@@ -155,13 +155,15 @@ function mobilenews_scripts()
     wp_enqueue_style('mobilenews-style', get_stylesheet_uri());
 
     // Custom Main CSS
-    wp_enqueue_style('mobilenews-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
+    wp_enqueue_style('mobilenews-main', get_template_directory_uri() . '/assets/css/main.css', array(), filemtime(get_template_directory() . '/assets/css/main.css'));
 
     // Block Styles
-    wp_enqueue_style('mobilenews-blocks', get_template_directory_uri() . '/assets/css/blocks.css', array(), '1.0.0');
+    wp_enqueue_style('mobilenews-blocks', get_template_directory_uri() . '/assets/css/blocks.css', array(), filemtime(get_template_directory() . '/assets/css/blocks.css'));
+
 
     // Main JS
-    wp_enqueue_script('mobilenews-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('mobilenews-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), filemtime(get_template_directory() . '/assets/js/main.js'), true);
+
 
     // Comment Reply Script
     if (is_singular() && comments_open() && get_option('thread_comments')) {
