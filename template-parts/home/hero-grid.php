@@ -26,7 +26,7 @@
 
             if ($post_count === 1):
                 ?>
-                <div class="lg:col-span-7 hero-grid-main group cursor-pointer relative -translate-y-0 transition-all duration-500 hover:-translate-y-2">
+                <div class="lg:col-span-7 hero-grid-main group cursor-pointer relative -translate-y-0 transition-all duration-500 hover:-translate-y-2 min-h-[500px] lg:min-h-[580px] xl:min-h-[620px]">
                     <div class="relative h-full overflow-hidden rounded-xl">
 
 
@@ -68,7 +68,7 @@
                 <div class="lg:col-span-5 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 <?php else: ?>
                     <!-- Side Hero Item -->
-                    <div class="relative h-[250px] lg:h-[290px] xl:h-[350px] 2xl:h-[400px] rounded-3xl overflow-hidden group cursor-pointer hover-lift shadow-lg">
+                    <div class="relative h-[250px] lg:h-[280px] xl:h-[300px] rounded-3xl overflow-hidden group cursor-pointer hover-lift shadow-lg">
 
                         <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"

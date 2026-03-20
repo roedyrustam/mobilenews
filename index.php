@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<div class="container max-w-[1920px] mx-auto px-4 lg:px-10 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="container max-w-[1440px] mx-auto px-4 lg:px-10 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
     <main id="main-content" class="site-main lg:col-span-8 xl:col-span-9">
 
         <?php

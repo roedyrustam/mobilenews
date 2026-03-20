@@ -65,7 +65,7 @@
     <!-- Top Navigation Bar -->
     <header
         class="sticky top-0 z-50 border-b border-solid border-[#e9f0f2] dark:border-gray-800 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 md:px-20 py-3">
-        <div class="max-w-[1920px] mx-auto flex items-center justify-between gap-8">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-8">
             <div class="flex items-center gap-8">
                 <a href="<?php echo home_url('/'); ?>" class="flex items-center gap-3 text-primary decoration-0">
                     <div class="size-8">
@@ -352,7 +352,7 @@
     </main>
 
     <footer class="bg-white dark:bg-gray-900 border-t border-[#e9f0f2] dark:border-gray-800 py-12 px-4">
-        <div class="max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-3 text-primary/50 grayscale">
                 <div class="size-6">
                     <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">

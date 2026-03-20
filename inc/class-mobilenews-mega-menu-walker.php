@@ -12,7 +12,7 @@ class MobileNews_Mega_Menu_Walker extends Walker_Nav_Menu
     {
         $indent = str_repeat("\t", $depth);
         $output .= "\n$indent<div class=\"mega-menu-dropdown absolute left-0 top-full w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50\">\n";
-        $output .= "<div class=\"max-w-[1920px] mx-auto px-6 py-6\">\n";
+        $output .= "<div class=\"max-w-[1440px] mx-auto px-6 py-6\">\n";
         // We might want a grid wrapper here via CSS, usually we output UL normally but for Mega Menu we want a DIV structure if we are injecting posts.
         // However, standard WP menu structure expects UL. 
         // Let's modify: If this is depth 0, we open the mega wrapper. 
@@ -111,8 +111,8 @@ class MobileNews_Mega_Menu_Walker extends Walker_Nav_Menu
             ));
 
             if ($mega_query->have_posts()) {
-                $item_output .= '<div class="mega-menu-posts absolute left-0 top-full w-screen -ml-[calc((100vw-1920px)/2+20px)] bg-white dark:bg-gray-900 border-t border-primary border-t-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">';
-                $item_output .= '<div class="max-w-[1920px] mx-auto px-6 py-6 grid grid-cols-4 gap-6">';
+                $item_output .= '<div class="mega-menu-posts absolute left-0 top-full w-screen -ml-[calc((100vw-1440px)/2+20px)] bg-white dark:bg-gray-900 border-t border-primary border-t-4 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">';
+                $item_output .= '<div class="max-w-[1440px] mx-auto px-6 py-6 grid grid-cols-4 gap-6">';
 
                 while ($mega_query->have_posts()):
                     $mega_query->the_post();

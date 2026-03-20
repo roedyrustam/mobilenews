@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="max-w-[1920px] mx-auto w-full px-6 py-12">
+<main id="main-content" class="max-w-[1440px] mx-auto w-full px-6 py-12">
     <!-- Breadcrumbs -->
     <nav class="flex items-center gap-2 mb-10 text-sm">
         <a class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1"

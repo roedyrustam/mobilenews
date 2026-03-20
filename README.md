@@ -186,7 +186,7 @@ Main CSS custom properties in `assets/css/main.css`:
 
 ```css
 :root {
-  --container-width: 1920px;
+  --container-width: 1440px;
   --gap-base: 1.5rem;
   --border-radius: 8px;
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);

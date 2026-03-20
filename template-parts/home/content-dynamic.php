@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="max-w-[1920px] mx-auto px-4 lg:px-10 py-8">
+<div class="max-w-[1440px] mx-auto px-4 lg:px-10 py-8">
 
     <!-- Hero Grid Section -->
     <?php if (mobilenews_get_option('homepage_hero_enable', true)): ?>

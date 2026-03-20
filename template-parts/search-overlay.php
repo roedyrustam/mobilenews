@@ -11,7 +11,7 @@
     <!-- Header / Top Navigation -->
     <header
         class="sticky top-0 z-50 bg-white/90 dark:bg-[#1f2b2e]/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 px-6 lg:px-20 py-4 shrink-0">
-        <div class="max-w-[1920px] mx-auto flex items-center justify-between">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3 text-primary">
                 <div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
                     <span class="material-symbols-outlined text-2xl">newspaper</span>

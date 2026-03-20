@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="max-w-[1920px] mx-auto px-6 py-16 md:py-24">
+<main id="main-content" class="max-w-[1440px] mx-auto px-6 py-16 md:py-24">
     <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
             <div class="relative inline-block mb-8">

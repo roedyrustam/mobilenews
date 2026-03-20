@@ -27,7 +27,7 @@ $featured_args = array(
 $featured_query = new WP_Query($featured_args);
 ?>
 
-<main id="main-content" class="max-w-[1920px] mx-auto px-4 lg:px-10 py-10">
+<main id="main-content" class="max-w-[1440px] mx-auto px-4 lg:px-10 py-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Sidebar (Metadata) -->
         <aside class="lg:col-span-4 xl:col-span-3 order-2 lg:order-1 flex flex-col gap-8">

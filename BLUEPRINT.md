@@ -205,7 +205,7 @@ classDiagram
 --background-dark: #212121  /* Dark mode background */
 
 /* Spacing */
---container-width: 1920px
+--container-width: 1440px
 --gap-base: 1.5rem
 
 /* Shadows */

@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main class="max-w-[1920px] mx-auto px-6 py-8">
+<main class="max-w-[1440px] mx-auto px-6 py-8">
 
     <!-- Geo-Targeting Section -->
     <section class="mb-12">

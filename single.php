@@ -14,7 +14,7 @@ get_header();
 </div>
 <?php endif; ?>
 
-<main id="main-content" class="max-w-[1920px] mx-auto px-4 lg:px-10 py-8">
+<main id="main-content" class="max-w-[1440px] mx-auto px-4 lg:px-10 py-8">
 
     <?php while (have_posts()):
         the_post();
