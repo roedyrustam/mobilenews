@@ -386,8 +386,8 @@
 
     <?php
     // Header Ad Display
-    if (function_exists('mobilenews_get_option')) {
-        $header_ad = mobilenews_get_option('ads_header');
+    if (function_exists('mobilenews_render_ad')) {
+        $header_ad = mobilenews_render_ad('header');
         if (!empty($header_ad)) {
             echo '<div class="header-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
             echo $header_ad;

@@ -110,8 +110,8 @@ get_header();
                     class="entry-content prose prose-lg dark:prose-invert max-w-none leading-relaxed text-gray-800 dark:text-gray-200">
                     <?php
                     // Top Ad (After Title / Before Content)
-                    if (function_exists('mobilenews_get_option')) {
-                        $ad_top = mobilenews_get_option('ads_after_title');
+                    if (function_exists('mobilenews_render_ad')) {
+                        $ad_top = mobilenews_render_ad('after_title');
                         if (!empty($ad_top)) {
                             echo '<div class="mobilenews-ad-single-top my-8 flex justify-center overflow-hidden">';
                             echo $ad_top;
@@ -124,8 +124,8 @@ get_header();
 
                     <?php
                     // Bottom Ad (After Content)
-                    if (function_exists('mobilenews_get_option')) {
-                        $ad_bottom = mobilenews_get_option('ads_after_content');
+                    if (function_exists('mobilenews_render_ad')) {
+                        $ad_bottom = mobilenews_render_ad('after_content');
                         if (!empty($ad_bottom)) {
                             echo '<div class="mobilenews-ad-single-bottom my-8 flex justify-center overflow-hidden">';
                             echo $ad_bottom;

@@ -154,8 +154,8 @@ if (!function_exists('mobilenews_get_option')) {
 
 <?php
 // Sticky Footer Ad Logic
-if (function_exists('mobilenews_get_option')):
-    $sticky_ad = mobilenews_get_option('ads_sticky_footer');
+if (function_exists('mobilenews_render_ad')):
+    $sticky_ad = mobilenews_render_ad('sticky_footer');
     if (!empty($sticky_ad)):
         ?>
         <div id="mobilenews-sticky-ad"
