@@ -13,11 +13,11 @@ if (!is_active_sidebar('main-sidebar')) {
     <!-- Wrapper for Sticky Functionality -->
     <div class="sticky top-24 space-y-8">
         <?php
-        // Sidebar Ad Slot (300x250)
-        if (function_exists('mobilenews_get_ad')) {
-            $sidebar_ad = mobilenews_get_ad('sidebar_ad');
+        // Sidebar Ad Slot
+        if (function_exists('mobilenews_get_option')) {
+            $sidebar_ad = mobilenews_get_option('ads_sidebar');
             if (!empty($sidebar_ad)) {
-                echo '<div class="mobilenews-ad-sidebar flex justify-center mb-6">';
+                echo '<div class="mobilenews-ad-sidebar flex justify-center mb-6 overflow-hidden">';
                 echo $sidebar_ad;
                 echo '</div>';
             }

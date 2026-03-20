@@ -15,7 +15,7 @@ function mobilenews_theme_settings_init()
         return;
     }
 
-    register_setting('mobilenews_theme_options', 'mobilenews_theme_options');
+    register_setting('mobilenews_theme_options', 'mobilenews_theme_options', 'mobilenews_theme_options_sanitize');
 
     // --- Section: API Settings ---
     add_settings_section('mobilenews_theme_section_api', 'API Settings', 'mobilenews_theme_section_api_cb', 'mobilenews_theme_options');
@@ -115,6 +115,13 @@ function mobilenews_theme_settings_init()
     add_settings_field('homepage_spotlight_cat2', 'Spotlight Category 2', 'mobilenews_theme_field_category_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_spotlight_cat2']);
     add_settings_field('homepage_local_news_enable', 'Enable Local News (Sekitarmu)', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_homepage', ['label_for' => 'homepage_local_news_enable']);
 
+    // --- Section: Ads Management ---
+    add_settings_section('mobilenews_theme_section_ads', 'Advertisement Management', 'mobilenews_theme_section_ads_cb', 'mobilenews_theme_options');
+    add_settings_field('ads_header', 'Header Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_header']);
+    add_settings_field('ads_sidebar', 'Sidebar Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_sidebar']);
+    add_settings_field('ads_after_title', 'After Title Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_title']);
+    add_settings_field('ads_after_content', 'After Content Ad Code', 'mobilenews_theme_field_textarea_code_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', ['label_for' => 'ads_after_content']);
+
 
 
 }
@@ -210,6 +217,10 @@ function mobilenews_theme_section_update_cb()
 function mobilenews_theme_section_homepage_cb()
 {
     echo '<p class="description">Manage sections and categories displayed on your homepage.</p>';
+}
+function mobilenews_theme_section_ads_cb()
+{
+    echo '<p class="description">Place your advertisement codes (AdSense, etc.) here.</p>';
 }
 
 
@@ -375,196 +386,131 @@ function mobilenews_theme_options_page_html()
             </div>
 
             <div class="mobilenews-admin-content">
+                <!-- Main Settings Form -->
+                <form action="options.php" method="post" id="mobilenews-theme-form">
+                    <?php settings_fields('mobilenews_theme_options'); ?>
 
-        <!-- Main Settings Form -->
-        <form action="options.php" method="post" id="mobilenews-theme-form">
-            <?php settings_fields('mobilenews_theme_options'); ?>
+                    <!-- General Tab -->
+                    <div id="general" class="mobilenews-tab-content active">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_general'); ?>
+                    </div>
 
-            <!-- General Tab -->
-            <div id="general" class="mobilenews-tab-content active">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_general'); ?>
-            </div>
+                    <!-- Homepage Tab -->
+                    <div id="homepage" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_homepage'); ?>
+                    </div>
 
-            <!-- Homepage Tab -->
-            <div id="homepage" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_homepage'); ?>
-            </div>
+                    <!-- Visual Style Tab -->
+                    <div id="style" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_style'); ?>
+                    </div>
 
+                    <!-- SEO Tab -->
+                    <div id="seo" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_seo'); ?>
+                    </div>
 
-            <!-- Visual Style Tab -->
-            <div id="style" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_style'); ?>
-            </div>
+                    <!-- Single Post Tab -->
+                    <div id="single" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_single'); ?>
+                    </div>
 
-            <!-- SEO Tab -->
-            <div id="seo" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_seo'); ?>
-            </div>
+                    <!-- Archive Layout Tab -->
+                    <div id="archive" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
+                    </div>
 
-            <!-- Single Post Tab -->
-            <div id="single" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_single'); ?>
-            </div>
+                    <!-- Mobile Layout Tab -->
+                    <div id="mobile" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_mobile'); ?>
+                    </div>
 
-            <!-- Archive Layout Tab -->
-            <div id="archive" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
-            </div>
+                    <!-- Trending Tab -->
+                    <div id="trending" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_trending'); ?>
+                    </div>
 
-            <!-- Mobile Layout Tab -->
-            <div id="mobile" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_mobile'); ?>
-            </div>
+                    <!-- News Ticker Tab -->
+                    <div id="ticker" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ticker'); ?>
+                    </div>
 
-            <!-- Trending Tab -->
-            <div id="trending" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_trending'); ?>
-            </div>
+                    <!-- Features Tab -->
+                    <div id="features" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_features'); ?>
+                    </div>
 
-            <!-- News Ticker Tab -->
-            <div id="ticker" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ticker'); ?>
-            </div>
+                    <!-- Social Media Tab -->
+                    <div id="social" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_social'); ?>
+                    </div>
 
-            <!-- Features Tab -->
-            <div id="features" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_features'); ?>
-            </div>
+                    <!-- Contact Tab -->
+                    <div id="contact" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_contact'); ?>
+                    </div>
 
-            <!-- Social Media Tab -->
-            <div id="social" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_social'); ?>
-            </div>
+                    <!-- Footer Tab -->
+                    <div id="footer" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_footer'); ?>
+                    </div>
 
-            <!-- Contact Tab -->
-            <div id="contact" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_contact'); ?>
-            </div>
+                    <!-- API Tab -->
+                    <div id="api" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_api'); ?>
+                    </div>
 
-            <!-- Footer Tab -->
-            <div id="footer" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_footer'); ?>
-            </div>
+                    <!-- Analytics Tab -->
+                    <div id="analytics" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_analytics'); ?>
+                    </div>
+                </form>
 
-            <!-- API Tab -->
-            <div id="api" class="mobilenews-tab-content">
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_api'); ?>
-            </div>
+                <!-- Updates Tab (Separate action for checking updates) -->
+                <div id="updates" class="mobilenews-tab-content">
+                    <h2><?php echo esc_html__('Theme Updates', 'mobilenews'); ?></h2>
+                    <div class="mobilenews-update-card bg-white dark:bg-zinc-800 p-6 rounded-xl border border-gray-100 dark:border-zinc-700 shadow-sm mt-4">
+                        <p class="mb-4 text-gray-600 dark:text-gray-400">
+                            <?php echo esc_html__('Check for new versions of the Mobile News theme directly from the GitHub repository.', 'mobilenews'); ?>
+                        </p>
+                        <p class="mb-6">
+                            <strong><?php echo esc_html__('Current Repository:', 'mobilenews'); ?></strong> 
+                            <code>https://github.com/roedyrustam/mobilenews</code>
+                        </p>
+                        
+                        <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+                            <?php wp_nonce_field('mobilenews_check_updates_nonce'); ?>
+                            <input type="hidden" name="action" value="mobilenews_check_updates">
+                            <button type="submit" class="button button-primary button-large">
+                                <span class="dashicons dashicons-update-alt" style="vertical-align: middle; margin-right: 5px;"></span>
+                                <?php echo esc_html__('Check for Updates Now', 'mobilenews'); ?>
+                            </button>
+                        </form>
 
-            <!-- Updates Tab -->
-            <div id="updates" class="mobilenews-tab-content">
-                <h2><?php echo esc_html__('Theme Updates', 'mobilenews'); ?></h2>
-                <div class="mobilenews-update-card bg-white dark:bg-zinc-800 p-6 rounded-xl border border-gray-100 dark:border-zinc-700 shadow-sm mt-4">
-                    <p class="mb-4 text-gray-600 dark:text-gray-400">
-                        <?php echo esc_html__('Check for new versions of the Mobile News theme directly from the GitHub repository.', 'mobilenews'); ?>
-                    </p>
-                    <p class="mb-6">
-                        <strong><?php echo esc_html__('Current Repository:', 'mobilenews'); ?></strong> 
-                        <code>https://github.com/roedyrustam/mobilenews</code>
-                    </p>
-                    
-                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
-                        <?php wp_nonce_field('mobilenews_check_updates_nonce'); ?>
-                        <input type="hidden" name="action" value="mobilenews_check_updates">
-                        <button type="submit" class="button button-primary button-large">
-                            <span class="dashicons dashicons-update-alt" style="vertical-align: middle; margin-right: 5px;"></span>
-                            <?php echo esc_html__('Check for Updates Now', 'mobilenews'); ?>
-                        </button>
-                    </form>
+                        <?php if (isset($_GET['update_check']) && $_GET['update_check'] === 'done'): ?>
+                            <div class="updated notice is-dismissible mt-4" style="margin-left:0; margin-top:20px;">
+                                <p><?php echo esc_html__('Update check completed. If a new version is available, you will see a notice in the standard WordPress updates area (Dashboard > Updates).', 'mobilenews'); ?></p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
-                    <?php if (isset($_GET['update_check']) && $_GET['update_check'] === 'done'): ?>
-                        <div class="updated notice is-dismissible mt-4" style="margin-left:0; margin-top:20px;">
-                            <p><?php echo esc_html__('Update check completed. If a new version is available, you will see a notice in the standard WordPress updates area (Dashboard > Updates).', 'mobilenews'); ?></p>
-                        </div>
-                    <?php endif; ?>
+                <!-- Ads Manager Tab -->
+                <div id="ads" class="mobilenews-tab-content">
+                    <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ads'); ?>
                 </div>
             </div>
-
-
-            <!-- Analytics Tab Placeholder -->
-            <div id="analytics" class="mobilenews-tab-content">
-                <h2>Analytics</h2>
-                <p>Fitur analitik akan segera hadir.</p>
-            </div>
-
-        </form>
-
-        <!-- Ads Manager Tab (Separate Form) -->
-        <div id="ads" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_ads'); ?>
-                <?php do_settings_sections('mobilenews_ads'); ?>
-                <?php submit_button('Save Ad Settings'); ?>
-            </form>
         </div>
 
-        <!-- SEO Tab -->
-        <div id="seo" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_theme_options'); ?>
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_seo'); ?>
-                <?php submit_button('Save SEO Settings'); ?>
-            </form>
-        </div>
-
-        <!-- Single Post Tab -->
-        <div id="single" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_theme_options'); ?>
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_single'); ?>
-                <?php submit_button('Save Single Post Settings'); ?>
-            </form>
-        </div>
-
-        <!-- Archive Layout Tab -->
-        <div id="archive" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_theme_options'); ?>
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
-                <?php submit_button('Save Archive Settings'); ?>
-            </form>
-        </div>
-
-        <!-- Mobile Layout Tab -->
-        <div id="mobile" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_theme_options'); ?>
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_mobile'); ?>
-                <?php submit_button('Save Mobile Settings'); ?>
-            </form>
-        </div>
-
-        <!-- Trending Tab -->
-        <div id="trending" class="mobilenews-tab-content">
-            <form action="options.php" method="post">
-                <?php settings_fields('mobilenews_theme_options'); ?>
-                <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_trending'); ?>
-                <?php submit_button('Save Trending Settings'); ?>
-            </form>
-        </div>
-
-        </div>
-    </div>
-
-    <div class="mobilenews-admin-save-bar">
-        <div class="save-bar-info">
-            <span class="dashicons dashicons-info"></span>
-            <p><?php echo esc_html__('Remember to save your changes after modifying settings.', 'mobilenews'); ?></p>
-        </div>
-        <div class="save-bar-actions">
-            <button type="submit" form="mobilenews-theme-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
-        </div>
-    </div>
-            </div>
-        </div>
-
+        <!-- Global Save Bar -->
         <div class="mobilenews-admin-save-bar">
             <div class="save-bar-info">
                 <span class="dashicons dashicons-info"></span>
                 <p><?php echo esc_html__('Remember to save your changes after modifying settings.', 'mobilenews'); ?></p>
             </div>
             <div class="save-bar-actions">
-                <button type="submit" form="mobilenews-options-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
+                <!-- Use JS to submit the correct form based on active tab, but primary focus is mobilenews-theme-form -->
+                <button type="submit" form="mobilenews-theme-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
             </div>
         </div>
     </div>
@@ -595,6 +541,34 @@ function mobilenews_do_settings_section($page, $section_id)
     echo '<table class="form-table" role="presentation">';
     do_settings_fields($page, $section['id']);
     echo '</table>';
+}
+
+/**
+ * Sanitize all theme options
+ */
+function mobilenews_theme_options_sanitize($input)
+{
+    $output = array();
+    if (!is_array($input)) {
+        return $output;
+    }
+
+    foreach ($input as $key => $value) {
+        // Handle different field types based on key
+        if (strpos($key, 'scripts') !== false || strpos($key, 'ads') !== false) {
+            // Allow code in scripts and ads sections
+            $output[$key] = $value; // We trust the admin for these
+        } elseif (is_numeric($value)) {
+            $output[$key] = intval($value);
+        } elseif (strpos($key, 'url') !== false) {
+            $output[$key] = esc_url_raw($value);
+        } elseif (strpos($key, 'color') !== false) {
+            $output[$key] = sanitize_hex_color($value);
+        } else {
+            $output[$key] = sanitize_text_field($value);
+        }
+    }
+    return $output;
 }
 
 // 5. Helper Function

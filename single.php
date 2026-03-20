@@ -109,11 +109,11 @@ get_header();
                 <div
                     class="entry-content prose prose-lg dark:prose-invert max-w-none leading-relaxed text-gray-800 dark:text-gray-200">
                     <?php
-                    // Top Ad (Before Content)
-                    if (function_exists('mobilenews_get_ad')) {
-                        $ad_top = mobilenews_get_ad('single_before_ad');
+                    // Top Ad (After Title / Before Content)
+                    if (function_exists('mobilenews_get_option')) {
+                        $ad_top = mobilenews_get_option('ads_after_title');
                         if (!empty($ad_top)) {
-                            echo '<div class="mobilenews-ad-single-top my-8 flex justify-center">';
+                            echo '<div class="mobilenews-ad-single-top my-8 flex justify-center overflow-hidden">';
                             echo $ad_top;
                             echo '</div>';
                         }
@@ -124,10 +124,10 @@ get_header();
 
                     <?php
                     // Bottom Ad (After Content)
-                    if (function_exists('mobilenews_get_ad')) {
-                        $ad_bottom = mobilenews_get_ad('single_after_ad');
+                    if (function_exists('mobilenews_get_option')) {
+                        $ad_bottom = mobilenews_get_option('ads_after_content');
                         if (!empty($ad_bottom)) {
-                            echo '<div class="mobilenews-ad-single-bottom my-8 flex justify-center">';
+                            echo '<div class="mobilenews-ad-single-bottom my-8 flex justify-center overflow-hidden">';
                             echo $ad_bottom;
                             echo '</div>';
                         }
