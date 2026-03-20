@@ -202,7 +202,7 @@
         </div>
 
         <!-- MOBILE ROW: Single bar with hamburger + logo centered + actions -->
-        <div class="flex xl:hidden items-center justify-between px-4 h-14">
+        <div class="relative flex xl:hidden items-center justify-between px-4 h-14">
             <!-- Hamburger -->
             <button id="mobile-menu-toggle" class="text-gray-700 dark:text-gray-200 p-2 -ml-2 relative z-20">
                 <span class="material-symbols-outlined text-2xl">menu</span>
@@ -240,10 +240,106 @@
 
     </header>
 
-    <!-- Mobile Sidebar Drawer -->
+    <!-- Mobile Sidebar Drawer (Full content) -->
     <div id="mobile-menu-container"
         class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
-        <!-- Content handled by walker in drawer... -->
+
+        <!-- Drawer Header -->
+        <div class="relative w-full bg-primary overflow-hidden shrink-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/20"></div>
+            <div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full"></div>
+            <div class="relative z-10 p-6 pt-12 pb-8 flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div class="size-14 rounded-2xl bg-white p-1 shadow-lg">
+                        <?php if (is_user_logged_in()): ?>
+                            <?php echo get_avatar(get_current_user_id(), 56, '', '', array('class' => 'rounded-xl w-full h-full object-cover')); ?>
+                        <?php else: ?>
+                            <div class="w-full h-full rounded-xl bg-gray-50 flex items-center justify-center text-primary/40">
+                                <span class="material-symbols-outlined text-3xl">person</span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <button id="mobile-menu-close"
+                        class="size-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-xl text-white hover:bg-white/20 active:scale-90 transition-all">
+                        <span class="material-symbols-outlined text-2xl">close</span>
+                    </button>
+                </div>
+                <div class="text-white">
+                    <?php if (is_user_logged_in()):
+                        $current_user = wp_get_current_user();
+                        ?>
+                        <h3 class="text-xl font-black truncate"><?php echo esc_html($current_user->display_name); ?></h3>
+                        <p class="text-xs text-white/60"><?php echo esc_html($current_user->user_email); ?></p>
+                    <?php else: ?>
+                        <h3 class="text-xl font-black">Selamat Datang</h3>
+                        <p class="text-xs text-white/70 mt-1">Langganan untuk akses penuh</p>
+                        <?php
+                        $sub_url = function_exists('mobilenews_get_option') ? mobilenews_get_option('subscribe_url', '#') : '#';
+                        ?>
+                        <a href="<?php echo esc_url($sub_url); ?>"
+                            class="inline-flex mt-3 text-xs font-bold bg-white text-primary px-4 py-2 rounded-xl">Langganan Sekarang</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Navigation -->
+        <nav class="w-full flex-1 overflow-y-auto overscroll-contain bg-white dark:bg-zinc-900/50">
+            <div class="p-4 space-y-5">
+                <!-- Search inside drawer -->
+                <form action="<?php echo esc_url(home_url('/')); ?>" method="get" class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-gray-400 text-[18px]">search</span>
+                    <input type="search" name="s" placeholder="Cari berita..."
+                        class="w-full bg-gray-50 dark:bg-zinc-800 border-none rounded-xl py-3 pl-10 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 dark:text-white">
+                </form>
+
+                <!-- Menu Links -->
+                <div>
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-2 mb-2">Navigasi</p>
+                    <ul class="flex flex-col gap-1">
+                        <li>
+                            <a href="<?php echo esc_url(home_url('/')); ?>"
+                                class="flex items-center gap-3 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 transition-all group">
+                                <div class="size-9 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-[18px]">home</span>
+                                </div>
+                                <span class="font-bold text-sm">Beranda</span>
+                            </a>
+                        </li>
+                        <?php
+                        $theme_location = has_nav_menu('mobile') ? 'mobile' : (has_nav_menu('primary') ? 'primary' : '');
+                        if ($theme_location) {
+                            wp_nav_menu(array(
+                                'theme_location' => $theme_location,
+                                'container'      => false,
+                                'items_wrap'     => '%3$s',
+                                'fallback_cb'    => false,
+                                'walker'         => new MobileNews_Mobile_Walker()
+                            ));
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Drawer Footer -->
+        <div class="p-4 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/40 shrink-0">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-gray-400 text-lg">dark_mode</span>
+                    <span class="text-xs font-bold text-gray-500">Mode Gelap</span>
+                </div>
+                <button id="drawer-theme-toggle"
+                    class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 dark:bg-primary transition-colors focus:outline-none">
+                    <span class="sr-only">Toggle Dark Mode</span>
+                    <span class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-200 dark:translate-x-6"></span>
+                </button>
+            </div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">
+                &copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>
+            </p>
+        </div>
     </div>
 
     <!-- Breaking News Ticker -->
