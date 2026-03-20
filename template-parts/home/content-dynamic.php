@@ -11,6 +11,18 @@
         <?php get_template_part('template-parts/home/hero-grid'); ?>
     <?php endif; ?>
 
+    <!-- Top Homepage Ad -->
+    <?php
+    if (function_exists('mobilenews_render_ad')) {
+        $homepage_top_ad = mobilenews_render_ad('after_title');
+        if (!empty($homepage_top_ad)) {
+            echo '<div class="mb-8 mt-4 overflow-hidden flex justify-center">';
+            echo $homepage_top_ad;
+            echo '</div>';
+        }
+    }
+    ?>
+
 
     <!-- Editor's Picks Section -->
     <?php get_template_part('template-parts/home/editors-picks'); ?>
@@ -54,6 +66,17 @@
             <?php get_template_part('template-parts/home/latest-stream'); ?>
 
             <!-- Newsletter / Ad Slot -->
+            <?php
+            if (function_exists('mobilenews_render_ad')) {
+                $homepage_bottom_ad = mobilenews_render_ad('after_content');
+                if (!empty($homepage_bottom_ad)) {
+                    echo '<div class="mb-12 overflow-hidden flex justify-center">';
+                    echo $homepage_bottom_ad;
+                    echo '</div>';
+                }
+            }
+            ?>
+            
             <div
                 class="mb-12 bg-primary/10 border border-primary/20 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="text-center md:text-left">
