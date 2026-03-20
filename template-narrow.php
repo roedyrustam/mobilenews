@@ -14,12 +14,8 @@ get_header();
         ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class('max-w-[720px] mx-auto'); ?>>
             
-            <!-- Breadcrumbs (Minimalist) -->
-            <nav class="flex items-center gap-2 mb-10 text-xs font-bold uppercase tracking-widest text-gray-400">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-primary transition-colors">Home</a>
-                <span class="material-symbols-outlined text-[12px]">chevron_right</span>
-                <span class="text-gray-900 dark:text-white"><?php the_title(); ?></span>
-            </nav>
+            <!-- Breadcrumbs -->
+            <?php mobilenews_breadcrumbs(); ?>
 
             <!-- Header Section -->
             <header class="mb-12">

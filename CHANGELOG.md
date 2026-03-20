@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2026-03-21
+### Added
+- **Global Feature Integration:** Fully interconnected v2.x features.
+- **Dynamic Header Action:** New "Live Stream" button in header (desktop/mobile).
+- **Sticky Header Control:** Enable/disable sticky header from admin.
+- **Unified Breadcrumbs:** Centralized `mobilenews_breadcrumbs()` in `inc/template-tags.php`.
+- **Template Consistency:** Custom templates (Full-Width, Narrow, Livestream) now support global navigation features.
+
 ## [2.1.0] - 2026-03-21
 ### Added
 - **Livestream Theme Options:** New dedicated tab to manage Video and Chat embeds.

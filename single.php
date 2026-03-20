@@ -21,18 +21,7 @@ get_header();
         ?>
 
         <!-- Breadcrumbs -->
-        <nav class="flex items-center gap-2 mb-6 text-sm">
-            <a class="text-primary font-medium hover:underline" href="<?php echo esc_url(home_url('/')); ?>">Beranda</a>
-            <span class="text-gray-400 material-symbols-outlined text-xs">chevron_right</span>
-            <?php
-            $categories = get_the_category();
-            if (!empty($categories)) {
-                echo '<a class="text-primary font-medium hover:underline" href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . '</a>';
-                echo '<span class="text-gray-400 material-symbols-outlined text-xs">chevron_right</span>';
-            }
-            ?>
-            <span class="text-gray-500 dark:text-gray-400 line-clamp-1"><?php the_title(); ?></span>
-        </nav>
+        <?php mobilenews_breadcrumbs(); ?>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- Main Content -->

@@ -80,7 +80,8 @@ $live_chat_embed = mobilenews_get_option('livestream_chat_embed', '');
 </style>
 
 <div class="livestream-bg text-white pb-20">
-    <div class="max-w-[1440px] mx-auto px-4 lg:px-10">
+    <main id="main-content" class="max-w-[1440px] mx-auto px-4 lg:px-10 py-10 relative z-10">
+        <?php mobilenews_breadcrumbs(); ?>
         <!-- Live Header Info -->
         <div class="flex flex-col md:flex-row md:items-center justify-between py-10 gap-6">
             <div class="flex-1">

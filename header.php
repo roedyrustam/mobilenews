@@ -135,8 +135,13 @@ body_class($body_classes); ?>>
         class="fixed inset-0 bg-black/50 z-[65] opacity-0 pointer-events-none backdrop-blur-sm transition-all duration-300 xl:hidden">
     </div>
 
-    <header
-        class="site-header sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300">
+    <?php
+    $header_class = 'site-header z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300';
+    if (function_exists('mobilenews_get_option') && mobilenews_get_option('sticky_header', true)) {
+        $header_class .= ' sticky top-0';
+    }
+    ?>
+    <header class="<?php echo esc_attr($header_class); ?>">
 
         <!-- TOP ROW: Logo Left, Actions Right (Desktop only) -->
         <div class="hidden xl:flex items-center justify-between px-10 py-6 border-b border-gray-100 dark:border-white/5 max-w-[1440px] mx-auto w-full">
@@ -191,6 +196,13 @@ body_class($body_classes); ?>>
                         <span class="material-symbols-outlined hidden dark:block">light_mode</span>
                     </button>
                     <?php if (function_exists('mobilenews_get_option')): ?>
+                        <?php if (mobilenews_get_option('enable_live_streaming', true)): ?>
+                            <a href="<?php echo esc_url(mobilenews_get_option('live_streaming_url', '#')); ?>"
+                                class="bg-red-600 text-white text-[11px] font-bold uppercase tracking-widest px-4 py-3 rounded-xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
+                                <span class="size-2 bg-white rounded-full animate-pulse"></span>
+                                Live Stream
+                            </a>
+                        <?php endif; ?>
                         <a href="<?php echo esc_url(mobilenews_get_option('subscribe_url', '#')); ?>"
                             class="bg-primary text-white text-[11px] font-bold uppercase tracking-widest px-6 py-3 rounded-xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all">
                             Langganan
@@ -248,6 +260,13 @@ body_class($body_classes); ?>>
                 <button class="mobilenews-search-trigger p-2 text-gray-500 hover:text-primary transition-colors">
                     <span class="material-symbols-outlined text-xl">search</span>
                 </button>
+                <?php if (function_exists('mobilenews_get_option') && mobilenews_get_option('enable_live_streaming', true)): ?>
+                    <a href="<?php echo esc_url(mobilenews_get_option('live_streaming_url', '#')); ?>"
+                        class="p-2 text-red-600 hover:text-red-700 transition-colors relative">
+                        <span class="material-symbols-outlined text-xl">live_tv</span>
+                        <span class="absolute top-2 right-2 size-1.5 bg-red-600 rounded-full animate-ping"></span>
+                    </a>
+                <?php endif; ?>
                 <button id="theme-toggle-mobile" class="p-2 text-gray-500 hover:text-primary transition-colors">
                     <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
                     <span class="material-symbols-outlined text-xl hidden dark:block">light_mode</span>

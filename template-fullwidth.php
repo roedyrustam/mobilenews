@@ -12,12 +12,17 @@ get_header();
     while (have_posts()):
         the_post();
         ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('max-w-4xl mx-auto'); ?>>
+
+            <!-- Breadcrumbs -->
+            <?php mobilenews_breadcrumbs(); ?>
+
             <!-- Header Section -->
-            <header class="mb-12 text-center max-w-4xl mx-auto">
+            <header class="mb-12 text-center">
                 <?php if (is_singular('post')): ?>
                     <span class="inline-block bg-accent-yellow text-black text-[10px] font-black uppercase px-2 py-1 rounded-md mb-4 shadow-sm">
-                        <?php $cat = get_the_category(); echo !empty($cat) ? esc_html($cat[0]->name) : 'News'; ?>
+                        <?php $cat = get_the_category();
+                        echo !empty($cat) ? esc_html($cat[0]->name) : 'News'; ?>
                     </span>
                 <?php endif; ?>
 
@@ -48,14 +53,15 @@ get_header();
 
             <!-- Footer Meta for Posts -->
             <?php if (is_singular('post')): ?>
-                <footer class="mt-16 pt-8 border-t border-gray-100 dark:border-white/5 max-w-4xl mx-auto">
+                <footer class="mt-16 pt-8 border-t border-gray-100 dark:border-white/5 mx-auto">
                     <?php get_template_part('template-parts/social-share'); ?>
                 </footer>
             <?php endif; ?>
 
             <!-- Comments -->
-            <div class="max-w-4xl mx-auto mt-16">
-                <?php if (comments_open() || get_comments_number()) comments_template(); ?>
+            <div class="mt-16">
+                <?php if (comments_open() || get_comments_number())
+                    comments_template(); ?>
             </div>
         </article>
     <?php endwhile; ?>

@@ -20,6 +20,7 @@ require_once get_template_directory() . '/inc/theme-setup.php';
 require_once get_template_directory() . '/inc/enqueue-scripts.php';
 require_once get_template_directory() . '/inc/class-mobilenews-mega-menu-walker.php';
 require_once get_template_directory() . '/inc/class-mobilenews-mobile-walker.php';
+require_once get_template_directory() . '/inc/template-tags.php';
 
 // 3. Handlers & Queries
 require_once get_template_directory() . '/inc/ajax-handlers.php';
