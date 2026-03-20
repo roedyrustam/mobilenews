@@ -1016,29 +1016,9 @@ img {
 }
 
 
-/* TAILWIND FAILSAFE SHIMS */
-@media (min-width: 1280px) {
-    .xl\:hidden { display: none !important; }
-    .hidden.xl\:flex { display: flex !important; }
-    .hidden.xl\:block { display: block !important; }
-    .hidden.xl\:grid { display: grid !important; }
-
-    /* Force Centering for 1440px elements */
-    .max-w-\[1440px\] {
-        max-width: 1440px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        width: 100% !important;
-    }
-    
-    .mx-auto {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-}
 
 
-/* CORE LAYOUT SHIMS */
+/* --- ROBUST LAYOUT RE-ORDER (Failsafe) --- */
 .flex { display: flex !important; }
 .items-center { align-items: center !important; }
 .justify-between { justify-content: space-between !important; }
@@ -1050,11 +1030,9 @@ img {
 .absolute { position: absolute !important; }
 .text-center { text-align: center !important; }
 .gap-3 { gap: 0.75rem !important; }
+.gap-6 { gap: 1.5rem !important; }
 .gap-8 { gap: 2rem !important; }
 
-
-
-/* FINAL FIX: No Horizontal Scroll & Fixed Size */
 html, body {
     overflow-x: hidden !important;
     max-width: 100% !important;
@@ -1062,11 +1040,30 @@ html, body {
     position: relative !important;
 }
 
+/* Desktop Specific Overrides (Must be last to win) */
 @media (min-width: 1280px) {
+    .xl\:hidden { display: none !important; }
+    .hidden.xl\:flex { display: flex !important; }
+    .hidden.xl\:block { display: block !important; }
+    .hidden.xl\:grid { display: grid !important; }
+
     .page-boxed-wrapper {
+        display: block !important;
         width: 1440px !important;
-        overflow-x: hidden !important;
+        max-width: 1440px !important;
         margin-left: auto !important;
         margin-right: auto !important;
+        background-color: white !important;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.1) !important;
+        position: relative !important;
+        min-height: 100vh !important;
+        overflow: hidden !important;
+    }
+    
+    .max-w-\[1440px\] {
+        max-width: 1440px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
     }
 }

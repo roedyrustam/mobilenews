@@ -184,8 +184,8 @@ function mobilenews_admin_scripts($hook)
     wp_enqueue_style('wp-color-picker');
 
     // Enqueue Admin CSS & JS
-    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '1.6.0');
-    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), '1.6.0', true);
+    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '1.7.0');
+    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), '1.7.0', true);
 
     // WordPress Media Uploader
     wp_enqueue_media();
@@ -437,7 +437,7 @@ function mobilenews_theme_options_page_html()
         <?php settings_errors(); ?>
         <div class="mobilenews-admin-header">
             <h1><?php echo esc_html__('Mobile News Settings', 'mobilenews'); ?></h1>
-            <span class="version">v1.6.0</span>
+            <span class="version">v1.7.0</span>
         </div>
 
 
