@@ -214,20 +214,18 @@ get_header();
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <?php
-                $orig_post = $post;
-                global $post;
-
                 // Logic: 1. Try Tags first (more relevant)
-                $tags = get_the_tags($post->ID);
+                $tags = get_the_tags();
                 $tag_ids = array();
                 $rel_query = false;
 
                 if ($tags) {
-                    foreach ($tags as $tag)
+                    foreach ($tags as $tag) {
                         $tag_ids[] = $tag->term_id;
+                    }
                     $args = array(
                         'tag__in' => $tag_ids,
-                        'post__not_in' => array($post->ID),
+                        'post__not_in' => array(get_the_ID()),
                         'posts_per_page' => $related_count,
                         'ignore_sticky_posts' => 1
                     );
@@ -236,14 +234,15 @@ get_header();
 
                 // Logic: 2. Fallback to Categories if no tag matches
                 if (!$rel_query || !$rel_query->have_posts()) {
-                    $cats = get_the_category($post->ID);
+                    $cats = get_the_category();
                     if ($cats) {
                         $c_ids = array();
-                        foreach ($cats as $i)
+                        foreach ($cats as $i) {
                             $c_ids[] = $i->term_id;
+                        }
                         $args = array(
                             'category__in' => $c_ids,
-                            'post__not_in' => array($post->ID),
+                            'post__not_in' => array(get_the_ID()),
                             'posts_per_page' => $related_count,
                             'ignore_sticky_posts' => 1
                         );
@@ -254,37 +253,13 @@ get_header();
                 // Output Loop
                 if ($rel_query && $rel_query->have_posts()) {
                     while ($rel_query->have_posts()):
-                        $rel_query->the_post(); ?>
-                        <div class="group cursor-pointer">
-                            <div class="aspect-video w-full rounded-xl overflow-hidden mb-4 relative">
-                                <?php if (has_post_thumbnail()): ?>
-                                    <img src="<?php the_post_thumbnail_url('medium_large'); ?>"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                                <?php else: ?>
-                                    <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                                        <span class="material-symbols-outlined text-4xl">image</span>
-                                    </div>
-                                <?php endif; ?>
-                                <span
-                                    class="absolute top-3 left-3 bg-white/90 dark:bg-black/90 px-2 py-1 rounded text-[10px] font-black uppercase shadow-sm">
-                                    <?php $cat = get_the_category();
-                                    echo !empty($cat) ? esc_html($cat[0]->name) : 'News'; ?>
-                                </span>
-                            </div>
-                            <h4 class="font-bold text-lg leading-tight group-hover:text-primary transition-colors">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h4>
-                            <p class="text-xs text-gray-500 mt-2 font-medium">
-                                <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' yang lalu'; ?>
-                            </p>
-                        </div>
-                        <?php
+                        $rel_query->the_post();
+                        get_template_part('template-parts/content', 'card', ['layout' => 'grid']);
                     endwhile;
                     wp_reset_postdata();
                 } else {
                     echo '<p class="col-span-full text-center text-gray-500 italic">Tidak ada berita terkait saat ini.</p>';
                 }
-                $post = $orig_post;
                 ?>
             </div>
         </section>
