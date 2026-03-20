@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="max-w-[1280px] mx-auto w-full px-6 py-12">
+<main id="main-content" class="max-w-[1920px] mx-auto w-full px-6 py-12">
     <!-- Breadcrumbs -->
     <nav class="flex items-center gap-2 mb-10 text-sm">
         <a class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1"
@@ -19,7 +19,7 @@ get_header();
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <!-- Left Content Area -->
-        <div class="lg:col-span-8">
+        <div class="lg:col-span-8 xl:col-span-9">
             <header class="mb-12">
                 <span
                     class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-4 uppercase tracking-widest">Pencarian</span>
@@ -102,7 +102,7 @@ get_header();
         </div>
 
         <!-- Sidebar -->
-        <aside class="lg:col-span-4 space-y-10">
+        <aside class="lg:col-span-4 xl:col-span-3 space-y-10">
             <?php get_sidebar(); ?>
         </aside>
     </div>

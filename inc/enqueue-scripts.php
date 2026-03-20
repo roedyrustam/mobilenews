@@ -102,7 +102,7 @@ function mobilenews_scripts()
         .site-header {
             background-color: var(--bg-header);
         }
-        .container, .max-w-\\[1200px\\] {
+        .container, .max-w-\\[1920px\\] {
             max-width: var(--site-max-width) !important;
         }
         .rounded-xl, .rounded-2xl {

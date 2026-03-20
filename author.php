@@ -27,10 +27,10 @@ $featured_args = array(
 $featured_query = new WP_Query($featured_args);
 ?>
 
-<main id="main-content" class="max-w-[1280px] mx-auto px-4 lg:px-10 py-10">
+<main id="main-content" class="max-w-[1920px] mx-auto px-4 lg:px-10 py-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Sidebar (Metadata) -->
-        <aside class="lg:col-span-4 order-2 lg:order-1 flex flex-col gap-8">
+        <aside class="lg:col-span-4 xl:col-span-3 order-2 lg:order-1 flex flex-col gap-8">
             <!-- Profile Card Summary -->
             <div class="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm">
                 <div class="flex flex-col items-center text-center">
@@ -98,7 +98,7 @@ $featured_query = new WP_Query($featured_args);
         </aside>
 
         <!-- Main Content Area -->
-        <div class="lg:col-span-8 order-1 lg:order-2">
+        <div class="lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
             <!-- Biography -->
             <section class="mb-12">
                 <div class="flex items-center gap-3 mb-6">

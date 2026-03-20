@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main class="max-w-[1280px] mx-auto px-6 py-8">
+<main class="max-w-[1920px] mx-auto px-6 py-8">
 
     <!-- Geo-Targeting Section -->
     <section class="mb-12">
@@ -82,7 +82,7 @@ get_header();
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
         <!-- News Feed -->
-        <div class="lg:col-span-8 space-y-10">
+        <div class="lg:col-span-8 xl:col-span-9 space-y-10">
             <!-- Region Headline -->
             <div class="flex flex-wrap items-center justify-between border-b-4 border-primary pb-4">
                 <div class="flex items-center gap-3">

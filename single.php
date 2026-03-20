@@ -14,7 +14,7 @@ get_header();
 </div>
 <?php endif; ?>
 
-<main id="main-content" class="max-w-[1200px] mx-auto px-4 lg:px-10 py-8">
+<main id="main-content" class="max-w-[1920px] mx-auto px-4 lg:px-10 py-8">
 
     <?php while (have_posts()):
         the_post();
@@ -36,7 +36,7 @@ get_header();
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- Main Content -->
-            <article id="post-<?php the_ID(); ?>" <?php post_class('lg:col-span-8'); ?>>
+            <article id="post-<?php the_ID(); ?>" <?php post_class('lg:col-span-8 xl:col-span-9'); ?>>
 
 
                 <!-- Category Label -->

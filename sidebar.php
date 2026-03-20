@@ -8,7 +8,7 @@ if (!is_active_sidebar('main-sidebar')) {
 }
 ?>
 
-<aside id="secondary" class="widget-area lg:col-span-4 space-y-8">
+<aside id="secondary" class="widget-area lg:col-span-4 xl:col-span-3 space-y-8">
 
     <!-- Wrapper for Sticky Functionality -->
     <div class="sticky top-24 space-y-8">

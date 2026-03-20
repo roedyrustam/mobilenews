@@ -67,8 +67,8 @@
                 <!-- Open Side Hero Container (2x2 Grid) -->
                 <div class="lg:col-span-5 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 <?php else: ?>
-                    <!-- Side Hero Items (2, 3, 4, 5) -->
-                    <div class="group cursor-pointer relative rounded-3xl overflow-hidden hover-lift h-full aspect-[16/10] lg:aspect-square min-h-[160px]">
+                    <!-- Side Hero Item -->
+                    <div class="relative h-[250px] lg:h-[290px] xl:h-[350px] 2xl:h-[400px] rounded-3xl overflow-hidden group cursor-pointer hover-lift shadow-lg">
 
                         <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"

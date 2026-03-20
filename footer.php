@@ -17,7 +17,7 @@ if (!function_exists('mobilenews_get_option')) {
 ?>
 
 <footer class="bg-white dark:bg-zinc-900 pt-16 pb-32 border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
-    <div class="container max-w-[1280px] mx-auto px-4 lg:px-10">
+    <div class="container max-w-[1920px] mx-auto px-4 lg:px-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             <!-- Branding & About -->
             <div class="space-y-6">

@@ -130,7 +130,7 @@
         class="site-header sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300">
 
         <!-- TOP ROW: Logo centered (Desktop only) -->
-        <div class="hidden xl:flex items-center justify-between px-10 py-3 border-b border-gray-100 dark:border-white/5 max-w-[1280px] mx-auto w-full">
+        <div class="hidden xl:flex items-center justify-between px-10 py-3 border-b border-gray-100 dark:border-white/5 max-w-[1920px] mx-auto w-full">
 
             <!-- Left: Date / Extra Info -->
             <div class="text-xs text-gray-400 dark:text-gray-500 font-medium">
@@ -189,7 +189,7 @@
         </div>
 
         <!-- BOTTOM ROW: Navigation (Desktop only) -->
-        <div class="hidden xl:flex items-center justify-center gap-8 px-10 h-11 max-w-[1280px] mx-auto w-full">
+        <div class="hidden xl:flex items-center justify-center gap-8 px-10 h-11 max-w-[1920px] mx-auto w-full">
             <nav class="main-navigation flex items-center gap-6 h-full">
                 <?php
                 if (has_nav_menu('primary')) {
@@ -365,7 +365,7 @@
         if ($ticker->have_posts()):
             ?>
             <div class="bg-accent-yellow py-2 px-4 lg:px-10 overflow-hidden">
-                <div class="max-w-[1280px] mx-auto flex items-center gap-4">
+                <div class="max-w-[1920px] mx-auto flex items-center gap-4">
                     <span
                         class="bg-black text-white text-[10px] font-black uppercase px-2 py-0.5 rounded italic shrink-0"><?php echo esc_html($ticker_title); ?></span>
                     <div class="mobilenews-ticker-wrap flex-1 text-black text-sm font-bold">
@@ -394,7 +394,7 @@
     if (function_exists('mobilenews_render_ad')) {
         $below_ticker_ad = mobilenews_render_ad('below_ticker');
         if (!empty($below_ticker_ad)) {
-            echo '<div class="below-ticker-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
+            echo '<div class="below-ticker-ad-container container max-w-[1920px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
             echo $below_ticker_ad;
             echo '</div>';
         }
@@ -404,7 +404,7 @@
     if (function_exists('mobilenews_render_ad')) {
         $header_ad = mobilenews_render_ad('header');
         if (!empty($header_ad)) {
-            echo '<div class="header-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 pt-0 pb-4 flex justify-center overflow-hidden">';
+            echo '<div class="header-ad-container container max-w-[1920px] mx-auto px-4 lg:px-10 pt-0 pb-4 flex justify-center overflow-hidden">';
             echo $header_ad;
             echo '</div>';
         }
