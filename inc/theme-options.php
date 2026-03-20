@@ -555,6 +555,11 @@ function mobilenews_theme_options_page_html()
                     <div id="analytics" class="mobilenews-tab-content">
                         <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_analytics'); ?>
                     </div>
+
+                    <!-- Ads Tab (Moved inside form) -->
+                    <div id="ads" class="mobilenews-tab-content">
+                        <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ads'); ?>
+                    </div>
                 </form>
 
                 <!-- Updates Tab (Separate action for checking updates) -->
@@ -586,10 +591,6 @@ function mobilenews_theme_options_page_html()
                     </div>
                 </div>
 
-                <!-- Ads Manager Tab -->
-                <div id="ads" class="mobilenews-tab-content">
-                    <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ads'); ?>
-                </div>
             </div>
         </div>
 

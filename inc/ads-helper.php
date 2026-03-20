@@ -16,7 +16,9 @@ function mobilenews_render_ad($slot) {
     }
 
     $type = mobilenews_get_option("ads_{$slot}_type", 'code');
-    $html = "<!-- Ad Slot: {$slot} (Type: {$type}) -->\n";
+    $all_options = get_option('mobilenews_theme_options');
+    $exists = (is_array($all_options) && isset($all_options["ads_{$slot}"])) ? 'Yes' : 'No';
+    $html = "<!-- Ad Slot: {$slot} (Type: {$type}, Exists: {$exists}) -->\n";
     $has_ad = false;
     
     if ($type === 'image') {
@@ -46,6 +48,8 @@ function mobilenews_render_ad($slot) {
         if (!empty(trim($code))) {
             $has_ad = true;
             $html .= '<div class="mn-slot-code flex justify-center w-full my-4 overflow-hidden">' . do_shortcode($code) . '</div>';
+        } else {
+            $html .= "<!-- Code for {$slot} is empty or null -->\n";
         }
     }
 
