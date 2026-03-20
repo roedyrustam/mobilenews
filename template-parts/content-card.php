@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying posts in a standard card layout (Modern Tailwind v1.7.0)
+ * Template part for displaying posts in a standard card layout (Modern Tailwind v1.8.0)
  */
 $layout = isset($args['layout']) ? $args['layout'] : 'list';
 
