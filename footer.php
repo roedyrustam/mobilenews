@@ -248,6 +248,7 @@ endif;
     // Tailwind Dark Mode relies on 'dark' class on HTML tag.
 </script>
 
+<?php wp_footer(); ?>
 </body>
 
 </html>

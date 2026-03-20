@@ -55,7 +55,26 @@ function mobilenews_setup()
         'footer' => __('Footer Menu', 'mobilenews'),
         'mobile' => __('Mobile Menu', 'mobilenews'),
     ));
+
+    // Load text domain for translations
+    load_theme_textdomain('mobilenews', get_template_directory() . '/languages');
+
+    // Advanced Gutenberg Support
+    add_theme_support('editor-color-palette', array(
+        array('name' => 'Primary', 'slug' => 'primary', 'color' => '#168098'),
+        array('name' => 'Dark', 'slug' => 'dark', 'color' => '#09090b'),
+        array('name' => 'Light', 'slug' => 'light', 'color' => '#f8fafc'),
+        array('name' => 'Accent', 'slug' => 'accent', 'color' => '#fbbf24'),
+    ));
+
+    add_theme_support('editor-font-sizes', array(
+        array('name' => 'Small', 'slug' => 'small', 'size' => 12),
+        array('name' => 'Normal', 'slug' => 'normal', 'size' => 16),
+        array('name' => 'Large', 'slug' => 'large', 'size' => 24),
+        array('name' => 'Huge', 'slug' => 'huge', 'size' => 48),
+    ));
 }
+
 add_action('after_setup_theme', 'mobilenews_setup');
 
 // Include Custom Widgets
@@ -143,6 +162,12 @@ function mobilenews_scripts()
 
     // Main JS
     wp_enqueue_script('mobilenews-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
+
+    // Comment Reply Script
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
+
 
     // Pass AJAX URL and Settings to script
     wp_localize_script('mobilenews-main-js', 'mobilenews_ajax', array(

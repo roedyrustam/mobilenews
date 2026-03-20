@@ -39,7 +39,8 @@ get_header();
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- Main Content -->
-            <article id="post-<?php the_ID(); ?>" class="lg:col-span-8">
+            <article id="post-<?php the_ID(); ?>" <?php post_class('lg:col-span-8'); ?>>
+
 
                 <!-- Category Label -->
                 <span

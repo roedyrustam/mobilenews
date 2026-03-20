@@ -34,7 +34,14 @@ get_header();
                 class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-xl prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
                 <?php the_content(); ?>
             </div>
+
+            <?php
+            if (comments_open() || get_comments_number()):
+                comments_template();
+            endif;
+            ?>
         </article>
+
     <?php endwhile; ?>
 </main>
 

@@ -107,7 +107,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('bg-background-light dark:bg-background-dark text-[#0f181a] dark:text-gray-100 min-h-screen'); ?>>
+<body <?php body_class('antialiased font-body bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100'); ?>>
     <?php wp_body_open(); ?>
 
     <!-- Skip to Content (A11y) -->
