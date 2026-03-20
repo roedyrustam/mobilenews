@@ -118,6 +118,10 @@ function mobilenews_theme_settings_init()
     // --- Section: Ads Management ---
     add_settings_section('mobilenews_theme_section_ads', 'Advertisement Management', 'mobilenews_theme_section_ads_cb', 'mobilenews_theme_options');
     
+    add_settings_field('ads_enable_mock', 'Enable Ad Placeholders (Mock Ads)', 'mobilenews_theme_field_checkbox_cb', 'mobilenews_theme_options', 'mobilenews_theme_section_ads', [
+        'label_for' => 'ads_enable_mock'
+    ]);
+
     $ad_slots = [
         'header' => 'Header Ad',
         'sidebar' => 'Sidebar Ad',

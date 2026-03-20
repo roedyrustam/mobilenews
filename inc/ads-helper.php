@@ -50,7 +50,7 @@ function mobilenews_render_ad($slot) {
     }
 
     // Dynamic Mock Ad Fallback
-    if (!$has_ad) {
+    if (!$has_ad && mobilenews_get_option('ads_enable_mock', false)) {
         $slot_labels = [
             'header'        => 'Header Ad',
             'sidebar'       => 'Sidebar Ad',
