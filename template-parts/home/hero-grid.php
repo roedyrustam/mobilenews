@@ -21,8 +21,8 @@
             if ($post_count === 1):
                 ?>
                 <div class="lg:col-span-7 hero-grid-main group cursor-pointer relative -translate-y-0 transition-all duration-500 hover:-translate-y-2">
+                    <div class="relative h-full overflow-hidden rounded-xl">
 
-                    <div class="relative aspect-video overflow-hidden rounded-xl mb-4">
 
                         <?php if (has_post_thumbnail()): ?>
                             <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-1000">
@@ -61,7 +61,8 @@
                 <div class="lg:col-span-5 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 <?php else: ?>
                     <!-- Side Hero Items (2, 3, 4, 5) -->
-                    <div class="group cursor-pointer relative rounded-3xl overflow-hidden hover-lift h-full min-h-[160px] lg:min-h-0 aspect-[16/10] lg:aspect-square xl:aspect-auto">
+                    <div class="group cursor-pointer relative rounded-3xl overflow-hidden hover-lift h-full aspect-[16/10] lg:aspect-square min-h-[160px]">
+
                         <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium_large'); ?>" alt="<?php the_title_attribute(); ?>"
                                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
