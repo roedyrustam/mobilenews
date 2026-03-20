@@ -368,6 +368,8 @@ jQuery(document).ready(function ($) {
         setTimeout(() => {
             mobileMenu.removeClass('-translate-x-full').addClass('translate-x-0');
         }, 10);
+
+
         
         $('body').addClass('overflow-hidden');
     }
@@ -377,6 +379,8 @@ jQuery(document).ready(function ($) {
         mobileMenuOverlay.removeClass('opacity-100 pointer-events-auto').addClass('opacity-0 pointer-events-none');
         // Menu
         mobileMenu.removeClass('translate-x-0').addClass('-translate-x-full');
+
+
         
         $('body').removeClass('overflow-hidden');
         
@@ -455,21 +459,21 @@ jQuery(document).ready(function ($) {
 
         // If swiping left (negative delta) and drawer is open
         if (deltaX < 0 && !mobileMenu.hasClass('-translate-x-full')) {
-            // Optional: Add visual feedback (transform)
-            // Clamping: Max move is drawer width or limit
-            // mobileMenu.css('transform', `translateX(${deltaX}px)`); 
-            // Note: Direct CSS manipulation might conflict with transition classes, 
-            // better to just detect intent on touchend or use a library like Hammer.js but we want vanilla/jquery lite.
+            // Optional: visual feedback
         }
+
+
     });
 
     mobileMenu.on('touchend', function (e) {
         const deltaX = touchCurrentX - touchStartX;
 
         // If swiped left significantly
-        if (deltaX < -drawerThreshold && mobileMenu.hasClass('open')) {
+        if (deltaX < -drawerThreshold) {
             closeMobileMenu();
         }
+
+
 
         // Reset
         touchStartX = 0;

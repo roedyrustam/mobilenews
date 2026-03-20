@@ -139,6 +139,8 @@
                 <span class="material-symbols-outlined text-2xl lg:text-3xl">menu</span>
             </button>
 
+
+
             <a class="site-branding flex items-center gap-3 absolute left-1/2 -translate-x-1/2 xl:relative xl:left-0 xl:translate-x-0"
                 href="<?php echo esc_url(home_url('/')); ?>">
                 <?php
@@ -200,6 +202,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
+                <!-- Search Trigger -->
                 <button
                     class="mobilenews-search-trigger hidden md:flex items-center bg-gray-100 dark:bg-white/5 border border-transparent dark:border-white/5 rounded-2xl px-3 py-2 w-48 xl:w-64 text-left group transition-all hover:bg-gray-200 dark:hover:bg-white/10">
                     <span
@@ -208,6 +211,8 @@
                         class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari
                         berita...</span>
                 </button>
+
+
 
 
 
@@ -249,6 +254,8 @@
     <!-- Mobile Sidebar Drawer (Native App Style) -->
         <div id="mobile-menu-container"
             class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
+
+
 
 
             <!-- Drawer Header: User Profile -->
