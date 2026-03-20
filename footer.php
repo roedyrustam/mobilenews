@@ -190,7 +190,7 @@
 
         <!-- 4. Search -->
         <button
-            class="modernnews-search-trigger flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group"
+            class="mobilenews-search-trigger flex flex-col items-center justify-end w-full h-full pb-1.5 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors group"
             aria-label="Cari">
             <span class="material-symbols-outlined text-[24px] mb-0.5">search</span>
             <span class="text-[10px] font-medium">Cari</span>
@@ -230,7 +230,7 @@ if (function_exists('mobilenews_get_ad')):
     $sticky_ad = mobilenews_get_ad('sticky_footer_ad');
     if (!empty($sticky_ad)):
         ?>
-        <div id="modernnews-sticky-ad"
+        <div id="mobilenews-sticky-ad"
             class="fixed bottom-[60px] xl:bottom-0 left-0 right-0 z-50 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 shadow-xl transition-transform duration-300 transform translate-y-0 text-center lg:hidden">
             <button id="close-sticky-ad"
                 class="absolute -top-6 right-2 bg-gray-200 dark:bg-zinc-700 text-gray-600 dark:text-gray-300 rounded-lg p-1 text-xs shadow-sm flex items-center gap-1 px-2 hover:bg-red-100 hover:text-red-500 transition-colors">
@@ -242,7 +242,7 @@ if (function_exists('mobilenews_get_ad')):
         </div>
         <script>
             document.getElementById('close-sticky-ad')?.addEventListener('click', function () {
-                document.getElementById('modernnews-sticky-ad').style.transform = 'translateY(150%)';
+                document.getElementById('mobilenews-sticky-ad').style.transform = 'translateY(150%)';
             });
         </script>
         <?php

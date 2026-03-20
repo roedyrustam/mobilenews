@@ -2,7 +2,7 @@
 /**
  * Custom Widgets for Mobile News Theme
  *
- * @package ModernNews
+ * @package MobileNews
  */
 
 // Block direct access
@@ -34,7 +34,7 @@ class MobileNews_Weather_Widget extends WP_Widget
         }
 
         ?>
-        <div id="weather-widget" class="modernnews-weather-widget-container bg-gradient-to-br from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-2xl border border-gray-100 dark:border-zinc-700/50 shadow-inner min-h-[120px] flex flex-col items-center justify-center transition-all duration-500 hover:shadow-lg group">
+        <div id="weather-widget" class="mobilenews-weather-widget-container bg-gradient-to-br from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-2xl border border-gray-100 dark:border-zinc-700/50 shadow-inner min-h-[120px] flex flex-col items-center justify-center transition-all duration-500 hover:shadow-lg group">
             <div class="weather-loading-state flex flex-col items-center gap-3">
                 <div class="size-10 rounded-full border-4 border-primary/20 border-t-primary animate-spin"></div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-widest animate-pulse"><?php echo esc_html__('Menghitung Cuaca...', 'mobilenews'); ?></span>

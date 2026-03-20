@@ -385,7 +385,7 @@ function mobilenews_get_ad($slot_prefix)
         }
 
         if (!empty($img)) {
-            $output .= '<div class="modernnews-ad-container modernnews-ad-image">';
+            $output .= '<div class="mobilenews-ad-container mobilenews-ad-image">';
             $output .= '<a href="' . esc_url($link) . '" target="_blank" rel="nofollow noopener">';
             $output .= '<img src="' . esc_url($img) . '" alt="Advertisement" class="w-full h-auto object-cover rounded-lg mx-auto">';
             $output .= '</a>';
@@ -394,7 +394,7 @@ function mobilenews_get_ad($slot_prefix)
     } elseif ($type === 'code') {
         $code = isset($options[$slot_prefix . '_code']) ? $options[$slot_prefix . '_code'] : '';
         if (!empty($code)) {
-            $output .= '<div class="modernnews-ad-container modernnews-ad-code">';
+            $output .= '<div class="mobilenews-ad-container mobilenews-ad-code">';
             $output .= $code; // Intentionally unescaped for Scripts
             $output .= '</div>';
         }

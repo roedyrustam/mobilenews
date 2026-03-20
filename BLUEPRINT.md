@@ -9,7 +9,7 @@ graph TB
         Hooks[Action/Filter Hooks]
     end
 
-    subgraph Theme["ModernNews Theme"]
+    subgraph Theme["MobileNews Theme"]
         subgraph Core["Core Templates"]
             Header[header.php]
             Footer[footer.php]

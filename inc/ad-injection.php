@@ -25,7 +25,7 @@ function mobilenews_inject_in_feed_ads($content)
                     $count++;
 
                     if ($count > 0 && $count % $frequency === 0) {
-                        $new_content .= '<div class="modernnews-in-feed-ad my-8 text-center flex justify-center container mx-auto">';
+                        $new_content .= '<div class="mobilenews-in-feed-ad my-8 text-center flex justify-center container mx-auto">';
                         $new_content .= $ad_code;
                         $new_content .= '</div>';
                     }

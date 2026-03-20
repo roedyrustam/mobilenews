@@ -113,7 +113,7 @@ get_header();
                     if (function_exists('mobilenews_get_ad')) {
                         $ad_top = mobilenews_get_ad('single_before_ad');
                         if (!empty($ad_top)) {
-                            echo '<div class="modernnews-ad-single-top my-8 flex justify-center">';
+                            echo '<div class="mobilenews-ad-single-top my-8 flex justify-center">';
                             echo $ad_top;
                             echo '</div>';
                         }
@@ -127,7 +127,7 @@ get_header();
                     if (function_exists('mobilenews_get_ad')) {
                         $ad_bottom = mobilenews_get_ad('single_after_ad');
                         if (!empty($ad_bottom)) {
-                            echo '<div class="modernnews-ad-single-bottom my-8 flex justify-center">';
+                            echo '<div class="mobilenews-ad-single-bottom my-8 flex justify-center">';
                             echo $ad_bottom;
                             echo '</div>';
                         }

@@ -72,7 +72,7 @@ A dynamic, modern, and SEO-optimized WordPress news theme with Geo-targeting cap
 ## 📁 File Structure
 
 ```
-modernnews/
+mobilenews/
 ├── assets/
 │   ├── css/
 │   │   ├── admin.css       # Admin panel styling

@@ -62,7 +62,7 @@ function mobilenews_restrict_premium_content($content)
             $paragraphs = explode('</p>', $content);
             $teaser = $paragraphs[0] . '</p>';
 
-            $cta = '<div class="modernnews-paywall-notice bg-gray-100 dark:bg-zinc-800 p-8 rounded-xl text-center my-8 border border-gray-200 dark:border-zinc-700">';
+            $cta = '<div class="mobilenews-paywall-notice bg-gray-100 dark:bg-zinc-800 p-8 rounded-xl text-center my-8 border border-gray-200 dark:border-zinc-700">';
             $cta .= '<h3 class="text-xl font-bold mb-4">' . __('Konten Premium', 'mobilenews') . '</h3>';
             $cta .= '<p class="mb-6">' . __('Artikel ini khusus untuk pelanggan premium. Silakan berlangganan untuk membaca selengkapnya.', 'mobilenews') . '</p>';
 

@@ -47,7 +47,7 @@ get_header();
                 $archive_layout = mobilenews_get_option('archive_layout', 'list');
                 $container_class = ($archive_layout === 'grid') ? 'grid grid-cols-1 md:grid-cols-2 gap-8' : 'space-y-10';
                 ?>
-                <div id="modernnews-archive-posts-container" class="<?php echo esc_attr($container_class); ?>">
+                <div id="mobilenews-archive-posts-container" class="<?php echo esc_attr($container_class); ?>">
                     <?php
                     while (have_posts()):
                         the_post();
@@ -61,7 +61,7 @@ get_header();
                 <!-- Load More / Pagination -->
                 <?php if ($wp_query->max_num_pages > 1): ?>
                     <div class="mt-16 flex justify-center">
-                        <button id="modernnews-load-more" data-page="1" data-max-page="<?php echo $wp_query->max_num_pages; ?>"
+                        <button id="mobilenews-load-more" data-page="1" data-max-page="<?php echo $wp_query->max_num_pages; ?>"
                             class="group relative inline-flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-white px-10 py-4 rounded-2xl font-bold transition-all hover:border-primary hover:shadow-xl hover:shadow-primary/5 active:scale-95">
                             <span>Muat Berita Lainnya</span>
                             <i class="ri-refresh-line text-lg group-hover:rotate-180 transition-transform duration-500"

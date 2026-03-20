@@ -9,7 +9,7 @@
         <div class="flex-1 border-b border-gray-100 dark:border-gray-800"></div>
     </div>
 
-    <div id="modernnews-post-list" class="grid grid-cols-1 gap-8">
+    <div id="mobilenews-post-list" class="grid grid-cols-1 gap-8">
         <?php
         $latest_query = new WP_Query(array(
             'posts_per_page' => 5,
@@ -57,7 +57,7 @@
 
         <!-- Load More Button -->
         <div class="text-center mt-8">
-            <button id="modernnews-load-more" data-page="1" data-max-page="<?php echo $latest_query->max_num_pages; ?>"
+            <button id="mobilenews-load-more" data-page="1" data-max-page="<?php echo $latest_query->max_num_pages; ?>"
                 class="px-8 py-3 bg-transparent border-2 border-gray-200 dark:border-gray-700 rounded-full font-bold text-sm hover:border-primary hover:text-primary transition-all">
                 Muat Lebih Banyak
             </button>

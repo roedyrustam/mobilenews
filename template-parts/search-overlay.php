@@ -4,7 +4,7 @@
  */
 ?>
 <!-- Search Overlay Container (Hidden by default) -->
-<div id="modernnews-search-overlay"
+<div id="mobilenews-search-overlay"
     class="fixed inset-0 z-[100] bg-white dark:bg-[#1f2b2e] hidden flex-col overflow-y-auto overflow-x-hidden transition-opacity duration-300 opacity-0">
 
     <!-- Header / Top Navigation -->
@@ -19,7 +19,7 @@
                     <?php bloginfo('name'); ?>
                 </h2>
             </div>
-            <button id="modernnews-search-close"
+            <button id="mobilenews-search-close"
                 class="group flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all duration-200">
                 <span class="material-symbols-outlined text-2xl">close</span>
             </button>
@@ -38,7 +38,7 @@
                     <div class="absolute inset-y-0 left-6 flex items-center pointer-events-none text-primary">
                         <span class="material-symbols-outlined text-3xl">search</span>
                     </div>
-                    <input name="s" id="modernnews-search-input"
+                    <input name="s" id="mobilenews-search-input"
                         class="w-full h-20 pl-16 pr-6 bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-primary/50 focus:ring-0 rounded-2xl text-2xl text-gray-900 dark:text-white placeholder:text-gray-400 transition-all shadow-sm"
                         placeholder="Cari berita, topik, atau tren terbaru..." type="text" autocomplete="off" />
                     <div

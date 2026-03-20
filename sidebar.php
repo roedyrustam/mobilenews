@@ -17,7 +17,7 @@ if (!is_active_sidebar('main-sidebar')) {
         if (function_exists('mobilenews_get_ad')) {
             $sidebar_ad = mobilenews_get_ad('sidebar_ad');
             if (!empty($sidebar_ad)) {
-                echo '<div class="modernnews-ad-sidebar flex justify-center mb-6">';
+                echo '<div class="mobilenews-ad-sidebar flex justify-center mb-6">';
                 echo $sidebar_ad;
                 echo '</div>';
             }

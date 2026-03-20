@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-require get_template_directory() . '/inc/class-modernnews-mega-menu-walker.php';
-require get_template_directory() . '/inc/class-modernnews-mobile-walker.php';
+require get_template_directory() . '/inc/class-mobilenews-mega-menu-walker.php';
+require get_template_directory() . '/inc/class-mobilenews-mobile-walker.php';
 require_once get_template_directory() . '/inc/performance.php';
 require_once get_template_directory() . '/inc/schema.php';
 
@@ -128,24 +128,24 @@ function mobilenews_scripts()
 {
     // Google Fonts
     // Google Fonts: Epilogue, Noto Sans, Material Symbols
-    wp_enqueue_style('modernnews-fonts', 'https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700&display=swap', array(), null);
-    wp_enqueue_style('modernnews-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap', array(), null);
+    wp_enqueue_style('mobilenews-fonts', 'https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700&display=swap', array(), null);
+    wp_enqueue_style('mobilenews-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap', array(), null);
     wp_enqueue_style('remix-icon', 'https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css', array(), '4.2.0');
 
     // Main Stylesheet
-    wp_enqueue_style('modernnews-style', get_stylesheet_uri());
+    wp_enqueue_style('mobilenews-style', get_stylesheet_uri());
 
     // Custom Main CSS
-    wp_enqueue_style('modernnews-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
+    wp_enqueue_style('mobilenews-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
 
     // Block Styles
-    wp_enqueue_style('modernnews-blocks', get_template_directory_uri() . '/assets/css/blocks.css', array(), '1.0.0');
+    wp_enqueue_style('mobilenews-blocks', get_template_directory_uri() . '/assets/css/blocks.css', array(), '1.0.0');
 
     // Main JS
-    wp_enqueue_script('modernnews-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('mobilenews-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 
     // Pass AJAX URL and Settings to script
-    wp_localize_script('modernnews-main-js', 'mobilenews_ajax', array(
+    wp_localize_script('mobilenews-main-js', 'mobilenews_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('mobilenews_nonce'),
         'weather_api_key' => mobilenews_get_option('weather_api_key')
@@ -164,7 +164,7 @@ function mobilenews_scripts()
     // Dynamic Font Loading
     $fonts_to_load = array_unique([$heading_font, $body_font]);
     foreach ($fonts_to_load as $font_name) {
-        $font_id = 'modernnews-font-' . strtolower(str_replace(' ', '-', $font_name));
+        $font_id = 'mobilenews-font-' . strtolower(str_replace(' ', '-', $font_name));
         wp_enqueue_style($font_id, 'https://fonts.googleapis.com/css2?family=' . urlencode($font_name) . ':wght@400;500;700;800&display=swap', array(), null);
     }
     // Add logic for other fonts if selected, but for now we keep the premium default.
@@ -198,7 +198,7 @@ function mobilenews_scripts()
         }
     ";
 
-    wp_add_inline_style('modernnews-main', $custom_css);
+    wp_add_inline_style('mobilenews-main', $custom_css);
 }
 add_action('wp_enqueue_scripts', 'mobilenews_scripts');
 

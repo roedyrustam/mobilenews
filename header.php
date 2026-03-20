@@ -196,7 +196,7 @@
 
             <div class="flex items-center gap-4">
                 <button
-                    class="modernnews-search-trigger hidden md:flex items-center bg-[#f0f4f5] dark:bg-gray-800 rounded-lg px-3 py-2 w-48 xl:w-64 text-left group transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+                    class="mobilenews-search-trigger hidden md:flex items-center bg-[#f0f4f5] dark:bg-gray-800 rounded-lg px-3 py-2 w-48 xl:w-64 text-left group transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
                     <span
                         class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">search</span>
                     <span
@@ -491,8 +491,8 @@
                 <div class="max-w-[1280px] mx-auto flex items-center gap-4">
                     <span
                         class="bg-black text-white text-[10px] font-black uppercase px-2 py-0.5 rounded italic shrink-0"><?php echo esc_html($ticker_title); ?></span>
-                    <div class="modernnews-ticker-wrap flex-1 text-black text-sm font-bold">
-                        <div class="modernnews-ticker-move">
+                    <div class="mobilenews-ticker-wrap flex-1 text-black text-sm font-bold">
+                        <div class="mobilenews-ticker-move">
                             <?php
                             while ($ticker->have_posts()):
                                 $ticker->the_post();

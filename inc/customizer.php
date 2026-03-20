@@ -2,7 +2,7 @@
 /**
  * Mobile News Customizer
  *
- * @package ModernNews
+ * @package MobileNews
  */
 
 function mobilenews_customize_register($wp_customize)
@@ -227,7 +227,7 @@ function mobilenews_customize_register($wp_customize)
 
     // 2. Twitter Username
     $wp_customize->add_setting('mobilenews_twitter_username', array(
-        'default' => '@modernnews',
+        'default' => '@mobilenews',
         'sanitize_callback' => 'sanitize_text_field',
     ));
 

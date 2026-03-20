@@ -223,7 +223,7 @@ jQuery(document).ready(function ($) {
         $('.filter-chip').removeClass('active bg-primary text-white').addClass('bg-soft-gray text-text-dark dark:bg-zinc-800 dark:text-white');
         button.removeClass('bg-soft-gray text-text-dark dark:bg-zinc-800 dark:text-white').addClass('active bg-primary text-white');
 
-        const container = $('#modernnews-archive-posts-container');
+        const container = $('#mobilenews-archive-posts-container');
         container.css('opacity', '0.5');
 
         $.ajax({
@@ -248,7 +248,7 @@ jQuery(document).ready(function ($) {
 
 
     // 4. Load More Button
-    $('#modernnews-load-more').on('click', function () {
+    $('#mobilenews-load-more').on('click', function () {
         const button = $(this);
         const spinner = $('#load-more-spinner');
         const catId = $('#current-archive-cat').val();
@@ -279,7 +279,7 @@ jQuery(document).ready(function ($) {
             },
             success: function (response) {
                 if (response.trim() !== '') {
-                    $('#modernnews-post-list').append(response); // Append specifically to the list container
+                    $('#mobilenews-post-list').append(response); // Append specifically to the list container
                     button.data('page', nextPage);
 
                     if (nextPage >= maxPage) {
@@ -312,9 +312,9 @@ jQuery(document).ready(function ($) {
     }
 
     // 6. Modern Search Overlay
-    const searchOverlay = $('#modernnews-search-overlay');
-    const searchInput = $('#modernnews-search-input');
-    const searchClose = $('#modernnews-search-close');
+    const searchOverlay = $('#mobilenews-search-overlay');
+    const searchInput = $('#mobilenews-search-input');
+    const searchClose = $('#mobilenews-search-close');
 
     function openSearch() {
         searchOverlay.removeClass('hidden').addClass('flex');
@@ -334,7 +334,7 @@ jQuery(document).ready(function ($) {
     }
 
     // Trigger Logic
-    $(document).on('click', '.modernnews-search-trigger, .search-toggle-btn', function (e) {
+    $(document).on('click', '.mobilenews-search-trigger, .search-toggle-btn', function (e) {
         e.preventDefault();
         openSearch();
     });

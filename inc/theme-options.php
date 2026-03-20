@@ -125,14 +125,14 @@ function mobilenews_admin_scripts($hook)
     }
 
     // Enqueue Google Fonts (Inter) for modern typography
-    wp_enqueue_style('modernnews-admin-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', array(), null);
+    wp_enqueue_style('mobilenews-admin-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', array(), null);
 
     $css_ver = file_exists(get_template_directory() . '/assets/css/admin.css') ? filemtime(get_template_directory() . '/assets/css/admin.css') : '1.0.0';
     $js_ver = file_exists(get_template_directory() . '/assets/js/admin.js') ? filemtime(get_template_directory() . '/assets/js/admin.js') : '1.0.0';
 
-    wp_enqueue_style('modernnews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), $css_ver);
+    wp_enqueue_style('mobilenews-admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), $css_ver);
     wp_enqueue_style('wp-color-picker'); // Enqueue Color Picker
-    wp_enqueue_script('modernnews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), $js_ver, true);
+    wp_enqueue_script('mobilenews-admin-js', get_template_directory_uri() . '/assets/js/admin.js', array('jquery', 'wp-color-picker'), $js_ver, true);
 }
 add_action('admin_enqueue_scripts', 'mobilenews_admin_scripts');
 
@@ -276,7 +276,7 @@ function mobilenews_theme_field_color_cb($args)
     }
     $options = get_option('mobilenews_theme_options');
     $val = isset($options[$args['label_for']]) ? $options[$args['label_for']] : '#168098';
-    echo '<input type="text" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="' . esc_attr($val) . '" class="modernnews-color-picker" data-default-color="#168098">';
+    echo '<input type="text" name="mobilenews_theme_options[' . esc_attr($args['label_for']) . ']" value="' . esc_attr($val) . '" class="mobilenews-color-picker" data-default-color="#168098">';
 }
 function mobilenews_theme_field_font_cb($args)
 {
@@ -328,119 +328,119 @@ function mobilenews_theme_options_page_html()
         return;
     }
     ?>
-    <div class="wrap modernnews-admin-wrap">
+    <div class="wrap mobilenews-admin-wrap">
         <?php settings_errors(); ?>
-        <div class="modernnews-admin-header">
+        <div class="mobilenews-admin-header">
             <h1><?php echo esc_html__('Mobile News Settings', 'mobilenews'); ?></h1>
             <span class="version">v1.3.0</span>
         </div>
 
-        <div class="modernnews-admin-main">
-            <div class="modernnews-admin-sidebar">
-                <div class="modernnews-admin-tabs">
-                    <button type="button" class="modernnews-tab-link active" data-tab="general"><span class="dashicons dashicons-admin-generic"></span> General</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="style"><span class="dashicons dashicons-admin-appearance"></span> Style</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="seo"><span class="dashicons dashicons-search"></span> SEO</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="single"><span class="dashicons dashicons-media-text"></span> Single Post</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="archive"><span class="dashicons dashicons-layout"></span> Archive</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="mobile"><span class="dashicons dashicons-smartphone"></span> Mobile</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="trending"><span class="dashicons dashicons-chart-line"></span> Trending</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="ads"><span class="dashicons dashicons-megaphone"></span> Ads</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="ticker"><span class="dashicons dashicons-sos"></span> Ticker</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="features"><span class="dashicons dashicons-star-filled"></span> Features</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="social"><span class="dashicons dashicons-share"></span> Social</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="contact"><span class="dashicons dashicons-email"></span> Contact</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="footer"><span class="dashicons dashicons-editor-insertmore"></span> Footer</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="api"><span class="dashicons dashicons-rest-api"></span> API</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="analytics"><span class="dashicons dashicons-chart-area"></span> Analytics</button>
-                    <button type="button" class="modernnews-tab-link" data-tab="update"><span class="dashicons dashicons-update"></span> Update</button>
+        <div class="mobilenews-admin-main">
+            <div class="mobilenews-admin-sidebar">
+                <div class="mobilenews-admin-tabs">
+                    <button type="button" class="mobilenews-tab-link active" data-tab="general"><span class="dashicons dashicons-admin-generic"></span> General</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="style"><span class="dashicons dashicons-admin-appearance"></span> Style</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="seo"><span class="dashicons dashicons-search"></span> SEO</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="single"><span class="dashicons dashicons-media-text"></span> Single Post</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="archive"><span class="dashicons dashicons-layout"></span> Archive</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="mobile"><span class="dashicons dashicons-smartphone"></span> Mobile</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="trending"><span class="dashicons dashicons-chart-line"></span> Trending</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="ads"><span class="dashicons dashicons-megaphone"></span> Ads</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="ticker"><span class="dashicons dashicons-sos"></span> Ticker</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="features"><span class="dashicons dashicons-star-filled"></span> Features</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="social"><span class="dashicons dashicons-share"></span> Social</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="contact"><span class="dashicons dashicons-email"></span> Contact</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="footer"><span class="dashicons dashicons-editor-insertmore"></span> Footer</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="api"><span class="dashicons dashicons-rest-api"></span> API</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="analytics"><span class="dashicons dashicons-chart-area"></span> Analytics</button>
+                    <button type="button" class="mobilenews-tab-link" data-tab="update"><span class="dashicons dashicons-update"></span> Update</button>
                 </div>
             </div>
 
-            <div class="modernnews-admin-content">
+            <div class="mobilenews-admin-content">
 
         <!-- Main Settings Form -->
-        <form action="options.php" method="post" id="modernnews-theme-form">
+        <form action="options.php" method="post" id="mobilenews-theme-form">
             <?php settings_fields('mobilenews_theme_options'); ?>
 
             <!-- General Tab -->
-            <div id="general" class="modernnews-tab-content active">
+            <div id="general" class="mobilenews-tab-content active">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_general'); ?>
             </div>
 
             <!-- Visual Style Tab -->
-            <div id="style" class="modernnews-tab-content">
+            <div id="style" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_style'); ?>
             </div>
 
             <!-- SEO Tab -->
-            <div id="seo" class="modernnews-tab-content">
+            <div id="seo" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_seo'); ?>
             </div>
 
             <!-- Single Post Tab -->
-            <div id="single" class="modernnews-tab-content">
+            <div id="single" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_single'); ?>
             </div>
 
             <!-- Archive Layout Tab -->
-            <div id="archive" class="modernnews-tab-content">
+            <div id="archive" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
             </div>
 
             <!-- Mobile Layout Tab -->
-            <div id="mobile" class="modernnews-tab-content">
+            <div id="mobile" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_mobile'); ?>
             </div>
 
             <!-- Trending Tab -->
-            <div id="trending" class="modernnews-tab-content">
+            <div id="trending" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_trending'); ?>
             </div>
 
             <!-- News Ticker Tab -->
-            <div id="ticker" class="modernnews-tab-content">
+            <div id="ticker" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_ticker'); ?>
             </div>
 
             <!-- Features Tab -->
-            <div id="features" class="modernnews-tab-content">
+            <div id="features" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_features'); ?>
             </div>
 
             <!-- Social Media Tab -->
-            <div id="social" class="modernnews-tab-content">
+            <div id="social" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_social'); ?>
             </div>
 
             <!-- Contact Tab -->
-            <div id="contact" class="modernnews-tab-content">
+            <div id="contact" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_contact'); ?>
             </div>
 
             <!-- Footer Tab -->
-            <div id="footer" class="modernnews-tab-content">
+            <div id="footer" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_footer'); ?>
             </div>
 
             <!-- API Tab -->
-            <div id="api" class="modernnews-tab-content">
+            <div id="api" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_api'); ?>
             </div>
 
             <!-- Analytics Tab -->
-            <div id="analytics" class="modernnews-tab-content">
+            <div id="analytics" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_analytics'); ?>
             </div>
 
             <!-- Update Tab -->
-            <div id="update" class="modernnews-tab-content">
+            <div id="update" class="mobilenews-tab-content">
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_update'); ?>
             </div>
         </form>
 
         <!-- Ads Manager Tab (Separate Form) -->
-        <div id="ads" class="modernnews-tab-content">
+        <div id="ads" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_ads'); ?>
                 <?php do_settings_sections('mobilenews_ads'); ?>
@@ -449,7 +449,7 @@ function mobilenews_theme_options_page_html()
         </div>
 
         <!-- SEO Tab -->
-        <div id="seo" class="modernnews-tab-content">
+        <div id="seo" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_theme_options'); ?>
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_seo'); ?>
@@ -458,7 +458,7 @@ function mobilenews_theme_options_page_html()
         </div>
 
         <!-- Single Post Tab -->
-        <div id="single" class="modernnews-tab-content">
+        <div id="single" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_theme_options'); ?>
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_single'); ?>
@@ -467,7 +467,7 @@ function mobilenews_theme_options_page_html()
         </div>
 
         <!-- Archive Layout Tab -->
-        <div id="archive" class="modernnews-tab-content">
+        <div id="archive" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_theme_options'); ?>
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_archive'); ?>
@@ -476,7 +476,7 @@ function mobilenews_theme_options_page_html()
         </div>
 
         <!-- Mobile Layout Tab -->
-        <div id="mobile" class="modernnews-tab-content">
+        <div id="mobile" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_theme_options'); ?>
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_mobile'); ?>
@@ -485,7 +485,7 @@ function mobilenews_theme_options_page_html()
         </div>
 
         <!-- Trending Tab -->
-        <div id="trending" class="modernnews-tab-content">
+        <div id="trending" class="mobilenews-tab-content">
             <form action="options.php" method="post">
                 <?php settings_fields('mobilenews_theme_options'); ?>
                 <?php mobilenews_do_settings_section('mobilenews_theme_options', 'mobilenews_theme_section_trending'); ?>
@@ -496,25 +496,25 @@ function mobilenews_theme_options_page_html()
         </div>
     </div>
 
-    <div class="modernnews-admin-save-bar">
+    <div class="mobilenews-admin-save-bar">
         <div class="save-bar-info">
             <span class="dashicons dashicons-info"></span>
             <p><?php echo esc_html__('Remember to save your changes after modifying settings.', 'mobilenews'); ?></p>
         </div>
         <div class="save-bar-actions">
-            <button type="submit" form="modernnews-theme-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
+            <button type="submit" form="mobilenews-theme-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
         </div>
     </div>
             </div>
         </div>
 
-        <div class="modernnews-admin-save-bar">
+        <div class="mobilenews-admin-save-bar">
             <div class="save-bar-info">
                 <span class="dashicons dashicons-info"></span>
                 <p><?php echo esc_html__('Remember to save your changes after modifying settings.', 'mobilenews'); ?></p>
             </div>
             <div class="save-bar-actions">
-                <button type="submit" form="modernnews-options-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
+                <button type="submit" form="mobilenews-options-form" class="button button-primary button-large"><?php echo esc_html__('Save Theme Settings', 'mobilenews'); ?></button>
             </div>
         </div>
     </div>
