@@ -1,8 +1,8 @@
 /*
 Theme Name: Mobile News
-Theme URI: https://bijidata.online
+Theme URI: https://github.com/roedyrustam/mobilenews
 Author: Roedy Rustam
-Author URI: https://bijidata.online
+Author URI: https://github.com/roedyrustam/mobilenews
 Description: A dynamic, modern, and SEO-optimized news theme with Geo-targeting.
 Version: 1.7.0
 Tested up to: 6.5
@@ -139,82 +139,82 @@ div.aligncenter {
     width: auto;
 }
 
-    /* ------------------------------------------------------------------------- *
+/* ------------------------------------------------------------------------- *
  *  Pagination Styling
  * ------------------------------------------------------------------------- */
-    .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 3rem;
-    }
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
 
+.page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    background-color: #f8fbfb;
+    /* soft-gray */
+    color: #508995;
+    /* text-muted */
+    transition: all 0.2s ease;
+}
+
+.page-numbers:hover,
+.page-numbers:focus {
+    background-color: #e8f1f3;
+    /* border-gray */
+    color: #168098;
+    /* primary */
+}
+
+.page-numbers.current {
+    background-color: #168098;
+    /* primary */
+    color: #ffffff;
+}
+
+.page-numbers.dots {
+    background-color: transparent;
+    color: #94a3b8;
+}
+
+/* Dark Mode Support for Pagination (manual since not using Tailwind classes here) */
+@media (prefers-color-scheme: dark) {
     .page-numbers {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 2.5rem;
-        height: 2.5rem;
-        padding: 0 0.75rem;
-        border-radius: 0.5rem;
-        font-weight: 700;
-        text-decoration: none;
-        background-color: #f8fbfb;
-        /* soft-gray */
-        color: #508995;
-        /* text-muted */
-        transition: all 0.2s ease;
-    }
-
-    .page-numbers:hover,
-    .page-numbers:focus {
-        background-color: #e8f1f3;
-        /* border-gray */
-        color: #168098;
-        /* primary */
-    }
-
-    .page-numbers.current {
-        background-color: #168098;
-        /* primary */
-        color: #ffffff;
-    }
-
-    .page-numbers.dots {
-        background-color: transparent;
-        color: #94a3b8;
-    }
-
-    /* Dark Mode Support for Pagination (manual since not using Tailwind classes here) */
-    @media (prefers-color-scheme: dark) {
-        .page-numbers {
-            background-color: #27272a;
-            color: #a1a1aa;
-        }
-
-        .page-numbers:hover,
-        .page-numbers:focus {
-            background-color: #3f3f46;
-            color: #ffffff;
-        }
-
-        .page-numbers.current {
-            background-color: #168098;
-            color: #ffffff;
-        }
-    }
-
-    :root[class~="dark"] .page-numbers {
         background-color: #27272a;
         color: #a1a1aa;
     }
 
-    :root[class~="dark"] .page-numbers:hover {
+    .page-numbers:hover,
+    .page-numbers:focus {
         background-color: #3f3f46;
         color: #ffffff;
     }
 
-    :root[class~="dark"] .page-numbers.current {
+    .page-numbers.current {
         background-color: #168098;
         color: #ffffff;
     }
+}
+
+:root[class~="dark"] .page-numbers {
+    background-color: #27272a;
+    color: #a1a1aa;
+}
+
+:root[class~="dark"] .page-numbers:hover {
+    background-color: #3f3f46;
+    color: #ffffff;
+}
+
+:root[class~="dark"] .page-numbers.current {
+    background-color: #168098;
+    color: #ffffff;
+}
