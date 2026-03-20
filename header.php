@@ -134,10 +134,8 @@
             class="header-container container max-w-[1280px] mx-auto px-4 lg:px-10 <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-14' : 'h-20'; ?> lg:h-20 flex items-center justify-between xl:justify-between gap-6">
 
 
-            <!-- Mobile Menu Toggle (Left on Mobile) -->
-            <button id="mobile-menu-toggle" class="xl:hidden text-gray-700 dark:text-gray-200 p-2 -ml-2 relative z-20">
-                <span class="material-symbols-outlined text-2xl lg:text-3xl">menu</span>
-            </button>
+            <!-- Mobile Menu Toggle (Moved to Right Container) -->
+
 
 
 
@@ -212,6 +210,12 @@
                         berita...</span>
                 </button>
 
+                <!-- Mobile Menu Toggle (Right) -->
+                <button id="mobile-menu-toggle" class="xl:hidden text-gray-700 dark:text-gray-200 p-2 -mr-2 relative z-20">
+                    <span class="material-symbols-outlined text-2xl lg:text-3xl">menu</span>
+                </button>
+
+
 
 
 
@@ -251,9 +255,10 @@
     </header>
 
     <!-- Mobile Sidebar Drawer -->
-    <!-- Mobile Sidebar Drawer (Native App Style) -->
+    <!-- Mobile Sidebar Drawer (Native App Style - Right Side) -->
         <div id="mobile-menu-container"
-            class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
+            class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 right-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl translate-x-full border-l border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
+
 
 
 

@@ -366,8 +366,9 @@ jQuery(document).ready(function ($) {
         // Menu
         mobileMenu.removeClass('hidden');
         setTimeout(() => {
-            mobileMenu.removeClass('-translate-x-full').addClass('translate-x-0');
+            mobileMenu.removeClass('translate-x-full').addClass('translate-x-0');
         }, 10);
+
 
 
         
@@ -378,7 +379,8 @@ jQuery(document).ready(function ($) {
         // Overlay
         mobileMenuOverlay.removeClass('opacity-100 pointer-events-auto').addClass('opacity-0 pointer-events-none');
         // Menu
-        mobileMenu.removeClass('translate-x-0').addClass('-translate-x-full');
+        mobileMenu.removeClass('translate-x-0').addClass('translate-x-full');
+
 
 
         
@@ -457,10 +459,11 @@ jQuery(document).ready(function ($) {
         // Calculate delta (only care about left swipe)
         const deltaX = touchCurrentX - touchStartX;
 
-        // If swiping left (negative delta) and drawer is open
-        if (deltaX < 0 && !mobileMenu.hasClass('-translate-x-full')) {
+        // If swiping right (positive delta) and drawer is open
+        if (deltaX > 0 && !mobileMenu.hasClass('translate-x-full')) {
             // Optional: visual feedback
         }
+
 
 
     });
@@ -468,10 +471,11 @@ jQuery(document).ready(function ($) {
     mobileMenu.on('touchend', function (e) {
         const deltaX = touchCurrentX - touchStartX;
 
-        // If swiped left significantly
-        if (deltaX < -drawerThreshold) {
+        // If swiped right significantly
+        if (deltaX > drawerThreshold) {
             closeMobileMenu();
         }
+
 
 
 
