@@ -261,6 +261,34 @@ function mobilenews_scripts()
         .rounded-xl, .rounded-2xl {
              border-radius: var(--radius-md);
         }
+
+        /* === Logo Auto-Sizing === */
+        /* Desktop top-row: Logo is centered, allow generous size */
+        .site-header .custom-logo-link {
+            display: flex;
+            align-items: center;
+            line-height: 1;
+        }
+        .site-header .custom-logo {
+            display: block;
+            width: auto;
+            height: auto;
+            max-height: 60px;
+            max-width: 220px;
+            object-fit: contain;
+            transition: opacity 0.2s ease;
+        }
+        /* Mobile row: keep logo compact */
+        @media (max-width: 1279px) {
+            .site-branding .custom-logo {
+                max-height: 36px;
+                max-width: 130px;
+            }
+        }
+        /* Hover effect */
+        .site-header .custom-logo-link:hover .custom-logo {
+            opacity: 0.85;
+        }
     ";
 
     wp_add_inline_style('mobilenews-main', $custom_css);
