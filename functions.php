@@ -253,7 +253,8 @@ function mobilenews_get_local_news()
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-            get_template_part('template-parts/content', 'card');
+            get_template_part('template-parts/content', 'card', array('layout' => 'grid'));
+
         }
         wp_reset_postdata();
     } else {
@@ -268,7 +269,8 @@ function mobilenews_get_local_news()
         if ($fallback_query->have_posts()) {
             while ($fallback_query->have_posts()) {
                 $fallback_query->the_post();
-                get_template_part('template-parts/content', 'card');
+                get_template_part('template-parts/content', 'card', array('layout' => 'grid'));
+
             }
         }
         wp_reset_postdata();
