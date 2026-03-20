@@ -134,7 +134,8 @@
             class="header-container container max-w-[1280px] mx-auto px-4 lg:px-10 <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-14' : 'h-20'; ?> lg:h-20 flex items-center justify-between xl:justify-between gap-6">
 
 
-            <!-- Mobile Menu Toggle (Moved to Right Container) -->
+            <!-- Mobile Spacer (Pushes Logo & Right Actions) -->
+            <div class="flex-1 xl:hidden"></div>
 
 
 
