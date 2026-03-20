@@ -376,7 +376,9 @@ mobilenews_theme_options = [
 | 1.0.0 | Initial release |
 | 1.0.1 | Bug fixes, theme options improvements |
 | 1.2.0 | Added Ads Manager, Citizen News, Widgets, Polished Templates |
+| 2.2.1 | Fixed ad settings saving and improved ad rendering |
+| 2.2.2 | Maintenance update and version bump |
 
 ---
 
-*Blueprint generated: 2026-01-20*
+*Blueprint updated: 2026-03-21*

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.2] - 2026-03-21
+### Added
+- Maintenance update and version bump.
+- Minor UI refinements in documentation and theme settings.
+
 ## [2.2.1] - 2026-03-21
 ### Fixed
 - **CRITICAL**: Fixed Ads Management settings not saving because the tab was rendered outside the main form.

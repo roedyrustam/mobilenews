@@ -2,7 +2,7 @@
 
 A dynamic, modern, and SEO-optimized WordPress news theme with Geo-targeting capabilities.
 
-**Version:** 1.2.0  
+**Version:** 2.2.2  
 **Requires:** WordPress 6.0+  
 **Tested up to:** WordPress 6.8.1  
 **Requires PHP:** 7.4+
