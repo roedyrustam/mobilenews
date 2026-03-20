@@ -11,9 +11,9 @@ get_header();
     <nav class="flex items-center gap-2 mb-10 text-sm">
         <a class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1"
             href="<?php echo esc_url(home_url('/')); ?>">
-            <i class="ri-home-4-line"></i> Beranda
+            <span class="material-symbols-outlined text-sm">home</span> Beranda
         </a>
-        <i class="ri-arrow-right-s-line text-gray-300"></i>
+        <span class="material-symbols-outlined text-gray-300 text-sm">chevron_right</span>
         <span class="text-gray-900 dark:text-white font-bold"><?php the_archive_title(); ?></span>
     </nav>
 

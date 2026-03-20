@@ -214,11 +214,30 @@ function mobilenews_scripts()
         wp_enqueue_style($font_id, 'https://fonts.googleapis.com/css2?family=' . urlencode($font_name) . ':wght@400;500;700;800&display=swap', array(), null);
     }
     // Add logic for other fonts if selected, but for now we keep the premium default.
+    
+    // Convert hex to rgb for effects
+    $primary_rgb = '59, 130, 246'; // fallback
+    if (preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $primary_color)) {
+        $hex = str_replace('#', '', $primary_color);
+        if (strlen($hex) == 3) {
+            $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+            $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+            $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+        } else {
+            $r = hexdec(substr($hex, 0, 2));
+            $g = hexdec(substr($hex, 2, 2));
+            $b = hexdec(substr($hex, 4, 2));
+        }
+        $primary_rgb = "$r, $g, $b";
+    }
+
 
     $custom_css = "
         :root {
             --color-primary: {$primary_color};
+            --color-primary-rgb: {$primary_rgb};
             --color-secondary: {$secondary_color};
+
             --bg-header: {$header_bg};
             --bg-light: {$body_bg};
             --font-heading: '{$heading_font}', sans-serif;

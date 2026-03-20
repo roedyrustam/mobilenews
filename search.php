@@ -11,9 +11,9 @@ get_header();
     <nav class="flex items-center gap-2 mb-10 text-sm">
         <a class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1"
             href="<?php echo esc_url(home_url('/')); ?>">
-            <i class="ri-home-4-line"></i> Beranda
+            <span class="material-symbols-outlined text-sm">home</span> Beranda
         </a>
-        <i class="ri-arrow-right-s-line text-gray-300"></i>
+        <span class="material-symbols-outlined text-gray-300 text-sm">chevron_right</span>
         <span class="text-gray-900 dark:text-white font-bold">Hasil Pencarian</span>
     </nav>
 
@@ -49,15 +49,13 @@ get_header();
 
                 <!-- Pagination -->
                 <?php if ($wp_query->max_num_pages > 1): ?>
-                    <div class="mt-16 pt-10 border-t border-gray-100 dark:border-gray-800">
                         <?php
                         the_posts_pagination(array(
                             'mid_size' => 2,
-                            'prev_text' => '<i class="ri-arrow-left-s-line"></i>',
-                            'next_text' => '<i class="ri-arrow-right-s-line"></i>',
+                            'prev_text' => '<span class="material-symbols-outlined">chevron_left</span>',
+                            'next_text' => '<span class="material-symbols-outlined">chevron_right</span>',
                         ));
                         ?>
-                    </div>
                 <?php endif; ?>
 
             <?php else: ?>
@@ -65,7 +63,7 @@ get_header();
                     class="text-center py-24 bg-gray-50 dark:bg-gray-900 rounded-3xl border-2 border-dashed border-gray-100 dark:border-gray-800">
                     <div
                         class="size-24 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-                        <i class="ri-search-2-line text-4xl text-gray-300"></i>
+                        <span class="material-symbols-outlined text-4xl text-gray-300">search</span>
                     </div>
                     <h2 class="text-2xl font-black mb-4">Tidak Menemukan Apapun</h2>
                     <p class="text-gray-500 max-w-md mx-auto mb-8">

@@ -1,12 +1,13 @@
 jQuery(document).ready(function ($) {
     const weatherWidget = $('#weather-widget');
-    const localNewsContainer = $('#local-news-container'); // Need to add this container in front-page
+    const localNewsContainer = $('#local-news-container');
+    const scrollToTopBtn = $('#scroll-to-top');
+    const bottomNav = $('#mobile-bottom-nav');
 
     // --- Dark Mode Logic ---
     const html = document.documentElement;
     const themeToggles = document.querySelectorAll('#theme-toggle, #drawer-theme-toggle');
 
-    // Check Local Storage or System Preference
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('dark');
     } else {
@@ -26,55 +27,32 @@ jQuery(document).ready(function ($) {
         });
     });
 
-
     // 1. Get User Location
     function getUserLocation() {
-        // Using ipapi.co for HTTPS support
         fetch('https://ipapi.co/json/')
             .then(response => response.json())
             .then(data => {
                 const city = data.city;
-                const region = data.region;
-                console.log('Detected Location:', city, region);
-
-                // Fetch Weather
+                console.log('Detected Location:', city);
                 getWeather(city);
-
-                // Fetch Local News
                 getLocalNews(city);
             })
             .catch(error => {
                 console.error('Error fetching location:', error);
-
-                // Fallback for Weather
                 weatherWidget.html('<span class="weather-error">Weather unavailable</span>');
-
-                // Fallback for Local News (Default to Capital/National)
-                console.log('Falling back to default location: Jakarta');
                 getLocalNews('Jakarta');
             });
     }
 
     // 2. Fetch Weather
     function getWeather(city) {
-        // Check if we have an API Key for OpenWeatherMap
         const apiKey = mobilenews_ajax.weather_api_key;
-
         if (apiKey) {
-            // Use OpenWeatherMap
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`;
-
             fetch(weatherUrl)
-                .then(res => {
-                    if (!res.ok) throw new Error('OWM Error');
-                    return res.json();
-                })
+                .then(res => res.json())
                 .then(data => {
                     const temp = Math.round(data.main.temp);
-                    // OWM icon mapping is different or we can use their icons directly
-                    // Simple manual mapping from OWM icon codes or basic conditions
-                    // data.weather[0].main / icon
-
                     const weatherMain = data.weather[0].main.toLowerCase();
                     let icon = '☀️';
                     if (weatherMain.includes('cloud')) icon = '☁️';
@@ -84,30 +62,22 @@ jQuery(document).ready(function ($) {
                     if (weatherMain.includes('snow')) icon = '❄️';
                     if (weatherMain.includes('clear')) icon = '☀️';
                     if (weatherMain.includes('mist') || weatherMain.includes('fog')) icon = '🌫️';
-
                     renderWeatherWidget(city, temp, icon);
                 })
-                .catch(err => {
-                    console.warn('OWM failed, falling back to Open-Meteo', err);
-                    getWeatherOpenMeteo(city);
-                });
-
+                .catch(() => getWeatherOpenMeteo(city));
         } else {
-            // Fallback to Open-Meteo
             getWeatherOpenMeteo(city);
         }
     }
 
     function renderWeatherWidget(city, temp, icon) {
-        // Link to AccuWeather search for the city (generic)
         const accuLink = `https://www.accuweather.com/id/search-locations?query=${encodeURIComponent(city)}`;
-
         const html = `
             <a href="${accuLink}" target="_blank" rel="noopener" class="weather-link" style="text-decoration:none; display:flex; align-items:center; color:inherit;">
                 <div class="weather-info">
                     <span class="weather-icon" style="font-size:1.2rem; margin-right:5px;">${icon}</span>
-                    <span class="weather-city">${city}</span>
-                    <span class="weather-temp">${temp}°C</span>
+                    <span class="weather-city" style="font-size:14px; font-weight:600;">${city}</span>
+                    <span class="weather-temp" style="font-size:14px; margin-left:4px;">${temp}°C</span>
                 </div>
             </a>
         `;
@@ -120,10 +90,7 @@ jQuery(document).ready(function ($) {
             .then(locData => {
                 const lat = locData.latitude;
                 const lon = locData.longitude;
-                // If city didn't match ipapi, this might be slightly off but good enough fallback
-
                 const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
-
                 fetch(weatherUrl)
                     .then(res => res.json())
                     .then(weatherData => {
@@ -135,17 +102,7 @@ jQuery(document).ready(function ($) {
             });
     }
 
-    // Helper: Map WMO codes to Iocns
     function getWeatherIcon(code) {
-        // WMO Weather interpretation codes (WW)
-        // 0: Clear sky
-        // 1, 2, 3: Mainly clear, partly cloudy, and overcast
-        // 45, 48: Fog and depositing rime fog
-        // 51, 53, 55: Drizzle: Light, moderate, and dense intensity
-        // 61, 63, 65: Rain: Light, moderate and heavy intensity
-        // 80, 81, 82: Rain showers: Slight, moderate, and violent
-        // 95, 96, 99: Thunderstorm: Slight or moderate
-
         if (code === 0) return '☀️';
         if (code >= 1 && code <= 3) return '⛅';
         if (code >= 45 && code <= 48) return '🌫️';
@@ -158,11 +115,8 @@ jQuery(document).ready(function ($) {
 
     // 3. Fetch Local News via AJAX
     function getLocalNews(city) {
-        // If we are on homepage, look for the local news container
         if ($('body').hasClass('home')) {
             const newsGrid = $('#local-news-grid');
-
-            // Show Skeleton Loading
             let skeletonHtml = '';
             for (let i = 0; i < 4; i++) {
                 skeletonHtml += `
@@ -187,31 +141,35 @@ jQuery(document).ready(function ($) {
                 },
                 success: function (response) {
                     newsGrid.html(response);
-                    $('.local-news-title span').text(city); // Update title
+                    $('.local-news-title span').text(city);
                 }
             });
         }
     }
 
     // 4. Scroll to Top
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            scrollToTopBtn.removeClass('opacity-0 invisible translate-y-10').addClass('opacity-100 visible translate-y-0');
+        } else {
+            scrollToTopBtn.addClass('opacity-0 invisible translate-y-10').removeClass('opacity-100 visible translate-y-0');
+        }
     });
 
-    scrollToTopBtn.click(function (e) {
+    scrollToTopBtn.on('click', function (e) {
         e.preventDefault();
         $('html, body').animate({ scrollTop: 0 }, 600);
         return false;
     });
 
 
-    // 3. Archive Page Filtering
+    // 5. Archive Page Filtering
     $('.filter-chip').on('click', function (e) {
         e.preventDefault();
-
         const button = $(this);
         const tagId = button.data('tag-id');
         const catId = $('#current-archive-cat').val();
 
-        // UI updates
         $('.filter-chip').removeClass('active bg-primary text-white').addClass('bg-soft-gray text-text-dark dark:bg-zinc-800 dark:text-white');
         button.removeClass('bg-soft-gray text-text-dark dark:bg-zinc-800 dark:text-white').addClass('active bg-primary text-white');
 
@@ -233,13 +191,12 @@ jQuery(document).ready(function ($) {
             },
             error: function () {
                 container.css('opacity', '1');
-                alert('Gagal memuat berita. Silakan coba lagi.');
+                alert('Gagal memuat berita.');
             }
         });
     });
 
-
-    // 4. Load More Button
+    // 6. Load More Button
     $('#mobilenews-load-more').on('click', function () {
         const button = $(this);
         const spinner = $('#load-more-spinner');
@@ -257,8 +214,6 @@ jQuery(document).ready(function ($) {
         button.attr('disabled', true);
         spinner.removeClass('hidden');
 
-        const nextPage = currentPage + 1;
-
         $.ajax({
             url: mobilenews_ajax.ajax_url,
             type: 'POST',
@@ -266,21 +221,17 @@ jQuery(document).ready(function ($) {
                 action: 'mobilenews_filter_archive',
                 category_id: catId,
                 tag_id: activeTag,
-                paged: nextPage,
+                paged: currentPage + 1,
                 nonce: mobilenews_ajax.nonce
             },
             success: function (response) {
                 if (response.trim() !== '') {
-                    $('#mobilenews-post-list').append(response); // Append specifically to the list container
-                    button.data('page', nextPage);
-
-                    if (nextPage >= maxPage) {
-                        button.hide();
-                    }
+                    $('#mobilenews-post-list').append(response);
+                    button.data('page', currentPage + 1);
+                    if ((currentPage + 1) >= maxPage) button.hide();
                 } else {
                     button.hide();
                 }
-
                 button.attr('disabled', false);
                 spinner.addClass('hidden');
             },
@@ -292,7 +243,7 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    // 5. Reading Progress Bar
+    // 7. Reading Progress Bar
     const progressBar = $('#reading-progress-bar');
     if (progressBar.length) {
         $(window).scroll(function () {
@@ -303,41 +254,29 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    // 6. Modern Search Overlay
+    // 8. Search Overlay
     const searchOverlay = $('#mobilenews-search-overlay');
     const searchInput = $('#mobilenews-search-input');
     const searchClose = $('#mobilenews-search-close');
 
     function openSearch() {
         searchOverlay.addClass('active').removeClass('hidden').css('display', 'flex');
-        setTimeout(() => {
-            searchInput.focus();
-        }, 300);
+        setTimeout(() => searchInput.focus(), 300);
         $('body').addClass('overflow-hidden');
     }
-
 
     function closeSearch() {
         searchOverlay.removeClass('active');
         setTimeout(() => {
             searchOverlay.addClass('hidden').css('display', 'none');
             $('body').removeClass('overflow-hidden');
-        }, 500); // Wait for exit animation
+        }, 500);
     }
 
-
-    // Trigger Logic
     $(document).on('click', '.mobilenews-search-trigger, .search-toggle-btn', function (e) {
         e.preventDefault();
         openSearch();
     });
-
-    // Optional: Hijack the header search input click to open full overlay?
-    // $('header input[type="search"]').on('click focus', function(e) {
-    //    e.preventDefault();
-    //    openSearch(); 
-    //    $(this).blur();
-    // });
 
     searchClose.on('click', closeSearch);
 
@@ -345,7 +284,7 @@ jQuery(document).ready(function ($) {
         if (e.key === "Escape") closeSearch();
     });
 
-    // 7. Mobile Menu & Drawer Toggle
+    // 9. Mobile Menu & Drawer
     const mobileMenuBtn = $('#mobile-menu-toggle');
     const mobileMenuCloseBtn = $('#mobile-menu-close');
     const mobileMenuBottomBtn = $('#mobile-menu-trigger-bottom');
@@ -353,38 +292,20 @@ jQuery(document).ready(function ($) {
     const mobileMenu = $('#mobile-menu-container');
 
     function openMobileMenu() {
-        // Overlay
         mobileMenuOverlay.removeClass('hidden pointer-events-none opacity-0').addClass('opacity-100 pointer-events-auto');
-        
-        // Menu
         mobileMenu.removeClass('hidden');
-        setTimeout(() => {
-            mobileMenu.removeClass('-translate-x-full').addClass('translate-x-0');
-        }, 10);
-
-
-
-
-        
+        setTimeout(() => mobileMenu.removeClass('-translate-x-full').addClass('translate-x-0'), 10);
         $('body').addClass('overflow-hidden');
     }
 
     function closeMobileMenu() {
-        // Overlay
         mobileMenuOverlay.removeClass('opacity-100 pointer-events-auto').addClass('opacity-0 pointer-events-none');
-        // Menu
         mobileMenu.removeClass('translate-x-0').addClass('-translate-x-full');
-
-
-
-
-        
         $('body').removeClass('overflow-hidden');
-        
         setTimeout(() => {
             mobileMenuOverlay.addClass('hidden');
             mobileMenu.addClass('hidden');
-        }, 300); // match transition duration
+        }, 300);
     }
 
     mobileMenuBtn.on('click', function (e) {
@@ -399,117 +320,50 @@ jQuery(document).ready(function ($) {
         openMobileMenu();
     });
 
-    // Close menu when link is clicked (if it's not a submenu toggle)
     mobileMenu.find('a').on('click', function () {
-        closeMobileMenu();
+        if (!$(this).hasClass('mobile-menu-toggle')) {
+            closeMobileMenu();
+        }
     });
 
-    // Mobile Submenu Toggle
+    // Submenu Toggle
     $(document).on('click', '.mobile-menu-toggle', function (e) {
         e.preventDefault();
-        e.stopPropagation();
-        
         const btn = $(this);
         const submenu = btn.parent().next('ul');
-        const parentLi = btn.closest('li');
-
         if (submenu.length) {
-            // Accordion: Close other open submenus at the same level
-            parentLi.siblings().find('> div > .mobile-menu-toggle.text-primary').each(function() {
-                const otherBtn = $(this);
-                const otherSubmenu = otherBtn.parent().next('ul');
-                otherSubmenu.slideUp(300);
-                otherBtn.find('span').removeClass('rotate-180');
-                otherBtn.removeClass('text-primary');
-            });
-
-            // Toggle current
             submenu.slideToggle(300);
             btn.find('span').toggleClass('rotate-180');
             btn.toggleClass('text-primary');
         }
     });
 
-    // Mobile Search Input inside Drawer
-    const mobileDrawerSearch = $('#mobile-menu-container input[type="search"]');
-    mobileDrawerSearch.on('focus', function() {
-        // Optional: Pre-fill or animation
-    });
-
-    // 7b. Native Touch Gestures (Swipe to Close)
+    // Swipe to Close
     let touchStartX = 0;
-    let touchCurrentX = 0;
-    const drawerThreshold = 100; // Minimum swipe distance to close
-
-    // Only apply if drawer is open
     mobileMenu.on('touchstart', function (e) {
         touchStartX = e.originalEvent.touches[0].clientX;
-        touchCurrentX = touchStartX;
-        // Don't prevent default, allow scrolling inside drawer
-    });
-
-    mobileMenu.on('touchmove', function (e) {
-        touchCurrentX = e.originalEvent.touches[0].clientX;
-
-        // Calculate delta (only care about left swipe)
-        const deltaX = touchCurrentX - touchStartX;
-
-        // If swiping left (negative delta) and drawer is open
-        if (deltaX < 0 && !mobileMenu.hasClass('-translate-x-full')) {
-            // Optional: visual feedback
-        }
-
-
-
-
     });
 
     mobileMenu.on('touchend', function (e) {
-        const deltaX = touchCurrentX - touchStartX;
-
-        // If swiped left significantly
-        if (deltaX < -drawerThreshold) {
+        const touchEndX = e.originalEvent.changedTouches[0].clientX;
+        if (touchEndX - touchStartX < -100) {
             closeMobileMenu();
         }
-
-
-
-
-
-        // Reset
-        touchStartX = 0;
-        touchCurrentX = 0;
     });
 
-    // 8. Auto-Hide Bottom Nav on Scroll (Optional but makes it feel native-lite)
+    // 10. Auto-Hide Bottom Nav
     let lastScrollTop = 0;
-    const bottomNav = $('#mobile-bottom-nav');
-
     if (mobilenews_ajax.bottom_nav_autohide) {
-        $(window).scroll(function (event) {
+        $(window).scroll(function () {
             let st = $(this).scrollTop();
-            const delta = 5; // Minimum scroll to trigger hide/show
-            
-            // Don't hide if mobile menu is open
-            if (!mobileMenu.hasClass('-translate-x-full')) {
-                bottomNav.css('transform', 'translateY(0)');
-                return;
-            }
-
-            if (Math.abs(lastScrollTop - st) <= delta) return;
-
             if (st > lastScrollTop && st > 100) {
-                // Scroll Down
                 bottomNav.css('transform', 'translateY(100%)');
             } else {
-                // Scroll Up
                 bottomNav.css('transform', 'translateY(0)');
             }
             lastScrollTop = st;
         });
     }
-
-
 
     // Init
     getUserLocation();
