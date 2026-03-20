@@ -15,7 +15,7 @@ function mobilenews_inject_in_feed_ads($content)
         }
 
         $ad_code = mobilenews_render_ad('in_article');
-        $frequency = (int) mobilenews_get_option('ads_in_article_paragraph', 3);
+        $frequency = (int) mobilenews_get_option('ads_in_article_paragraph', 2); // Default to 2
 
         if ($ad_code) {
             $paragraphs = explode('</p>', $content);
