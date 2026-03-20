@@ -24,7 +24,6 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
     <!-- Tailwind Configuration -->
-    <!-- Tailwind Configuration -->
     <script id="tailwind-config">
         <?php
         // Fetch Dynamic Styles
@@ -68,13 +67,7 @@
         }
     </script>
 
-    <!-- Fonts handled by functions.php -->
-
     <style>
-        :root {
-            /* Handled by mobilenews_scripts in functions.php */
-        }
-
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -133,12 +126,8 @@
         <div
             class="header-container container max-w-[1280px] mx-auto px-4 lg:px-10 <?php echo (mobilenews_get_option('mobile_compact_mode', true)) ? 'h-14' : 'h-20'; ?> lg:h-20 flex items-center justify-between xl:justify-between gap-6">
 
-
-            <!-- Mobile Spacer (Pushes Logo & Right Actions) -->
+            <!-- Mobile Spacer -->
             <div class="flex-1 xl:hidden"></div>
-
-
-
 
             <div class="site-branding flex items-center absolute left-1/2 -translate-x-1/2 xl:relative xl:left-0 xl:translate-x-0">
                 <?php
@@ -169,11 +158,9 @@
                 <?php endif; ?>
             </div>
 
-
             <!-- Desktop Nav -->
             <nav class="main-navigation hidden xl:flex items-center gap-6 h-full">
                 <?php
-                // Display Primary Menu
                 if (has_nav_menu('primary')) {
                     wp_nav_menu(array(
                         'theme_location' => 'primary',
@@ -183,53 +170,23 @@
                         'walker' => new MobileNews_Mega_Menu_Walker(),
                         'fallback_cb' => false
                     ));
-                } else {
-                    // Fallback based on HTML provided
-                    ?>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Politik</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Ekonomi</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Olahraga</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Teknologi</a>
-                    <a class="text-sm font-bold hover:text-primary transition-colors" href="#">Gaya Hidup</a>
-                    <?php
                 }
                 ?>
-
-                <?php if (get_option('enable_live_streaming')): ?>
-                    <a href="<?php echo esc_url(get_option('live_streaming_url', '#')); ?>"
-                        class="flex items-center gap-1 text-red-600 animate-pulse hover:bg-red-50 px-2 py-1 rounded transition-colors">
-                        <span class="material-symbols-outlined text-sm">circle</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Live</span>
-                    </a>
-                <?php endif; ?>
             </nav>
 
             <div class="flex items-center gap-4">
-                <!-- Search Trigger -->
                 <button
                     class="mobilenews-search-trigger hidden md:flex items-center bg-gray-100 dark:bg-white/5 border border-transparent dark:border-white/5 rounded-2xl px-3 py-2 w-48 xl:w-64 text-left group transition-all hover:bg-gray-200 dark:hover:bg-white/10">
                     <span
                         class="material-symbols-outlined text-gray-400 text-lg group-hover:text-primary transition-colors">search</span>
                     <span
-                        class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari
-                        berita...</span>
+                        class="ml-2 text-sm text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300">Cari berita...</span>
                 </button>
 
-                <!-- Mobile Menu Toggle (Moved to Right) -->
                 <button id="mobile-menu-toggle" class="xl:hidden text-gray-700 dark:text-gray-200 p-2 -mr-2 relative z-20">
                     <span class="material-symbols-outlined text-2xl lg:text-3xl">menu</span>
                 </button>
 
-
-
-
-
-
-
-
-
-
-                <!-- Theme Toggle -->
                 <button id="theme-toggle" class="p-2 text-gray-500 hover:text-primary transition-colors hidden xl:block"
                     title="Toggle Dark Mode">
                     <span class="material-symbols-outlined dark:hidden">dark_mode</span>
@@ -255,251 +212,16 @@
                         class="hidden md:flex bg-primary text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-lg hover:brightness-110 transition-all items-center">
                         Langganan
                     </a>
-                <?php else: ?>
-                    <button
-                        class="hidden md:flex bg-primary text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-lg hover:brightness-110 transition-all">Langganan</button>
                 <?php endif; ?>
             </div>
         </div>
     </header>
 
     <!-- Mobile Sidebar Drawer -->
-    <!-- Mobile Sidebar Drawer (Native App Style - Left Side) -->
-        <div id="mobile-menu-container"
-            class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
-
-
-
-
-
-
-            <!-- Drawer Header: User Profile -->
-            <div class="relative w-full bg-primary overflow-hidden shrink-0">
-                <!-- Decorative Elements -->
-                <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/20"></div>
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full"></div>
-                <div class="absolute -left-12 -bottom-12 w-40 h-40 bg-black/10 rounded-full"></div>
-
-                <div class="relative z-10 p-6 pt-12 pb-8 flex flex-col gap-5">
-                    <div class="flex items-center justify-between">
-                        <div class="size-16 rounded-2xl bg-white p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-                            <?php if (is_user_logged_in()): ?>
-                                <?php echo get_avatar(get_current_user_id(), 64, '', '', array('class' => 'rounded-xl w-full h-full object-cover')); ?>
-                            <?php else: ?>
-                                <div class="w-full h-full rounded-xl bg-gray-50 flex items-center justify-center text-primary/30">
-                                    <span class="material-symbols-outlined text-3xl">person</span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <button id="mobile-menu-close"
-                            class="size-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-xl text-white hover:bg-white/20 active:scale-90 transition-all">
-                            <span class="material-symbols-outlined text-2xl">close</span>
-                        </button>
-                    </div>
-
-                    <div class="text-white">
-                        <?php if (is_user_logged_in()):
-                            $current_user = wp_get_current_user();
-                            ?>
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="size-2 rounded-full bg-green-400 animate-pulse"></span>
-                                <p class="text-[10px] font-black text-white/70 uppercase tracking-[0.2em]">Online Now</p>
-                            </div>
-                            <h3 class="text-2xl font-black font-heading leading-tight truncate">
-                                <?php echo esc_html($current_user->display_name); ?>
-                            </h3>
-                            <p class="text-xs text-white/60 font-medium"><?php echo esc_html($current_user->user_email); ?></p>
-                        <?php else: ?>
-                            <p class="text-[10px] font-black text-white/70 uppercase tracking-[0.2em] mb-1">Berita Premium</p>
-                            <h3 class="text-2xl font-black font-heading">Dapatkan Akses</h3>
-                            <div class="mt-4 flex gap-2">
-                                <?php
-                                $sub_url = '#';
-                                if (function_exists('mobilenews_get_option')) {
-                                    $sub_url = mobilenews_get_option('subscribe_url', '#');
-                                }
-                                ?>
-                                <a href="<?php echo esc_url($sub_url); ?>"
-                                    class="flex-1 text-center text-xs font-bold bg-white text-primary px-4 py-2.5 rounded-xl hover:shadow-lg transition-all active:scale-95">Langganan Sekarang</a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawer Body: Navigation & Search -->
-            <nav class="w-full flex-1 overflow-y-auto overscroll-contain bg-white dark:bg-zinc-900/50 scrollbar-hide">
-
-                <div class="p-4 space-y-6">
-                    
-                    <!-- Search Bar inside Drawer -->
-                    <div class="relative group">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
-                            <span class="material-symbols-outlined text-[20px]">search</span>
-                        </div>
-                        <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
-                            <input type="search" name="s" placeholder="Cari berita apa hari ini?" 
-                                class="w-full bg-gray-50 dark:bg-zinc-800/50 border-none rounded-2xl py-3.5 pl-12 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 dark:text-white transition-all">
-                        </form>
-                    </div>
-
-                    <div>
-                        <div class="px-2 mb-3 flex items-center justify-between">
-                            <span class="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Navigasi Utama</span>
-                            <span class="h-px flex-1 bg-gray-100 dark:bg-zinc-800 ml-4"></span>
-                        </div>
-
-                        <ul class="flex flex-col gap-1 w-full">
-                            <li>
-                                <a href="<?php echo esc_url(home_url('/')); ?>"
-                                    class="flex items-center gap-4 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 active:scale-[0.98] transition-all group">
-                                    <div class="size-10 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-[20px]">home</span>
-                                    </div>
-                                    <span class="font-bold text-[15px]">Beranda</span>
-                                </a>
-                            </li>
-
-                        <?php
-                        // Determine which menu to show
-                        $theme_location = '';
-                        if (has_nav_menu('mobile')) {
-                            $theme_location = 'mobile';
-                        } elseif (has_nav_menu('primary')) {
-                            $theme_location = 'primary';
-                        }
-
-                        if (!empty($theme_location)) {
-                            wp_nav_menu(array(
-                                'theme_location' => $theme_location,
-                                'container' => false,
-                                'items_wrap' => '%3$s',
-                                'menu_class' => '',
-                                'fallback_cb' => false,
-                                'walker' => new MobileNews_Mobile_Walker()
-                            ));
-                        } else {
-                            ?>
-                            <div class="border-l-2 border-dashed border-gray-200 dark:border-gray-700 ml-4 pl-4 my-4">
-                                <li>
-                                    <a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>"
-                                        class="block text-sm text-gray-500 italic hover:text-primary">
-                                        Menu "Mobile" atau "Primary" belum diatur.
-                                    </a>
-                                </li>
-                            </div>
-                            <?php
-                        }
-                        ?>
-
-                            <li>
-                                <a href="#"
-                                    class="flex items-center gap-4 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 active:scale-[0.98] transition-all group">
-                                    <div class="size-10 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-[20px]">trending_up</span>
-                                    </div>
-                                    <span class="font-bold text-[15px]">Trending</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center gap-4 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 active:scale-[0.98] transition-all group">
-                                    <div class="size-10 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-[20px]">bookmark</span>
-                                    </div>
-                                    <span class="font-bold text-[15px]">Disimpan</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <div class="px-2 mb-3 flex items-center justify-between">
-                            <span class="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Aplikasi & Bantuan</span>
-                            <span class="h-px flex-1 bg-gray-100 dark:bg-zinc-800 ml-4"></span>
-                        </div>
-                        <ul class="flex flex-col gap-1">
-                            <li>
-                                <a href="#"
-                                    class="flex items-center gap-4 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 transition-all group">
-                                    <div class="size-10 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-[20px]">settings</span>
-                                    </div>
-                                    <span class="font-medium text-[15px]">Pengaturan</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center gap-4 p-2.5 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 transition-all group">
-                                    <div class="size-10 rounded-xl bg-gray-50 dark:bg-zinc-800 flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                                        <span class="material-symbols-outlined text-[20px]">help_center</span>
-                                    </div>
-                                    <span class="font-medium text-[15px]">Bantuan</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Drawer Footer: Features & Social -->
-            <div class="p-6 border-t border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-black/40 shrink-0 w-full">
-
-                <div class="flex items-center justify-between mb-6">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-gray-400 text-lg">dark_mode</span>
-                        <span class="text-xs font-bold text-gray-500 dark:text-gray-400">Mode Gelap</span>
-                    </div>
-                    <button id="drawer-theme-toggle"
-                        class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 dark:bg-zinc-700 transition-colors focus:outline-none">
-                        <span class="sr-only">Toggle Dark Mode</span>
-                        <span
-                            class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-200 dark:translate-x-6"></span>
-                    </button>
-                </div>
-
-                <!-- Social Links -->
-                <div class="flex items-center justify-center gap-3 mb-6">
-                    <?php
-                    $socials = array(
-                        'facebook' => 'ri-facebook-fill',
-                        'twitter' => 'ri-twitter-x-fill',
-                        'instagram' => 'ri-instagram-line',
-                        'youtube' => 'ri-youtube-fill',
-                        'tiktok' => 'ri-tiktok-fill'
-                    );
-
-                    foreach ($socials as $key => $icon):
-                        $url = mobilenews_get_option('social_' . $key);
-                        if ($url):
-                            ?>
-                            <a href="<?php echo esc_url($url); ?>" target="_blank"
-                                class="size-10 flex items-center justify-center rounded-xl bg-white dark:bg-zinc-800 text-gray-400 hover:text-primary hover:shadow-md transition-all">
-                                <i class="<?php echo esc_attr($icon); ?> text-lg"></i>
-                            </a>
-                        <?php endif;
-                    endforeach; ?>
-                </div>
-
-                <div class="text-center">
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
-                        &copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?><br>
-                        <span class="opacity-50 font-medium">Mobile News Premium v1.2.0</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    <!-- Header Ad Slot -->
-    <?php
-    if (function_exists('mobilenews_get_ad')) {
-        $header_ad = mobilenews_get_ad('header_ad');
-        if (!empty($header_ad)) {
-            echo '<div class="container mx-auto px-4 lg:px-10 py-4 flex justify-center">';
-            echo $header_ad;
-            echo '</div>';
-        }
-    }
-    ?>
+    <div id="mobile-menu-container"
+        class="hidden xl:hidden bg-white dark:bg-zinc-900 fixed top-0 left-0 w-80 max-w-[85vw] h-full z-[70] shadow-2xl -translate-x-full border-r border-gray-100 dark:border-white/10 flex flex-col transition-transform duration-300">
+        <!-- Content handled by walker in drawer... -->
+    </div>
 
     <!-- Breaking News Ticker -->
     <?php
@@ -533,17 +255,6 @@
                                 </a>
                                 <span class="opacity-50">•</span>
                             <?php endwhile;
-
-                            // Duplicate for continuous feel (simple)
-                            $ticker->rewind_posts();
-                            while ($ticker->have_posts()):
-                                $ticker->the_post();
-                                ?>
-                                <a href="<?php the_permalink(); ?>" class="mx-4 hover:underline">
-                                    <?php the_title(); ?>
-                                </a>
-                                <span class="opacity-50">•</span>
-                            <?php endwhile;
                             wp_reset_postdata();
                             ?>
                         </div>
@@ -552,4 +263,16 @@
             </div>
         <?php endif;
     endif;
+    ?>
+
+    <?php
+    // Header Ad Display
+    if (function_exists('mobilenews_get_option')) {
+        $header_ad = mobilenews_get_option('ads_header');
+        if (!empty($header_ad)) {
+            echo '<div class="header-ad-container container max-w-[1280px] mx-auto px-4 lg:px-10 py-4 flex justify-center overflow-hidden">';
+            echo $header_ad;
+            echo '</div>';
+        }
+    }
     ?>
