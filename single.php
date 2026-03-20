@@ -53,10 +53,12 @@ get_header();
                 </h1>
 
                 <!-- Author & Meta -->
-                <div class="flex items-center justify-between border-y border-gray-100 dark:border-gray-800 py-6 mb-8">
+                <div class="flex items-center justify-between border-y border-gray-100 dark:border-white/5 py-6 mb-8">
+
                     <div class="flex items-center gap-4">
                         <?php if (mobilenews_get_option('single_show_author_meta', true)): ?>
-                        <div class="size-12 rounded-full overflow-hidden bg-gray-200">
+                        <div class="size-12 rounded-full overflow-hidden bg-gray-200 dark:bg-white/5">
+
                             <?php echo get_avatar(get_the_author_meta('ID'), 96, '', '', array('class' => 'w-full h-full object-cover')); ?>
                         </div>
                         <?php endif; ?>

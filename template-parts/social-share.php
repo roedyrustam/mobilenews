@@ -41,7 +41,8 @@ $linkedin_url = "https://www.linkedin.com/shareArticle?mini=true&url={$post_url}
 
 <!-- Mobile: Fixed Bottom (Above current bottom nav if exists, or just minimal) -->
 <div
-    class="social-share-mobile xl:hidden w-full py-3 flex justify-center gap-4 bg-white dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800">
+    class="social-share-mobile xl:hidden w-full py-3 flex justify-center gap-4 bg-background-light dark:bg-zinc-900 border-t border-gray-100 dark:border-zinc-800">
+
     <span class="text-xs font-bold uppercase tracking-wider text-gray-400 self-center mr-2">Bagikan</span>
     <a href="<?php echo $facebook_url; ?>" target="_blank" rel="noopener noreferrer"
         class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors">

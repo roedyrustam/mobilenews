@@ -45,9 +45,13 @@
                     colors: {
                         "primary": "var(--color-primary)",
                         "secondary": "var(--color-secondary)",
-                        "background-light": "var(--bg-light)",
+                        "background-light": "var(--background-body-light)",
+                        "background-dark": "var(--background-body-dark)",
+                        "surface-light": "var(--background-surface-light)",
+                        "surface-dark": "var(--background-surface-dark)",
                         "accent-yellow": "#FFD600",
                     },
+
                     fontFamily: {
                         "display": ["var(--font-heading)", "sans-serif"],
                         "body": ["var(--font-body)", "sans-serif"]
