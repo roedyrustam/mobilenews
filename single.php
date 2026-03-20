@@ -168,6 +168,27 @@ get_header();
                         </div>
                     </div>
 
+                    <!-- Author Bio Box -->
+                    <?php if (mobilenews_get_option('single_show_author_meta', true) && get_the_author_meta('description')): ?>
+                    <div class="mt-12 p-8 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+                        <div class="size-24 shrink-0 rounded-full overflow-hidden bg-gray-200 dark:bg-zinc-800 border-4 border-white dark:border-zinc-900 shadow-sm">
+                            <?php echo get_avatar(get_the_author_meta('ID'), 192, '', '', array('class' => 'w-full h-full object-cover')); ?>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Ditulis oleh <?php the_author_posts_link(); ?></h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                                <?php echo wp_kses_post(nl2br(get_the_author_meta('description'))); ?>
+                            </p>
+                            <?php $author_url = get_the_author_meta('user_url'); ?>
+                            <?php if ($author_url): ?>
+                            <a href="<?php echo esc_url($author_url); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary font-bold text-sm hover:underline">
+                                <span class="material-symbols-outlined text-[16px]">language</span> Website Penulis
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
                     <!-- Comments Section -->
                     <?php
                     if (comments_open() || get_comments_number()):

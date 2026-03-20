@@ -11,6 +11,23 @@
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
+    <?php
+    $heading_font = 'Epilogue';
+    $body_font = 'Noto Sans';
+    $primary_color = '#168098';
+
+    if (function_exists('mobilenews_get_option')) {
+        $primary_color = mobilenews_get_option('primary_color', '#168098');
+        $heading_font = mobilenews_get_option('heading_font', 'Epilogue');
+        $body_font = mobilenews_get_option('body_font', 'Noto Sans');
+    }
+    
+    $fonts_to_preload = array_unique([$heading_font, $body_font]);
+    foreach ($fonts_to_preload as $font_name) {
+        echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=' . urlencode($font_name) . ':wght@400;500;700;800&display=swap">' . "\n    ";
+    }
+    ?>
+
     <!-- Dark Mode Init (Minimize FOUC) -->
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -25,18 +42,6 @@
 
     <!-- Tailwind Configuration -->
     <script id="tailwind-config">
-        <?php
-        // Fetch Dynamic Styles
-        $primary_color = '#168098'; // Default
-        $heading_font = 'Epilogue';
-        $body_font = 'Noto Sans';
-
-        if (function_exists('mobilenews_get_option')) {
-            $primary_color = mobilenews_get_option('primary_color', '#168098');
-            $heading_font = mobilenews_get_option('heading_font', 'Epilogue');
-            $body_font = mobilenews_get_option('body_font', 'Noto Sans');
-        }
-        ?>
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -110,7 +115,7 @@
     </a>
 
     <!-- Reading Progress Bar (Single Posts Only) -->
-    <?php if (is_single()): ?>
+    <?php if (is_single() && (!function_exists('mobilenews_get_option') || mobilenews_get_option('single_show_progress_bar', true))): ?>
         <div id="reading-progress-container"
             class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent pointer-events-none">
             <div id="reading-progress-bar" class="h-full bg-primary w-0 transition-all duration-100 ease-out"></div>

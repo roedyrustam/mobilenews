@@ -197,15 +197,16 @@ function mobilenews_scripts()
     ));
 
 
-    // Inline Custom Styles from Customizer (Live Preview)
-    $primary_color = get_theme_mod('mobilenews_primary_color', '#3b82f6');
-    $secondary_color = get_theme_mod('mobilenews_secondary_color', '#1e293b');
-    $header_bg = get_theme_mod('mobilenews_header_bg', '#ffffff');
-    $body_bg = get_theme_mod('mobilenews_body_bg', '#f3f4f6');
-    $heading_font = get_theme_mod('mobilenews_heading_font', 'Epilogue');
-    $body_font = get_theme_mod('mobilenews_body_font', 'Noto Sans');
-    $border_radius = get_theme_mod('mobilenews_border_radius', '0.4');
-    $site_width = get_theme_mod('mobilenews_site_width', '1280');
+    // Inline Custom Styles from Customizer or Theme Options
+    $primary_color_fetch = function_exists('mobilenews_get_option') ? mobilenews_get_option('primary_color', '#168098') : get_theme_mod('mobilenews_primary_color', '#168098');
+    $secondary_color = function_exists('mobilenews_get_option') ? mobilenews_get_option('secondary_color', '#1e293b') : get_theme_mod('mobilenews_secondary_color', '#1e293b');
+    $header_bg = function_exists('mobilenews_get_option') ? mobilenews_get_option('header_bg', '#ffffff') : get_theme_mod('mobilenews_header_bg', '#ffffff');
+    $body_bg = function_exists('mobilenews_get_option') ? mobilenews_get_option('body_bg', '#f3f4f6') : get_theme_mod('mobilenews_body_bg', '#f3f4f6');
+    $heading_font = function_exists('mobilenews_get_option') ? mobilenews_get_option('heading_font', 'Epilogue') : get_theme_mod('mobilenews_heading_font', 'Epilogue');
+    $body_font = function_exists('mobilenews_get_option') ? mobilenews_get_option('body_font', 'Noto Sans') : get_theme_mod('mobilenews_body_font', 'Noto Sans');
+    $border_radius = function_exists('mobilenews_get_option') ? mobilenews_get_option('border_radius', '0.4') : get_theme_mod('mobilenews_border_radius', '0.4');
+    $site_width = function_exists('mobilenews_get_option') ? mobilenews_get_option('site_width', '1280') : get_theme_mod('mobilenews_site_width', '1280');
+
 
     // Dynamic Font Loading
     $fonts_to_load = array_unique([$heading_font, $body_font]);
@@ -217,8 +218,8 @@ function mobilenews_scripts()
     
     // Convert hex to rgb for effects
     $primary_rgb = '59, 130, 246'; // fallback
-    if (preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $primary_color)) {
-        $hex = str_replace('#', '', $primary_color);
+    if (preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $primary_color_fetch)) {
+        $hex = str_replace('#', '', $primary_color_fetch);
         if (strlen($hex) == 3) {
             $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
             $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
@@ -234,7 +235,7 @@ function mobilenews_scripts()
 
     $custom_css = "
         :root {
-            --color-primary: {$primary_color};
+            --color-primary: {$primary_color_fetch};
             --color-primary-rgb: {$primary_rgb};
             --color-secondary: {$secondary_color};
 
@@ -447,7 +448,6 @@ require get_template_directory() . '/inc/ajax-archive.php';
  * Load Theme Options
  */
 require get_template_directory() . '/inc/theme-options.php';
-require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/seo.php';
 require get_template_directory() . '/inc/block-styles.php';
 require get_template_directory() . '/inc/ads-helper.php';
